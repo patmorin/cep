@@ -1,0 +1,239 @@
+\documentclass{patmorin}
+\listfiles
+\usepackage{pat}
+\usepackage{paralist}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{paralist}
+\usepackage{bbm}  % needed for \mathbbm{1}
+% \usepackage{logix}
+\usepackage{halloweenmath}
+\usepackage{stmaryrd}
+
+\usepackage{todonotes}
+\usepackage{tcolorbox}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{comment}
+
+\usepackage{thm-restate}
+
+
+% etoolbox allows for robust commands that don't need \protect, e.g.
+% \newrobustcmd{\onesub}{\mathord{\includegraphics{figs/one-sub}}}
+% \subsection{Approximate Voronoi Diagrams in $G^{\onesub}_k$}
+\usepackage{etoolbox}
+
+% david proposes the following additions
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+\newcommand{\vida}[1]{{\color{DarkGreen} Vida: #1}}
+\newcommand{\pat}[1]{\textcolor{Blue}{Pat: #1}}
+\newcommand{\gwen}[1]{\textcolor{Purple}{Gwen: #1}}
+\newcommand{\piotr}[1]{\textcolor{red}{Piotr: #1}}
+
+% \numberwithin{equation}{lem}
+
+
+\newenvironment{clmproof}{\noindent\emph{Proof of Claim:}}{\hfill\rule{1ex}{1ex}}
+
+\usepackage[longnamesfirst,numbers,sort&compress]{natbib}
+
+\usepackage[mathlines]{lineno}
+\setlength{\linenumbersep}{2em}
+% \linenumbers
+% \rightlinenumbers
+% \linenumbers
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+ \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+ \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+ \renewenvironment{#1}%
+    {\linenomath\csname old#1\endcsname}%
+    {\csname oldend#1\endcsname\endlinenomath}}%
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+ \patchAmsMathEnvironmentForLineno{#1}%
+ \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
+
+
+
+% Taken from
+% https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\definecolor{brightmaroon}{rgb}{0.76, 0.13, 0.28}
+\definecolor{linkblue}{rgb}{0, 0.337, 0.227}
+\newcommand{\defin}[1]{\emph{\textcolor{brightmaroon}{#1}}}
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\makeatother
+\newcommand{\mathdefin}[1]{\mathcolor{brightmaroon}{#1}}
+% \newcommand{\mathdefin}[1]{\color{brightmaroon}#1}}
+\setlength{\parskip}{1ex}
+
+% Document-specific commands and math operators
+\DeclareMathOperator{\tw}{tw}
+\DeclareMathOperator{\pw}{pw}
+\DeclareMathOperator{\bw}{bw}
+\DeclareMathOperator{\td}{td}
+%\DeclareMathOperator{\rtw}{rtw}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\mindist}{min-dist}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\ld}{ld}
+\DeclareMathOperator{\polylog}{polylog}
+\DeclareMathOperator{\evol}{Evol}
+\DeclareMathOperator{\ivol}{Ivol}
+\DeclareMathOperator{\tvol}{Tvol}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\GG}{\mathcal{G}}
+
+\title{\MakeUppercase{Notes on Coarse {E}rdős–{P}ósa}}
+
+%\title{\MakeUppercase{\boldmath Planar graphs are contained in $\tilde{O}(\sqrt{n})$-blowups of fans}}
+
+%Fan-Partitions of Planar Graphs (and Beyond)  \newline by Local Sparsification and Volume-Preserving Embeddings}}
+
+\author{
+ Vida Dujmovi{\'c}\,\footnote{School of Computer Science and Electrical Engineering, University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research supported by NSERC and a University of Ottawa Research Chair.}
+ \qquad
+ Gwena\"el Joret\footnote{D\'epartement d'Informatique, Universit\'e libre de Bruxelles, Belgium ({\tt gwenael.joret@ulb.be}). G.\ Joret is supported by the Belgian National Fund for Scientific Research (FNRS) and by the Australian Research Council.}
+ \qquad
+ Piotr Micek\footnote{Department of Theoretical Computer Science, Jagiellonian University, Kraków, Poland (\texttt{piotr.micek@uj.edu.pl}). Research supported
+ the National Science Center of Poland under grant UMO-2018/31/G/ST1/03718 within the BEETHOVEN program.}
+ \qquad
+ Pat Morin\footnote{School of Computer Science, Carleton University, Ottawa, Canada (\texttt{morin@scs.carleton.ca}). Research supported by NSERC and the Ontario Ministry of Research and Innovation.}}
+
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Meat}
+
+
+\begin{lem}
+  Let $d\ge 1$ be an integer, let $G$ be a graph and let $C$ be a cycle in $G$.  Then $G[B_G(V(C),3d)]$ contains a cycle $C'$ such that
+  \begin{compactenum}
+    \item $G[B_G(V(C'),d)]$ is unicyclic; or
+    \item $C'$ has length at most $6d$.
+\end{lem}
+
+\begin{proof}
+  Suppose that $C$ has length greater than $6d+2$ and that $G[B_G(V(C),d)]$ is not unicyclic.
+  Let $Q_0$ be the shortest cycle in $G[V(C)]$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $P_i$ and $Q_i$ are paths with common endpoints, $P_i$ has at most $4d-1$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  At all steps, we will ensure that $Q_i$ is a non-empty path contained in $Q_0$.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $C_{i-1}$ is contained in $G[B_G(V_C,2d)]$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2d$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
+  \begin{compactenum}
+    \item $G[B_G(V(C_{i-1}),d)]$ contains a cycle $C'$ of length at most $6d$; or
+    \item $G[B_G(V(C_{i-1}),d)]$ contains a path $P_i'$ with at least $3$ and at most $2d+1$ vertices that has both endpoints in $V(C_{i-1})$ and whose interior is vertex-disjoint from $V(C_{i-1})$.
+  \end{compactenum}
+  In the first case, the cycle $C'$ satisfies the conditions of the lemma, since $B_G(V(C_{i-1}),d)\subseteq B_G(V(C),3d)$.  Assume that the first case does not apply, so the second case does.  Let $P_i'$ be the shortest path that satisfies the conditions of this second case.  Note that $C_{i-1}\cup P_i'$ is contained in $B_G(V(C_{i-1}),d)\subseteq B_G(V(C),3d)$.   Now there are three possibilities:
+  \begin{compactenum}
+    \item Both endpoints of $P_i'$ are in $V(P_{i-1})$: In this case, $P_i'\cup P_{i-1}$ contains a cycle of length at most $|V(P_{i-1}\cup V(P_i'))|\le 4d-1+2d+1=6d$ which is not possible since the first case above does not apply.
+    \item Both endpoints of $P_i'$ are in $V(Q_{i-1})\setminus V(P_{i-i})$.    In this case, we take $C_i$ to be a cycle in $Q_{i-1}\cup P_i'$. This works because $Q_i$ is a non-empty subpath of $Q_{i-1}$ and $P_i:=P_i'$ has at most $|V(P_i')|-2\le 2d-1\le 4d-1$ internal vertices.  Furthermore, $|V(Q_i)|\le |V(Q_{i-1})-2$ because $C_i$ does not contain either endpoint of $Q_{i-1}$.
+    \item Exactly one endpoint of $P_i'$ is in $V(P_{i-1})$.  In this case, $C_{i-1}\cup P_i'$ has two cycles that each contain $P_i'$.  One of the at most $4d-1$ internal vertices of $P_{i-1}$ appears in both of these cycles. The other internal vertices $P_{i-1}$ appear in exactly one of these two cycles.  Therefore one of these cycles contains at most $2d$ internal vertices of $P_{i-1}$.  We take $C_i$ to be this cycle and define $P_i$ to be the path in $C_i$ whose endpoints are in $Q_{i-1}$ and whose interior is disjoint from $V(Q_{i-1})$.  Then $P_i$ has at most $2d+2d-1= 4d-1$ internal vertices.  Furthermore $|V(Q_i)|\le |V(Q_{i-1})|-1$ because $C_i$ does not contain one of the endpoints of $Q_{i-1}$.
+  \end{compactenum}
+  This process eventually produces the desired cycle $C'$ since, at each step in the process $|V(Q_i)|$ decreases.
+\end{proof}
+
+
+\end{document}
+
+
+
+
+% \gwen{Another option for the title: Planar graphs as blowups of fans}
+%
+% \pat{Planar graphs in blowups of fans(?)}
+%
+% \david{I think `Planar graphs as blowups of fans' reads better than `Planar graphs in blowups of fans', whereas the latter is more accurate. I would weakly lean towards `Planar graphs in blowups of fans'}
+%
+% \pat{Near rootish blowups of fans contain all planar graphs}
+% \david{what does rootish mean, or is it another joke?} \pat{No, not a joke.  Just a way to avoid a square root symbol in a title.} \david{when I read this, I had no idea ``rootish'' refered to square root of $n$.}
+
+
+\begin{abstract}
+\end{abstract}
+
+\section{Introduction}
+
+For a graph $G$ and a vertex $v\in V(G)$, let $\mathdefin{\deg_G(v)}:=|\{w\in V(G):vw\in E(G)\}|$ be the \defin{degree} of $v$ in $G$.  For each non-negative integer $d$, let $\mathdefin{V_d(G)}:=\{v\in V(G):\deg_G(v)=d\}$.
+
+Let $G$ be a graph and let $F$ be a subgraph of $G$ such that $\deg_F(v)\in\{2,3\}$ for each $v\in V(F)$.  We say that a path $P=p_0,\ldots,p_\ell$ in $G$ is an \defin{extension} of $(G,F)$ if
+\begin{compactenum}[(a)]
+  \item $\deg_F(p_0)=\deg_F(u_\ell)=2$;
+  \item $p_1,\ldots,p_m\in V(G)\setminus V(F)$; and
+  \item $G[V(P)]=P$ (i.e., $P$ is an induced path in $G$).
+\end{compactenum}
+In this case, we call $P$ a \defin{$u_0u_m$-extension} of $(G,F)$.
+For a positive integer $k$, we say that an extension $P$ of $(G,F)$ is \defin{$k$-bad} if $F\cup P$ contains a cycle $C$ such that
+\begin{compactenum}[(b-i)]
+  \item $P\subseteq C$;
+  \item $|V(C)\cap V_3(F)|\le \log_2 k$; and
+  \item $G[V(C)]$ is chordal.
+\end{compactenum}
+We say that $C$ \defin{witnesses} the fact that $P$ is $k$-bad.
+If $P$ is not $k$-bad, then $P$ is \defin{$k$-good}.
+
+
+A graph is \defin{outerplanar} if it has a planar drawing in which all vertices appear on a single face.  If this face is unique, we call it the \defin{outer face}.
+
+\begin{obs}\label{hamiltonian}
+  If $H$ is Hamiltonian chordal graph with at least $3$ vertices then, for any Hamiltonian cycle $C$ of $H$, $H$ contains an edge-maximal outerplanar graph $H'$ whose outer face is $C$.
+\end{obs}
+
+A \defin{chord} of a cycle $C$ in a graph $G$ is an edge $vw\in E(G)$ such that $v,w\in V(C)$ but $vw\not\in E(C)$.  $C$ is \defin{chord-free} if has no chord.  A \defin{hole} in $G$ is a chord-free cycle with at least four vertices. $G$ is \defin{chordal} if it has no holes.
+
+Consider the following construction of graphs $F_0,\ldots,F_r\subseteq G$, where $G$ is a non-chordal graph:  Let $F_0$ be a minimum-size hole in $G$. For $i\ge 1$, if all extensions of $(G,F_{i-1})$ are $k$-bad, then $r:=i-1$ and we are done.  Otherwise, let $P_i$ be a good extension of $(G,F_{i-1})$ of minimum size and set $F_i:=F_{i-1}\cup P_i$.
+
+Note that in the following lemma, there can be vertices $v,w\in V_2(F)$, that have no $vw$-extension of $(G,F_r)$.  This happens when $v$ and $w$ are in different components of $G-(V(F)\setminus\{v,w\})$.
+
+\begin{lem}\label{coolio}
+  For each distinct $v,w\in V_2(F_{r})$, and each $vw$-extension $P$ of $F_r$, there exists a cycle $C$ in $F_r\cup P$ that witnesses the fact that $P$ is bad and such that $G[V(C)]$ contains an edge-maximal outerplanar graph $H$ whose outer face is $C$ and such that $V_2(H)=\{v,w\}$.
+  \end{compactenum}
+\end{lem}
+
+
+\begin{proof}
+  Let $P:=p_0,\ldots,p_\ell$ be a $vw$-extension of $(G,F_r)$.  Since the construction of $F_r$ stopped at iteration $r+1$, $P$ is a bad extension of $(G,F_r)$.  Let $C$ be the minimum-length cycle that witnesses the fact that $P$ is $k$-bad.  By \cref{hamiltonian} $G[V(C)]$ contains an edge-maximal outerplanar graph $H$ whose outer face is $C$.  Since $P$ is an induced path in $G$ and $H$ is edge-maximal outerplanar, $\deg_{H}({p_i})\neq 2$ for each $i\in\{1,\ldots,\ell-1\}$.  Let $Q:=q_0,\ldots,q_m=C-\{p_1,\ldots,p_{\ell-1}\}$.  Since $C$ has minimum length, $Q$ is an induced path in $G[V(F_r)]$.  Again, this implies that $\deg_{H}(q_i)}\neq 2$ for each $i\in\{1,\ldots,m-1\}$.  Therefore $V_2(H)=\{p_0,q_0,p_\ell,q_m\}=\{v,w\}$.
+\end{proof}
+
+\begin{lem}
+  Let $P:=p_0,\lots,p_\ell$ be an induced path in $G$ that starts at $p_0\in V_2(F_r)$ in the interior of some extension $P_i$, ends at some vertex $p_\ell\in V_2(F_r)$ in the interior of some extension $P_j$ for some $i\neq j$, and has no interior vertices in $V(F_r)$.  Then, for some $x\in\{1,\ldots,\ell-1\}$,  $N_G(x)$ contains a vertex in $V(P_i)\cap V_3(F_r)$.
+\end{lem}
+
+\begin{proof}
+  Consider the cycle $C$ and the edge-maximal outerplanar graph $H$ guaranteed by \cref{coolio}.  Then $Q:=C-\{p_1,\ldots,p_{\ell-1}\}$ is a path in $F_r$ with endpoints $p_0$ and $p_\ell$.  Therefore $Q$ contains a degree-$3$ vertex $w$ of $P_i$.  Since $p_0,p_\ell\in V_2(F_r)$,  $w\not\in \{p_0,p_{\ell}\}$.  Therefore $\deg_H(w)\ge 3$,  which implies that $w$ is adjacent, in $G$, to some vertex in the interior of $P$.
+\end{proof}
+
+
+\section*{Acknowledgement}
+
+This research was initiated and much of it was done at the \emph{Third Workshop on Graphs and Probability} held in Lac-Sainte-Marie, Québec, October 14--18, 2024.
+% \david{I would replace ``somehow manages to be'' by ``is''.}
+
+% ?Let $\phi'(x):=\phi(x)/\sqrt{L}$ for each $x\in V(H\boxtimes P)$.
+
+\bibliographystyle{plainurlnat}
+\bibliography{fan-partition}
+
+\end{document}
