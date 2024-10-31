@@ -95,6 +95,7 @@
 %\DeclareMathOperator{\rtw}{rtw}
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\radius}{radius}
+\DeclareMathOperator{\pth}{path}
 \DeclareMathOperator{\mindist}{min-dist}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\ld}{ld}
@@ -130,10 +131,10 @@
 
 \section{Introduction}
 
+The \defin{length}, $\ell$, of a path $P:=x_0,\ldots,x_\ell$ is the number of edges in $P$.  For two vertices $x$ and $y$ in a  tree $T$, the \defin{$T$-path}, $\mathdefin{\pth_T(x,y)}$ is the unique path $x_0,\ldots,x_\ell$ in $T$ with $x_0=x$ and $x_\ell=y$. If $Y\subseteq V(T)\setminus\{x\}$ and $T[Y]$ is connected, then $\mathdefin{\pth_T(x,Y)}$ is the shortest path $x_0,\ldots,x_{\ell}$ in $T$ with $x_0=x$ and $x_\ell\in Y$.  For a graph $G$, and two vertices $x$ and $y$ of $G$, $\mathdefin{\dist_G(x,y)}$ is the length of a shortest path, in $G$, with endpoints $x$ and $y$.  For subsets $X$ and $Y$ of $V(G)$, $\mathdefin{\dist_G(X,Y)}:=\min\{\dist_G(x,y):(x,y)\in X\times Y\}$.  For an integer $r\ge 0$ and a vertex $x$ of $G$, $\mathdefin{B_G(x,r)}:=\{y\in V(G):\dist_G(x,y)\le r\}$.  For a subset $S$ of $V(G)$, $\mathdefin{B_G(S,r)}:=\bigcup_{x\in S}B_G(x,r)$, $\mathdefin{\diam_G(S)}:=\max\{\dist_G(x,y):\{x,y\}\in\binom{S}{2}\}$ and $\mathdefin{\radius_G(S)}$ is the minimum integer $r$ such that $S\subseteq B_G(v,r)$ for some $v\in V(G)$.
 
-For a graph $G$, and two vertices $x$ and $y$ of $G$, $\dist_G(x,y)$ is the number of edges in a shortest path, in $G$ with endpoints $x$ and $y$.  For subsets $X$ and $Y$ of $V(G)$, $\dist_G(X,Y):=\min\{\dist_G(x,y):(x,y)\in X\times Y\}$.  For an integer $r\ge 0$ and a vertex $x$ of $G$, $B_G(x,r):=\{y\in V(G):\dist_G(x,y)\le r\}$.  For a subset $S$ of $V(G)$, $B_G(S,r):=\bigcup_{x\in S}B_G(x,r)$, $\diam_G(S):=\max\{\dist_G(x,y):\{x,y\}\in\binom{S}{2}\}$ and $\radius_G(S)$ is the minimum integer $r$ such that $S\subseteq B_G(v,r)$ for some $v\in V(G)$.
 
-Let $\rho_d(G)$ be the maximum integer $p$ such that $G$ contains cycles $C_1,\ldots,C_p$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for all $1\le i < j\le p$.  We call $\rho_d(G)$ the distance-$d$ $\rho$acking number of cycles in $G$.  Let $\tau_r(G)$ be the minimum integer $t$ such that there exists $v_1,\ldots,v_t\in V(G)$ such that $G-(\bigcup_{i=1}^t B_G(v_i,r))$ is a forest.  We call $\tau_r(G)$ the radius-$r$ hi$\tau\tau$ing-number of cycles in $G$.
+For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$ such that $G$ contains cycles $C_1,\ldots,C_p$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for all $1\le i < j\le p$.  We call $\rho_d(G)$ the \defin{distance-$d$ $\rho$acking number} of cycles in $G$.  For any integer $r\ge 0$, a set $X\subseteq V(G)$ is a \defin{radius-$r$ hitting-set} of cycles in $G$ if $G-B_G(X,r)$ is a forest.  Let $\mathdefin{\tau_r(G)}$ be the minimum integer $t$ such that $G$ has a radius-$r$ hitting set.  We call $\tau_r(G)$ the \defin{radius-$r$ hi$\tau\tau$ing-number} of cycles in $G$.  Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a subgraph of $G$ then a distance-$d$ packing of cycles in $G'$ may not be a distance-$d$ packing of cycles in $G$ since $\dist_{G'}(x,y)\ge \dist_G(x,y)$.  Similarly, a radius-$r$ hitting set $X$ for cycles in $G$ may not be a radius-$r$ hitting set for cycles in $G'$, since $B_{G'}(x,r)\subseteq B_{G}(x,r)$.
 
 \begin{conj}
   There exists functions $f:\N\to\N$ and $g:\N\to\N$ such that, for every graph $G$ and every $d,k\in\N$, $\rho_d(G) \ge k$ or $\tau_{g(d)}(G)\le f(k)$.
@@ -142,38 +143,62 @@ Let $\rho_d(G)$ be the maximum integer $p$ such that $G$ contains cycles $C_1,\l
 
 \section{Meat}
 
-\begin{obs}
-  Let $G$ be a graph and let $X\subseteq V(G)$.  Then $\tau_d(G) \le |X| + \tau_d(G-B_G(X,d))$.
-\end{obs}
-
-\begin{lem}
-  Let $G$ be a graph and let $C_1,\ldots,C_p$ be cycles in $G$ such that
-  $\radius_G(V(C_i))\le r$ for each $1\le i\le p$ and
-  $\dist_G(V(C_i),V(C_j)\ge d$ for each $1\le i<j\le p$.  Then $\rho_d(G)\ge p + \rho_d(G-\bigcup_{i=1}^p B_G(V(C_i),d))$ and
-  $\tau_{d+r}(G) \le p + \tau_{d+r}(G-\bigcup_{i=1}^p B_G(V(C_i),d))$
+\begin{lem}\label{hitting_is_additive}
+  Let $G$ be a graph and let $X\subseteq V(G)$.  Then, for any integer $r\ge 0$, $\tau_r(G) \le |X| + \tau_r(G-B_G(X,r))$.
 \end{lem}
 
 \begin{proof}
-  The relation $\rho_d(G)\ge p + \rho_d(G-\bigcup_{i=1}^p B_G(V(C_i),d))$ is obvious since all cycles in $G':=G-\bigcup_{i=1}^p B_G(V(C_i),d)$ are distance at least $d$ from the cycles $C_1,\ldots,C_p$.  To see why $\tau_{d+r}(G) \le p + \tau_{d+r}(G')$ holds, let $X$ be a set of vertices in $G'$ of size $\tau_{d+r}(G')$ such that $G'-X$ is a forest.  Let $Y:=\{v_1,\ldots,v_p\}$ be vertices of $G$ such that $V(C_i)\subseteq B_G(v_i,r)$ for each $i\in\{1,\ldots,p\}$.  Then $|Y|+|X|\le p + \tau_{r+d}(G')$.  Now observe that $\bigcup_{i=1}^p B_G(v_i,r+d)\supseteq \bigcup_{i=1}^p B_G(V(C_i),d)$.  Therefore, any cycle $C$ of $G$ is either contained in $G'$, in which case $C$ contains a vertex in $B_G(X,r+d)$, by definition; or $C$ contains a vertex in $B_{G}(Y,r+d)$.  Therefore, $G-B_G(X\cup Y,r+d)$ is acyclic, so $\tau_{r+d}(G)\le |X\cup Y| \le p + \tau_{r+d}(G')$.
+  Let $G':=G-B_G(X,r)$.
+  Let $Y$ be a radius-$r$ hitting set of cycles in $G'$ with $|Y|=\tau_r(G')$.  Then $G-(B_G(X\cup Y,r))\subseteq (G-B_G(X,r))-B_{G'}(Y,r)$ is a forest, so $\tau_r(G)\le |X\cup Y|\le |X|+\tau_r(G')$.
+\end{proof}
+
+\begin{lem}\label{fattening}
+  Let $r\ge 1$ be an integer, let $G$ be a graph, let $C_1,\ldots,C_p$ be cycles in $G$ such that $\radius_G(V(C_i))\le r$ for each $i\in\{1,\ldots,p\}$ and $\dist_G(V(C_i),V(C_j)\ge d$ for each distinct $i,j\in\{1,\ldots,p\}$, let $X:=\bigcup_{i=1}^p V(C_i)$, and let $G':=G-B_G(X,d)$.  Then $\rho_d(G)\ge p + \rho_d(G')$ and
+  $\tau_{d+r}(G) \le p + \tau_{r+d}(G')$.
+\end{lem}
+
+\begin{proof}
+  % Let $G':=G-B_G(X,d)$, so we need to show that $\rho_d(G)\ge p+\rho_d(G')$ and $\tau_{r+d}(G)\le p + \tau_{r+d}(G')$.
+  First we show that $\rho_{d}(G)\ge p+\rho_d(G')$.
+  Let $A$ be a distance-$d$ packing of cycles in $G'$ of size $\rho_d(G')$.  Since $\dist_G(x,y)\ge d$ for each $x\in X$ and $y\in V(G')$, \dist_G(V(C_i),V(C))\ge d$ for each $i\in\{1,\ldots,p\}$ and each $C\in A$. Therefore, $\{C_1,\ldots,C_p\}\cup A$ is a distance-$d$ packing of cycles in $G$, so $\rho_d(G)\ge p + |A| = p + \rho_d(G')$.
+
+  To see why $\tau_{r+d}(G) \le p + \tau_{r+d}(G')$ holds,  let $X':=\{v_1,\ldots,v_p\}$ be vertices of $G$ such that $V(C_i)\subseteq B_G(v_i,r)$ for each $i\in\{1,\ldots,p\}$.  Observe that $B_G(v_i,r+d)\supseteq B_G(V(C_i),d)$, since $\dist_G(x,V(C_i))\le \dist(x,v_i)+r$ for each $x\in V(G)$.   Therefore $B_G(X',r+d)\supseteq B_G(X,d)$ so $G'':=G-B_G(X',r+d)\subseteq G'$.  Let $Y$ be a radius-$(r+d)$ hitting set for cycles in $G'$ of size $\tau_{r+d}(G')$.  We now argue that $G-B_G(X'\cup Y,r+d)$ is a forest. To see this, let $C$ be a cycle in $G$.  If $C$ is not contained in $G''$ then $C$ contains at least one vertex in $B_G(X',r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$.  If $C$ is contained in $G''$ then $C$ is also contained in $G'\supseteq G''$.  Therefore $C$ contains at least one vertex in $B_{G'}(Y,r+d)\subseteq B_G(Y,r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$. Therefore  $G-B_G(X'\cup Y,r+d)$ is a forest, so $\tau_{r+d}(G)\le |X'\cup Y| = p+\tau_{r+d}(G')$.
 \end{proof}
 
 \begin{lem}
-  Let $G$ be a graph, let $C$ be a cycle in $G$ and, for each $r\in\N$, let $G_r:=G[B_G(V(C),r)]$.  Then, for any integer $d\ge 0$, $\rho_d(G_{3d})\ge k$ or $\tau_{2d}(G_{2d})\in O(k\log k)$.
+  Let $G$ be a graph, let $C$ be a cycle in $G$ and, for each $r\in\N$, let $G_r:=G[B_G(V(C),r)]$.  Then, for any integers $d\ge 0$ and $k\ge 1$, either
+  \begin{compactenum}
+    \item $G_{2r}$ contains $m\ge \Omega(k/\log k)$ cycles $C_1,\ldots,C_m$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$; or
+    \item there exists $X\subseteq V(C)$ with $|X|\le 2k$ such that $G_{2d}-B_G(X,3d)$ is a forest.
 \end{lem}
 
 \begin{proof}
-  Let $T$ be a unicyclic subgraph of $G_{2d}$ that spans $V(G')$, contains every edge of $C$ and for each vertex in $v\in V(G_{2d})\setminus V(C)$ contains exactly one edge $vw$ such that $\dist_G(w,V(C))=\dist_G(v,V(C))-1$.  (Informally, $T$ is obtained from a BFS forest rooted at the vertices of $C$ by adding the edges of $C$.)
+  Let $U$ be a unicyclic subgraph of $G_{2d}$ that spans $V(G_{2d})$, contains every edge of $C$ and for each vertex in $v\in V(G_{2d})\setminus V(C)$ contains exactly one edge $vw$ such that $\dist_G(w,V(C))=\dist_G(v,V(C))-1$.  (Informally, $U$ is obtained from a BFS forest rooted at the vertices of $C$ by adding the edges of $C$.)
 
-  Let $x_0$ be any vertex of $C$.  Then $T-x_0$ is a tree.  For any edge $vw\in E(G')\setminus E(T)$, consider the subgraph $Q_{vw}$ of $G_{2r}$ formed by taking the union of the edge $vw$, the minimal $T$-path from $v$ to a vertex $v_0\in V(C)$, the minimal $T$-path from $w$ to a vertex $w_0\in V(C)$, and the path in $T-x_0$ from $v_0$ to $w_0$.  Then $Q_{vw}$ is a subgraph of $G_{2r}$ that contains exactly one cycle, which we call $C_{vw}$.
+  Let $x_0$ be any vertex of $C$ and let $T$ be the tree obtained from $U$ by removing one of the edges of $C$ incident to $x_0$.  For any edge $vw\in E(G_{2d})\setminus E(U)$, consider the subgraph $Q_{vw}$ of $G_{2r}$ formed by taking the union of the edge $vw$, $\pth_T(v,V(C))$, and $\pth_T(w,V(C))$. Then $Q_{vw}$ is either a path with both endpoints in $V(C)$ and no other vertices in $V(C)$ or $Q_{vw}$ is a lollipop whose (possibly $0$-length) handle begin in $V(C)$.\todo{Define lollipop and handle}
   %
   %
   % there is exactly one path $P_{vw}$ in $T-v_0$ with endpoints $v$ and $w$ and $E(P_{vw})\cup\{vw\}$ is the edge set of a cycle $C_{vw}$ in $G_{2d}$. Let $A_{vw}:=E(C_{vw})\setminus E(C)$ and treat $A_{vw}$ as a graph.  Then $A_{vw}$ is a non-empty connected subgraph of $C_{vw}$ having at most $2d$ edges.  Let $B_{vw}:=E(C_{vw})\cap E(C)$.  Treating $B_{vw}$ as a graph, we see that $B_{vw}$ is a connected (possibly null) subgraph of $C$.
 
-  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,3d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,3d)$, we grow $X$ by adding the two vertices $v_0,w_0\in V(C)$ that minimize $\dist_G(v_0,v)$ and $\dist_G(w_0,w)$, respectively.  (Possibly $w_0=v_0$.)  We grow $Q$ by adding $Q_{vw}$ to $Q$.
+  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,3d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,3d)$, we grow $X$ by adding the at most two vertices $V(Q_{vw})\cap V(C)$ to $X$.  We grow $Q$ by adding $Q_{vw}$ to $Q$.
 
-  Let $k$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,k\}$, let $\{v_i,w_i\}$ the vertices added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,3d)$ are a subset of the edges in $T-v_0$, so $G_{2d}-B_G(X,3d)$ is acyclic and therefore $\tau_{3d}(G_{2r})\le |X|\le 2k$.
+  Let $k$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,k\}$, let $v_iw_i$ be the edge of $E(G_{2r})\setminus E(T)$ chosen in iteration $i$, let $X_i$ be the set of one or two vertices of $C$ added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,3d)$ are a subset of the edges of $T$, so $G_{2d}-B_G(X,3d)$ is a forest.  All that remains is to show that $G_{2r}$ contains $m\ge \Omega(k\log k)$ cycles $C_1,\ldots,C_m$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$.
 
-  All that remains is to argue that $\rho_d(G_{2r})\in\Omega(k/\log k)$.  For each $1\le i\le k$, let $Q'_i$ be the subgraph of $Q_i$ induced by the edges of $Q_i$ with at least one endpoint not in $V(C)$.  Observe that, for each $1\le i<j\le k$, $\dist_G(V(Q'_i),V(Q'_j))\ge d$.  If $\dist_{T-x_0}(v_i,w_i)\le d$ for some $1\le i\le k$, then the cycle $C_i$ in $Q_i$ satisfies $B_G(V(C_i),d))\subset B_G(\{v_i,w_i\},3d)$.   Let $I$ be the subset of $\{1,\ldots,k\}$ for which $\dist_{T-x_0}(v_i,w_i)\le d$ is at most $\rho_d(G_{2r})$ and $\overline{I}:=\{1,\ldots,k\}\setminus I$.  Observe that $\rho_d(G_2)\ge |I|$. We may therefore assume that $|I|\le k/2$, so $|\overline{I}|\ge k/2$.
+  Observe that, for distinct $i,j\in\{1,\ldots,k\}$, $\dist_G(X_i,X_j)\ge 3d$, and this implies that $\dist_G(V(Q_i),V(Q_j))\ge d$.  For each $i\in\{1,\ldots,k\}$, let $C_i$ be the cycle formed by $\pth_T(v_i,w_i)$ and the edge $v_iw_i$.  We will make a collection of cycles $D_1,\ldots,D_m$ in $Q$ with the following properties:
+  \begin{compactitem}
+    \item The cycles $D_1,\ldots,D_m$ are pairwise vertex-disjoint.
+    \item If a cycle $D_i$ uses an edge
+  \end{compactitem}
+
+
+
+
+
+
+
+  We distinguish between two cases:  We say that iteration $i$ is \defin{short} if $|V(C_i)\cap V(C)|\le 6d$.  Observe that if iteration $i$ is short, then $\dist_G(C_i,C_j)\ge d$ for all $j\in\{1,\ldots,k\}\setminus\{i\}$.  If the number of short iterations is at least $k/\log k$, then the set of cycles formed by the short iterations satisfies the requirements of the lemma.  We therefore assume that the number of short iterations is at most $k/\log k$.
+
+  Let $I\subseteq \{1,\ldots,k\}$ index only the iterations that are not short.
 
   Now apply Simonovitz on $Q':=C\cup \bigcup_{i\in\overline{I}} Q_i$ to obtain $\Omega(k/\log k)$ disjoint cycles.  Finally, observe that for any distinct degree-$3$ vertices $x,y\in V(Q')$, $\dist_G(x,y)\ge d$, so the $\rho_d(G_{2d})\ge \Omega(k/\log k)$.
 \end{proof}
