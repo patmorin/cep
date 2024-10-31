@@ -94,6 +94,7 @@
 \DeclareMathOperator{\td}{td}
 %\DeclareMathOperator{\rtw}{rtw}
 \DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\radius}{radius}
 \DeclareMathOperator{\mindist}{min-dist}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\ld}{ld}
@@ -129,7 +130,64 @@
 
 \section{Introduction}
 
+
+For a graph $G$, and two vertices $x$ and $y$ of $G$, $\dist_G(x,y)$ is the number of edges in a shortest path, in $G$ with endpoints $x$ and $y$.  For subsets $X$ and $Y$ of $V(G)$, $\dist_G(X,Y):=\min\{\dist_G(x,y):(x,y)\in X\times Y\}$.  For an integer $r\ge 0$ and a vertex $x$ of $G$, $B_G(x,r):=\{y\in V(G):\dist_G(x,y)\le r\}$.  For a subset $S$ of $V(G)$, $B_G(S,r):=\bigcup_{x\in S}B_G(x,r)$, $\diam_G(S):=\max\{\dist_G(x,y):\{x,y\}\in\binom{S}{2}\}$ and $\radius_G(S)$ is the minimum integer $r$ such that $S\subseteq B_G(v,r)$ for some $v\in V(G)$.
+
+Let $\rho_d(G)$ be the maximum integer $p$ such that $G$ contains cycles $C_1,\ldots,C_p$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for all $1\le i < j\le p$.  We call $\rho_d(G)$ the distance-$d$ $\rho$acking number of cycles in $G$.  Let $\tau_r(G)$ be the minimum integer $t$ such that there exists $v_1,\ldots,v_t\in V(G)$ such that $G-(\bigcup_{i=1}^t B_G(v_i,r))$ is a forest.  We call $\tau_r(G)$ the radius-$r$ hi$\tau\tau$ing-number of cycles in $G$.
+
+\begin{conj}
+  There exists functions $f:\N\to\N$ and $g:\N\to\N$ such that, for every graph $G$ and every $d,k\in\N$, $\rho_d(G) \ge k$ or $\tau_{g(d)}(G)\le f(k)$.
+\end{conj}
+
+
 \section{Meat}
+
+\begin{obs}
+  Let $G$ be a graph and let $X\subseteq V(G)$.  Then $\tau_d(G) \le |X| + \tau_d(G-B_G(X,d))$.
+\end{obs}
+
+\begin{lem}
+  Let $G$ be a graph and let $C_1,\ldots,C_p$ be cycles in $G$ such that
+  $\radius_G(V(C_i))\le r$ for each $1\le i\le p$ and
+  $\dist_G(V(C_i),V(C_j)\ge d$ for each $1\le i<j\le p$.  Then $\rho_d(G)\ge p + \rho_d(G-\bigcup_{i=1}^p B_G(V(C_i),d))$ and
+  $\tau_{d+r}(G) \le p + \tau_{d+r}(G-\bigcup_{i=1}^p B_G(V(C_i),d))$
+\end{lem}
+
+\begin{proof}
+  The relation $\rho_d(G)\ge p + \rho_d(G-\bigcup_{i=1}^p B_G(V(C_i),d))$ is obvious since all cycles in $G':=G-\bigcup_{i=1}^p B_G(V(C_i),d)$ are distance at least $d$ from the cycles $C_1,\ldots,C_p$.  To see why $\tau_{d+r}(G) \le p + \tau_{d+r}(G')$ holds, let $X$ be a set of vertices in $G'$ of size $\tau_{d+r}(G')$ such that $G'-X$ is a forest.  Let $Y:=\{v_1,\ldots,v_p\}$ be vertices of $G$ such that $V(C_i)\subseteq B_G(v_i,r)$ for each $i\in\{1,\ldots,p\}$.  Then $|Y|+|X|\le p + \tau_{r+d}(G')$.  Now observe that $\bigcup_{i=1}^p B_G(v_i,r+d)\supseteq \bigcup_{i=1}^p B_G(V(C_i),d)$.  Therefore, any cycle $C$ of $G$ is either contained in $G'$, in which case $C$ contains a vertex in $B_G(X,r+d)$, by definition; or $C$ contains a vertex in $B_{G}(Y,r+d)$.  Therefore, $G-B_G(X\cup Y,r+d)$ is acyclic, so $\tau_{r+d}(G)\le |X\cup Y| \le p + \tau_{r+d}(G')$.
+\end{proof}
+
+\begin{lem}
+  Let $G$ be a graph, let $C$ be a cycle in $G$ and, for each $r\in\N$, let $G_r:=G[B_G(V(C),r)]$.  Then, for any integer $d\ge 0$, $\rho_d(G_{3d})\ge k$ or $\tau_{2d}(G_{2d})\in O(k\log k)$.
+\end{lem}
+
+\begin{proof}
+  Let $T$ be a unicyclic subgraph of $G_{2d}$ that spans $V(G')$, contains every edge of $C$ and for each vertex in $v\in V(G_{2d})\setminus V(C)$ contains exactly one edge $vw$ such that $\dist_G(w,V(C))=\dist_G(v,V(C))-1$.  (Informally, $T$ is obtained from a BFS forest rooted at the vertices of $C$ by adding the edges of $C$.)
+
+  Let $x_0$ be any vertex of $C$.  Then $T-x_0$ is a tree.  For any edge $vw\in E(G')\setminus E(T)$, consider the subgraph $Q_{vw}$ of $G_{2r}$ formed by taking the union of the edge $vw$, the minimal $T$-path from $v$ to a vertex $v_0\in V(C)$, the minimal $T$-path from $w$ to a vertex $w_0\in V(C)$, and the path in $T-x_0$ from $v_0$ to $w_0$.  Then $Q_{vw}$ is a subgraph of $G_{2r}$ that contains exactly one cycle, which we call $C_{vw}$.
+  %
+  %
+  % there is exactly one path $P_{vw}$ in $T-v_0$ with endpoints $v$ and $w$ and $E(P_{vw})\cup\{vw\}$ is the edge set of a cycle $C_{vw}$ in $G_{2d}$. Let $A_{vw}:=E(C_{vw})\setminus E(C)$ and treat $A_{vw}$ as a graph.  Then $A_{vw}$ is a non-empty connected subgraph of $C_{vw}$ having at most $2d$ edges.  Let $B_{vw}:=E(C_{vw})\cap E(C)$.  Treating $B_{vw}$ as a graph, we see that $B_{vw}$ is a connected (possibly null) subgraph of $C$.
+
+  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,3d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,3d)$, we grow $X$ by adding the two vertices $v_0,w_0\in V(C)$ that minimize $\dist_G(v_0,v)$ and $\dist_G(w_0,w)$, respectively.  (Possibly $w_0=v_0$.)  We grow $Q$ by adding $Q_{vw}$ to $Q$.
+
+  Let $k$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,k\}$, let $\{v_i,w_i\}$ the vertices added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,3d)$ are a subset of the edges in $T-v_0$, so $G_{2d}-B_G(X,3d)$ is acyclic and therefore $\tau_{3d}(G_{2r})\le |X|\le 2k$.
+
+  All that remains is to argue that $\rho_d(G_{2r})\in\Omega(k/\log k)$.  For each $1\le i\le k$, let $Q'_i$ be the subgraph of $Q_i$ induced by the edges of $Q_i$ with at least one endpoint not in $V(C)$.  Observe that, for each $1\le i<j\le k$, $\dist_G(V(Q'_i),V(Q'_j))\ge d$.  If $\dist_{T-x_0}(v_i,w_i)\le d$ for some $1\le i\le k$, then the cycle $C_i$ in $Q_i$ satisfies $B_G(V(C_i),d))\subset B_G(\{v_i,w_i\},3d)$.   Let $I$ be the subset of $\{1,\ldots,k\}$ for which $\dist_{T-x_0}(v_i,w_i)\le d$ is at most $\rho_d(G_{2r})$ and $\overline{I}:=\{1,\ldots,k\}\setminus I$.  Observe that $\rho_d(G_2)\ge |I|$. We may therefore assume that $|I|\le k/2$, so $|\overline{I}|\ge k/2$.
+
+  Now apply Simonovitz on $Q':=C\cup \bigcup_{i\in\overline{I}} Q_i$ to obtain $\Omega(k/\log k)$ disjoint cycles.  Finally, observe that for any distinct degree-$3$ vertices $x,y\in V(Q')$, $\dist_G(x,y)\ge d$, so the $\rho_d(G_{2d})\ge \Omega(k/\log k)$.
+\end{proof}
+
+
+
+\begin{lem}
+  Let $G$ be a graph and let $P_0,\ldots,P_m$ be subsets of $V(G)$ such that
+  $\bigcup_{i=1}^m B_G(P_i,d)=V(G)$ and
+  $G[B_G(P_i,2d)]$ is a forest, for each $i\in\{1,\ldots,m\}$.  Then
+\end{lem}
+
+
+
 
 
 \begin{lem}
@@ -137,9 +195,11 @@
   \begin{compactenum}
     \item $G[B_G(V(C'),d)]$ is unicyclic; or
     \item $C'$ has length at most $6d$.
+  \end{compactenum}
 \end{lem}
 
 \begin{proof}
+  \todo{This still needs some touching up.}
   Suppose that $C$ has length greater than $6d+2$ and that $G[B_G(V(C),d)]$ is not unicyclic.
   Let $Q_0$ be the shortest cycle in $G[V(C)]$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $P_i$ and $Q_i$ are paths with common endpoints, $P_i$ has at most $4d-1$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  At all steps, we will ensure that $Q_i$ is a non-empty path contained in $Q_0$.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $C_{i-1}$ is contained in $G[B_G(V_C,2d)]$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2d$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
   \begin{compactenum}
