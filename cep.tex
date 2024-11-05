@@ -160,16 +160,28 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
 \begin{proof}
   % Let $G':=G-B_G(X,d)$, so we need to show that $\rho_d(G)\ge p+\rho_d(G')$ and $\tau_{r+d}(G)\le p + \tau_{r+d}(G')$.
   First we show that $\rho_{d}(G)\ge p+\rho_d(G')$.
-  Let $A$ be a distance-$d$ packing of cycles in $G'$ of size $\rho_d(G')$.  Since $\dist_G(x,y)\ge d$ for each $x\in X$ and $y\in V(G')$, \dist_G(V(C_i),V(C))\ge d$ for each $i\in\{1,\ldots,p\}$ and each $C\in A$. Therefore, $\{C_1,\ldots,C_p\}\cup A$ is a distance-$d$ packing of cycles in $G$, so $\rho_d(G)\ge p + |A| = p + \rho_d(G')$.
+  Let $A$ be a distance-$d$ packing of cycles in $G'$ of size $\rho_d(G')$.  Since $\dist_G(x,y)\ge d$ for each $x\in X$ and $y\in V(G')$, $\dist_G(V(C_i),V(C))\ge d$ for each $i\in\{1,\ldots,p\}$ and each $C\in A$. Therefore, $\{C_1,\ldots,C_p\}\cup A$ is a distance-$d$ packing of cycles in $G$, so $\rho_d(G)\ge p + |A| = p + \rho_d(G')$.
 
   To see why $\tau_{r+d}(G) \le p + \tau_{r+d}(G')$ holds,  let $X':=\{v_1,\ldots,v_p\}$ be vertices of $G$ such that $V(C_i)\subseteq B_G(v_i,r)$ for each $i\in\{1,\ldots,p\}$.  Observe that $B_G(v_i,r+d)\supseteq B_G(V(C_i),d)$, since $\dist_G(x,V(C_i))\le \dist(x,v_i)+r$ for each $x\in V(G)$.   Therefore $B_G(X',r+d)\supseteq B_G(X,d)$ so $G'':=G-B_G(X',r+d)\subseteq G'$.  Let $Y$ be a radius-$(r+d)$ hitting set for cycles in $G'$ of size $\tau_{r+d}(G')$.  We now argue that $G-B_G(X'\cup Y,r+d)$ is a forest. To see this, let $C$ be a cycle in $G$.  If $C$ is not contained in $G''$ then $C$ contains at least one vertex in $B_G(X',r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$.  If $C$ is contained in $G''$ then $C$ is also contained in $G'\supseteq G''$.  Therefore $C$ contains at least one vertex in $B_{G'}(Y,r+d)\subseteq B_G(Y,r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$. Therefore  $G-B_G(X'\cup Y,r+d)$ is a forest, so $\tau_{r+d}(G)\le |X'\cup Y| = p+\tau_{r+d}(G')$.
 \end{proof}
 
+\begin{lem}[Simonovitz] \label{Simonovitz_original}
+  There exists a constant $c>0$ such that for every integer $k\ge 2$, every cubic multigraph $G$ with at least $ck\log k$ vertices contains $k$ pairwise vertex-disjoint cycles.
+\end{lem}
+
+A small modification of the original  proof of \cref{Simonovitz_original} yields the following strengthening:
+
+\begin{lem}\label{Simonovitz_distance}
+  There exists a constant $c>0$ such that for every integer $k\ge 2$, every cubic multigraph $G$ with at least $ck\log k$ vertices contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge 2$ for each $i,j\in\{1,\ldots,k\}$.
+\end{lem}
+
 \begin{lem}
+  There exists a constant $c>0$ such that the following is true.
   Let $G$ be a graph, let $C$ be a cycle in $G$ and, for each $r\in\N$, let $G_r:=G[B_G(V(C),r)]$.  Then, for any integers $d\ge 0$ and $k\ge 1$, either
   \begin{compactenum}
-    \item $G_{2r}$ contains $m\ge \Omega(k/\log k)$ cycles $C_1,\ldots,C_m$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$; or
-    \item there exists $X\subseteq V(C)$ with $|X|\le 2k$ such that $G_{2d}-B_G(X,3d)$ is a forest.
+    \item $G_{2r}$ contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$; or
+    \item there exists $X\subseteq V(C)$ of size at most $ck\log k$ such that $G_{2d}-B_G(X,5d)$ is a forest.
+  \end{compactenum}
 \end{lem}
 
 \begin{proof}
@@ -180,25 +192,17 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
   %
   % there is exactly one path $P_{vw}$ in $T-v_0$ with endpoints $v$ and $w$ and $E(P_{vw})\cup\{vw\}$ is the edge set of a cycle $C_{vw}$ in $G_{2d}$. Let $A_{vw}:=E(C_{vw})\setminus E(C)$ and treat $A_{vw}$ as a graph.  Then $A_{vw}$ is a non-empty connected subgraph of $C_{vw}$ having at most $2d$ edges.  Let $B_{vw}:=E(C_{vw})\cap E(C)$.  Treating $B_{vw}$ as a graph, we see that $B_{vw}$ is a connected (possibly null) subgraph of $C$.
 
-  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,3d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,3d)$, we grow $X$ by adding the at most two vertices $V(Q_{vw})\cap V(C)$ to $X$.  We grow $Q$ by adding $Q_{vw}$ to $Q$.
+  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,5d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,5d)$, we grow $X$ by adding the at most two vertices $V(Q_{vw})\cap V(C)$ to $X$.  We grow $Q$ by adding $Q_{vw}$ to $Q$.
 
-  Let $k$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,k\}$, let $v_iw_i$ be the edge of $E(G_{2r})\setminus E(T)$ chosen in iteration $i$, let $X_i$ be the set of one or two vertices of $C$ added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,3d)$ are a subset of the edges of $T$, so $G_{2d}-B_G(X,3d)$ is a forest.  All that remains is to show that $G_{2r}$ contains $m\ge \Omega(k\log k)$ cycles $C_1,\ldots,C_m$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$.
+  Let $t$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,t\}$, let $v_iw_i$ be the edge of $E(G_{2r})\setminus E(T)$ chosen in iteration $i$, let $X_i$ be the set of one or two vertices of $C$ added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,5d)$ are a subset of the edges of $T$, so $G_{2d}-B_G(X,5d)$ is a forest.  All that remains is to show that, if $t>ck\log k$ then $G_{2d}$ contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,k\}$.
 
-  Observe that, for distinct $i,j\in\{1,\ldots,k\}$, $\dist_G(X_i,X_j)\ge 3d$, and this implies that $\dist_G(V(Q_i),V(Q_j))\ge d$.  For each $i\in\{1,\ldots,k\}$, let $C_i$ be the cycle formed by $\pth_T(v_i,w_i)$ and the edge $v_iw_i$.  We will make a collection of cycles $D_1,\ldots,D_m$ in $Q$ with the following properties:
-  \begin{compactitem}
-    \item The cycles $D_1,\ldots,D_m$ are pairwise vertex-disjoint.
-    \item If a cycle $D_i$ uses an edge
-  \end{compactitem}
+  Observe that, for distinct $i,j\in\{1,\ldots,t\}$, $\dist_G(X_i,X_j)\ge 5d$.  Since $V(Q_i)\subseteq B_G(X_i,2d)$ and $V(Q_j)\subseteq B_G(X_j,2d)$, this implies that $\dist_G(V(Q_i),V(Q_j))\ge d$.
 
+  We say that an iteration $i$ is \defin{short} if $Q_i$ is a lollipop or if $Q_i$ is a path with endpoints $x_i$ and $y_i$ in $V(C)$ and $G-(V(Q_i)\setminus\{x_i,y_i\})$ contains a path $P_i$ with endpoints $x_i$ and $y_i$ of length at most $4d$.  In the former case, we define $C_i$ to be the unique cycle in $Q_i$. I the latter case we define $C_i:=P_i\cup Q_i$.  In either case, $V(C_i)\subseteq B_G(X_i,2d)$.  Therefore, iterations $i$ and $j$ are both short, then $\dist_G(V(C_i),V(C_j))\ge d$.  Therefore, if the number of short iterations is at least $k$, then the cycles determined by the set of short iterations satisfy the conditions of the lemma.  We conclude that there are at most $k$ short iterations, so at least $ck\log k-k$ are not short.
 
+  Let $I\subseteq \{1,\ldots,k\}$ index only the iterations that are not short and consider the graph $Q_I:=C\cup\bigcup_{i\in I} Q_i$.  Then $Q_I$ is a graph in which each vertex has degree $3$ or $2$.  Suppress all degree-$2$ vertices in $Q_I$ to obtain a cubic multigraph $Q_I'$.  For a vertex $v$ in $Q_I'$ with incident edges $vv_1$, $vv_2$, and $vv_3$ there is at most one $i\in\{1,2,3\}$ such that $\dist_G(v,v_i)<d$.  CRAP CRAP CRAP.
 
 
-
-
-
-  We distinguish between two cases:  We say that iteration $i$ is \defin{short} if $|V(C_i)\cap V(C)|\le 6d$.  Observe that if iteration $i$ is short, then $\dist_G(C_i,C_j)\ge d$ for all $j\in\{1,\ldots,k\}\setminus\{i\}$.  If the number of short iterations is at least $k/\log k$, then the set of cycles formed by the short iterations satisfies the requirements of the lemma.  We therefore assume that the number of short iterations is at most $k/\log k$.
-
-  Let $I\subseteq \{1,\ldots,k\}$ index only the iterations that are not short.
 
   Now apply Simonovitz on $Q':=C\cup \bigcup_{i\in\overline{I}} Q_i$ to obtain $\Omega(k/\log k)$ disjoint cycles.  Finally, observe that for any distinct degree-$3$ vertices $x,y\in V(Q')$, $\dist_G(x,y)\ge d$, so the $\rho_d(G_{2d})\ge \Omega(k/\log k)$.
 \end{proof}
