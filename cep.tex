@@ -97,6 +97,8 @@
 \DeclareMathOperator{\radius}{radius}
 \DeclareMathOperator{\pth}{path}
 \DeclareMathOperator{\mindist}{min-dist}
+\DeclareMathOperator{\mindeg}{min-deg}
+\DeclareMathOperator{\girth}{girth}
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\ld}{ld}
 \DeclareMathOperator{\polylog}{polylog}
@@ -140,6 +142,170 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
   There exists functions $f:\N\to\N$ and $g:\N\to\N$ such that, for every graph $G$ and every $d,k\in\N$, $\rho_d(G) \ge k$ or $\tau_{g(d)}(G)\le f(k)$.
 \end{conj}
 
+\newpage
+
+\section{An Exponential Bound}
+
+
+% \begin{lem}\label{far_away_er}
+%   Let $G$ be a graph and let $C$ be a cycle in $G$ of length $\girth(G)$.  Then, for every $k,d\ge 0$ and $r\ge d$, at least one of the following is true:
+%   \begin{compactenum}[(a)]
+%     \item $G$ contains a cycle $C'$ with $\dist_G(V(C),V(C'))>r-d$;
+%     \item $\rho_d(G)> k$; or
+%     \item $\tau_{r+2d}(G) \le ck$.
+%     \item $\tau_{5r-d}(G) \le 1$.
+%   \end{compactenum}
+% \end{lem}
+%
+% \begin{proof}
+%   Assume that (a) does not hold. That is, every cycle $C'$ in $G$ has $\dist_G(V(C),V(C'))\le r-d$.  If $\girth(G) \le 4r$, then we can take any vertex $v\in V(C)$ and $B_G(v,5r-d)$ intersects every cycle in $G$, so $\tau_{5r-d}(G)\le 1$, in which case (d) holds.  Now assume $\girth(G) > 4r$.  If $G[B_G(V(C),r)]$ is not unicyclic, then $G[B_G(V(C),r)]$ contains a cycle of length at most
+%   \[
+%     \girth(G)/2 + 2r < \girth(G) - 2r + 2r = \girth(G) \enspace ,
+%   \]
+%   which is a contradiction.  Therefore $A:=G[B_G(V(C),r)]$ is unicyclic and $F:=G-B_G(V(C),r-d)$ is a forest.  Now apply the Hungarian result on $(A,F)$ to conclude that at least one of (b) or (c) holds.
+% \end{proof}
+%
+% \begin{cor}\label{k_equals_one}
+%   Let $G$ be a graph with $\rho_d(G)\le 1$.  Then $\tau_{3d}(G) \le 2c$ or $\tau_{4d}(G) \le 1$.
+% \end{cor}
+%
+% \begin{proof}
+%   If $G$ is a forest, then $\tau_{4d}(G)=0$ and there is nothing to prove. Otherwise, let $C$ be a cycle in $G$ of length $\girth(G)$ and apply \cref{far_away_er} with $r=d$ and $k=1$.  The fact that $\rho_d(G)\le 1$ rules out (a) and (b), leaving only (c) and (d).
+% \end{proof}
+%
+%
+%
+% \begin{cor}
+%   Let $G$ be a graph with $\rho_d(G)\le 2$.  Then $\tau_{?}(G) \le {?}$.
+% \end{cor}
+%
+% \begin{proof}
+%   Let $C$ be a cycle in $G$ of length $\girth(G)$.  Apply \cref{far_away_er} with $r={?}d$ and $k=2$. Then alternative (b) is not possible since, by assumption $\rho_d(G)\le 2$.  Alternatives (c) and (d) establish the corollary.  All that remains is to consider alternative (a).  In this case, $G$ contains a cycle $C'$ with $\dist_G(V(C),V(C'))>r$.  By \cref{short_or_unicycle_nearby}, $G$ contains a cycle $C''$ with $\dist_G(V(C),V(C''))\ge ??-d$
+%
+%
+%
+%   There are two cases to consider:
+% \end{proof}
+%
+%
+%
+%
+%
+%
+
+
+
+\begin{lem}\label{short_or_unicycle_nearby}
+  For every integer $t\ge 1$, every graph $G$ and every cycle $C$ in $G$,  $G[B_G(V(C),3t)]$ contains a cycle $C'$ such that
+  \begin{compactenum}[(a)]
+    \item $G[B_G(V(C'),t)]$ is unicyclic; or
+    \item $C'$ has length at most $6t$.
+  \end{compactenum}
+\end{lem}
+
+\begin{proof}
+  Suppose that $C$ has length greater than $6t$ and that $G[B_G(V(C),t)]$ is not unicyclic.
+  Let $Q_0$ be the shortest cycle in $G[V(C)]$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $Q_{i-1}$ is a subpath of $Q_0$, $P_{i-1}$ is a path with at most $4t-1$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $V(C_{i-1})\subseteq B_G(V(C),2t)$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2t$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
+  \begin{compactenum}
+    \item $G[B_G(V(C_{i-1}),t)]$ contains a cycle $C'$ of length at most $6t$; or
+    \item $G[B_G(V(C_{i-1}),t)]$ contains a path $P_i'$ with at least $3$ and at most $2t+1$ vertices that has both endpoints in $V(C_{i-1})$ and whose interior is vertex-disjoint from $V(C_{i-1})$.
+  \end{compactenum}
+  In the first case, the cycle $C'$ satisfies the conditions of the lemma, since $B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.  Assume that the first case does not apply, so the second case does.  Let $P_i'$ be the shortest path that satisfies the conditions of this second case.  Note that $V(C_{i-1}\cup P_i')\subseteq B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.   Now there are three possibilities:
+  \begin{compactenum}
+    \item Both endpoints of $P_i'$ are in $V(P_{i-1})$: In this case, $P_i'\cup P_{i-1}$ contains a cycle of length at most $|V(P_{i-1}\cup V(P_i'))|\le 4t-1+2t+1=6t$ which is not possible since the first case above does not apply.
+    \item Both endpoints of $P_i'$ are in $V(Q_{i-1})\setminus V(P_{i-i})$.    In this case, we take $C_i$ to be a cycle in $Q_{i-1}\cup P_i'$. This works because $Q_i$ is a non-empty subpath of $Q_{i-1}$ and $P_i:=P_i'$ has at most $|V(P_i')|-2\le 2t-1\le 4t-1$ internal vertices.  Furthermore, $|V(Q_i)|\le |V(Q_{i-1})|-2$ because $C_i$ does not contain either endpoint of $Q_{i-1}$.
+    \item Exactly one endpoint of $P_i'$ is in $V(P_{i-1})$.  In this case, $C_{i-1}\cup P_i'$ has two cycles that each contain $P_i'$.  At most one of the at most $4t-1$ internal vertices of $P_{i-1}$ appears in both of these cycles. The other internal vertices of $P_{i-1}$ appear in exactly one of these two cycles.  Therefore one of these cycles contains at most $2t$ internal vertices of $P_{i-1}$.  We take $C_i$ to be this cycle and define $P_i$ to be the path in $C_i$ whose endpoints are in $Q_{i-1}$ and whose interior is disjoint from $V(Q_{i-1})$.  Then $P_i$ has at most $2t+2t-1= 4t-1$ internal vertices.  Furthermore $|V(Q_i)|\le |V(Q_{i-1})|-1$ because $C_i$ does not contain one of the endpoints of $Q_{i-1}$.
+  \end{compactenum}
+  This process eventually produces the desired cycle $C'$ since, at each step in the process $|V(Q_i)|$ decreases.
+\end{proof}
+
+
+
+
+
+\begin{lem}\label{a_or_b}
+  Let $G$ be a graph and let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that, for each $i\in\{1,\ldots,p-1\}$,  $G[B_G(V(C_i),r)]$ is unicyclic or $|V(C_i)|\le 6r$.  Then, for every $k\ge p-1$, at least one of the following ((a), (b), or (c)) is true:
+  \begin{compactenum}[(a)]
+    \item $G$ contains a cycle $C_p$ such that
+    \begin{compactenum}[(i)]
+      \item $\dist_G(C_p,V(C_1\cup\cdots\cup C_{p-1}))\ge 2(r-d)/5$ and
+      \item $G[B_G(V(C_p),(r-d)/5)]$ is unicyclic or $|V(C_p)|\le 6(r-d)/5$;
+    \end{compactenum}
+    \item $\rho_d(G)\ge k$; or
+    \item $\tau_{r'}(G) \le f(k)+p-1$ for $r':=\max\{r+2d,7r\}$.
+  \end{compactenum}
+\end{lem}
+
+\begin{proof}
+  First, suppose that $G$ contains a cycle $C$ such that $C_1,\ldots,C_{p-1},C$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/4$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))\ge \dist_G(V(C),V(C_i)) \ge r-d - 3t = 2t$, so $C_p$ satisfies (i).
+
+  Now, suppose that $G$ contains no such cycle.  Let $I:=\{i\in\{1,\ldots,p-1:|V(C_i)|\le 6r\}$ and let $\overline{I}:=\{1,\ldots,p-1\}\setminus I$.
+  Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method \cref{hungarian_method} to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
+  \begin{compactenum}[(a)]\setcounter{enumi}{1}
+    \item $\rho_d(G)\ge k$.  In this case there is nothing more to prove.
+    \item There exists $X'\subseteq V(G'')$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$ is a forest. For each $i\in I$, let $v_i$ be a vertex of $C_i$, define $X:=\{v_i:i\in I\}\cup X'$.  We claim that $G-B_G(X,r')$ is a forest.  Indeed, for each $i\in I$, $B_G(v_i,7r)\supseteq B_G(V(C_i),r)$, so $\bigcup_{i\in I}B_G(v_i)\supseteq B_G(X'',d)$, so $B_G(X,r')\supseteq B_G(X'',d)\cup B_{G}(X',r+2d)$. \qedhere
+     %
+     %
+     %
+     %
+     %
+     % Indeed, since $G''-B_G(X',r+2d)$ is acyclic, any cycle $C$ of $G$ that does not contain a vertex in $B_G(X',r')\supseteq B_G(X',r+2d)$ must contain a vertex in $V(G)\setminus V(G'')=B_G(\bigcup_{i\in I}V(C_i),r)\subseteq B_G(X'',7r)$.
+    %
+    % G''$ contains cycles $D_1,\ldots,D_k$ such that $\dist_{G'}(V(D_i),V(D_j))\ge d$ for each distinct $i,j\in\{1,\ldots,k\}$.  Observe that, for any two vertices $v,w\in V(G'')$, $\dist_{G'}(v,w)\ge d$ implies that $\dist_{G}(v,w)\ge d$.  Therefore $D_1,\ldots,D_k$ is a $d$-packing of cycles in $G$, so $\rho_d(G)\ge k$.
+  \end{compactenum}
+\end{proof}
+
+
+\begin{lem}[Hungarian Method]\label{hungarian_method}
+  There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $r\ge 1$ and $d\ge 1$ be integers.
+  Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_p$ be a $2r$-packing of cycles in $G$ such that
+  \begin{compactenum}
+    \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p\}$;
+    \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p\}$; and
+    \item $G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-d))$ is a forest.
+  \end{compactenum}
+  Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d)$ is a forest; or
+\end{lem}
+
+\begin{thm}
+  There exists $f:\N\to N$ and $g:\N^2\to N$ such that for every graph $G$, every integer $k\ge 0$ and every integer $d\ge 0$, $\rho_d(G)\ge k$ or $\tau_{g(k,d)}(G)\le f(k)$ where $g(k,d):=7d5^k$ and $f(k):=f(k,k)$ is the function in \cref{hungarian_method}.
+\end{thm}
+
+\begin{proof}
+  Beginning with $r=d5^k$ and repeatedly applying \cref{a_or_b} we either find cycles $C_1,\ldots,C_k$ that prove $\rho_d(G)\ge k$ or that $\tau_{7d5^k}(G) \le f(k)$.
+\end{proof}
+
+
+
+
+
+\end{document}
+
+\section{Gwen's Proof}
+
+\begin{lem}\label{high_girth_high_degree}
+  Let $G$ be a graph with $\mindeg(G)\ge k+1$ and $\girth(G)\ge 4d+3$.  Then $\rho_d(G)\ge k$.
+\end{lem}
+
+\begin{proof}
+  The proof is by induction on $k$.  The case $k=0$ is trivial, so assume $k\ge 1$.  Since $\mindeg(G)\ge k+1\ge 2$, $G$ is not a forest.  Let $C$ be a cycle in $G$ of length $\girth(G)$ and let $B:=B_G(V(C),d)$.  Let $v$ be a vertex in $V(G-B)$.  If $|N_G(v)\cap B|\ge 2$, then $G[B\cup\{v\}]$ contains a cycle of length at most $|V(C)|/2+2(d+1)\le |V(C)|-\girth(G)/2+2(d+1)<|V(C)|=\girth(G)$.  Therefore, each vertex $v\in V(G-B)$ has at most one neighbour in $B$. Therefore $G-B$ has $\mindeg(G)-1\ge (k-1)+1$ and $\girth(G-B)\ge \girth(G)\ge 4d+3$.  By induction $\rho_d(G-B)\ge k-1$, so $G-B$ has a packing of cycles $C_1,\ldots,C_{k-1}$ whose pairwise distances are at least $d$. OOPS. Stuck here, since $\dist_G(V(C_i),V(C_j)$ is, in general, less than $\dist_{G-B}(V(C_i),V(C_j))$, so $C_1,\ldots,C_{k-1}$ is not necessarily a $d$-packing of cycles in $G$.
+\end{proof}
+
+
+
+
+\begin{lem}
+  Let $G$ be a graph with $\mindeg(G)\ge 3$ and $\girth(G)\ge 2(4d+3)\log(k+1)$.  Then $\rho_d(G)\ge k$.
+\end{lem}
+
+\begin{proof}
+  Greedily pack balls of radius $\log(k+1)$ into $G$ to get a set of centers $Z$ such that $\dist_G(v,Z)<2\log(k+1)$ for each $v\in V(G)$.  For each $v\in V(G-Z)$, let $p_v$ be a neighbour of $v$ in $G$ such that $\dist_G(v,Z)=1+\dist_G(p_v,Z)$. Then the graph $F$ with vertex set $V(F):=V(G)$ and edge set $E(F):=\{vp_v:v\in V(G-Z)\}$ is a forest that contains one tree $T_x$ with $x\in V(T_x)$ for each vertex $x\in Z$.  We treat each $T_x$ as a rooted tree whose root is $x$.  For each $x\in Z$, let $B_x:=V(T_x)$.  Observe that, for each $x\in Z$, $G[B_x]=T_x$ since, otherwise, $G[B_x]$ contains a cycle of length at most $4\log(k+1)<\girth(G)$. Similarly, if $G[B_x\cup B_x]\neq T_i\cup T_j$ for some distinct $i,j\{1,\ldots,m\}$, then $G[B_i\cup B_j]$ contains a cycle of length at most $8\log(k+1)<\girth(G)$. Therefore, for distinct $x,y\in Z$, $G[B_x\cup B_y]$ is a forest. In particular, $G$ contains at most one edge $vw$ with $v\in B_x$ and $w\in B_y$.  Since $\mindeg(G)\ge 3$, each $T_x$ has at least $3\cdot2^{\floor{\log(k+1)}-1}> (k+1)/2$ vertices of depth $\floor{\log(k+1)}$, so $T_x$ has at least $(k+1)/2$ leaves.  For each leaf $v$ of $T_x$, $N_G(v)$ contains at least two vertices not in $T_x$. Therefore, for each $x\in Z$, there are at least $k+1$ nodes $y\in Z\setminus\{x\}$ such that $G$ contains an edge $vw$ with $v\in B_x$ and $w\in B_y$.
+
+  Let $G'$ be the induced minor of $G$ obtained by contracting $T_x$, for each $x\in Z$.  Then $\mindeg(G')\ge k+1$ and $\girth(G')\ge \girth(G)/(2\log(k+1))\ge 4d+3$.  By \cref{high_girth_high_degree}, $\rho_d(G')\ge k+1$. Since $G'$ is an induced minor of $G$, $\rho_d(G)\ge \rho_d(G')$.
+\end{proof}
+
+
+Now the proof finishes by eliminating degree-$1$ vertices and replacing long paths of degree-$2$ vertices with paths of length at most $2d$.
 
 \section{Meat}
 
@@ -219,30 +385,6 @@ A small modification of the original  proof of \cref{Simonovitz_original} yields
 
 
 
-\begin{lem}
-  Let $d\ge 1$ be an integer, let $G$ be a graph and let $C$ be a cycle in $G$.  Then $G[B_G(V(C),3d)]$ contains a cycle $C'$ such that
-  \begin{compactenum}
-    \item $G[B_G(V(C'),d)]$ is unicyclic; or
-    \item $C'$ has length at most $6d$.
-  \end{compactenum}
-\end{lem}
-
-\begin{proof}
-  \todo{This still needs some touching up.}
-  Suppose that $C$ has length greater than $6d+2$ and that $G[B_G(V(C),d)]$ is not unicyclic.
-  Let $Q_0$ be the shortest cycle in $G[V(C)]$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $P_i$ and $Q_i$ are paths with common endpoints, $P_i$ has at most $4d-1$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  At all steps, we will ensure that $Q_i$ is a non-empty path contained in $Q_0$.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $C_{i-1}$ is contained in $G[B_G(V_C,2d)]$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2d$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
-  \begin{compactenum}
-    \item $G[B_G(V(C_{i-1}),d)]$ contains a cycle $C'$ of length at most $6d$; or
-    \item $G[B_G(V(C_{i-1}),d)]$ contains a path $P_i'$ with at least $3$ and at most $2d+1$ vertices that has both endpoints in $V(C_{i-1})$ and whose interior is vertex-disjoint from $V(C_{i-1})$.
-  \end{compactenum}
-  In the first case, the cycle $C'$ satisfies the conditions of the lemma, since $B_G(V(C_{i-1}),d)\subseteq B_G(V(C),3d)$.  Assume that the first case does not apply, so the second case does.  Let $P_i'$ be the shortest path that satisfies the conditions of this second case.  Note that $C_{i-1}\cup P_i'$ is contained in $B_G(V(C_{i-1}),d)\subseteq B_G(V(C),3d)$.   Now there are three possibilities:
-  \begin{compactenum}
-    \item Both endpoints of $P_i'$ are in $V(P_{i-1})$: In this case, $P_i'\cup P_{i-1}$ contains a cycle of length at most $|V(P_{i-1}\cup V(P_i'))|\le 4d-1+2d+1=6d$ which is not possible since the first case above does not apply.
-    \item Both endpoints of $P_i'$ are in $V(Q_{i-1})\setminus V(P_{i-i})$.    In this case, we take $C_i$ to be a cycle in $Q_{i-1}\cup P_i'$. This works because $Q_i$ is a non-empty subpath of $Q_{i-1}$ and $P_i:=P_i'$ has at most $|V(P_i')|-2\le 2d-1\le 4d-1$ internal vertices.  Furthermore, $|V(Q_i)|\le |V(Q_{i-1})-2$ because $C_i$ does not contain either endpoint of $Q_{i-1}$.
-    \item Exactly one endpoint of $P_i'$ is in $V(P_{i-1})$.  In this case, $C_{i-1}\cup P_i'$ has two cycles that each contain $P_i'$.  One of the at most $4d-1$ internal vertices of $P_{i-1}$ appears in both of these cycles. The other internal vertices $P_{i-1}$ appear in exactly one of these two cycles.  Therefore one of these cycles contains at most $2d$ internal vertices of $P_{i-1}$.  We take $C_i$ to be this cycle and define $P_i$ to be the path in $C_i$ whose endpoints are in $Q_{i-1}$ and whose interior is disjoint from $V(Q_{i-1})$.  Then $P_i$ has at most $2d+2d-1= 4d-1$ internal vertices.  Furthermore $|V(Q_i)|\le |V(Q_{i-1})|-1$ because $C_i$ does not contain one of the endpoints of $Q_{i-1}$.
-  \end{compactenum}
-  This process eventually produces the desired cycle $C'$ since, at each step in the process $|V(Q_i)|$ decreases.
-\end{proof}
 
 
 \end{document}
