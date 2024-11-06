@@ -21,7 +21,7 @@
 % \numberwithin{equation}{lem}
 
 
-\newenvironment{clmproof}{\noindent\emph{Proof of Claim:}}{\hfill\rule{1ex}{1ex}}
+\newenvironment{clmproof}{\noindent\emph{Proof of Claim:}}{\hfill\rule{1ex}{1ex}\newline}
 
 \usepackage[longnamesfirst,numbers,sort&compress]{natbib}
 
@@ -145,7 +145,7 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 \end{lem}
 
 \begin{proof}
-  Suppose that $C$ has length greater than $6t$ and that $G[B_G(V(C),t)]$ is not unicyclic.
+  Suppose that $G[B_G(V(C),t)]$ is not unicyclic.
   Let $Q_0:=C$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $Q_{i-1}$ is a subpath of $Q_0$, $P_{i-1}$ is a path with at most $4t$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $V(C_{i-1})\subseteq B_G(V(C),2t)$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2t$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
   \begin{compactenum}
     \item $G[B_G(V(C_{i-1}),t)]$ contains a cycle $C'$ of length at most $6t$; or
@@ -197,11 +197,11 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 \end{proof}
 
 
-Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:helly} which we now explain.  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of trees.  A \defin{$p$-subtree} (respectively, \defin{$p$-subgraph}) of $\mathcal{T}$ is a $p$-tuple $\mathcal{A}:=(A_1,\ldots,A_p)$ where $A_i$ is a subtree (respectively, subgraph) of $T_i$ for each $i\in\{1,\ldots,p\}$.  Two $p$-subgraphs $\mathcal{A}:=(A_1,\ldots,A_p)$ and $\mathcal{B}:=(B_1,\ldots,B_p)$ of $\mathcal{T}$ \defin{intersect} if $V(A_i)\cap V(B_i)\neq\emptyset$ for at least one $i\in\{1,\ldots,p\}$, otherwise $\mathcal{A}$ and $\mathcal{B}$ are \defin{disjoint}.
+Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:helly} which we now explain.  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of forests.  (So $T_i$ is a forest, for each $i\in\{1,\ldots,p\}$.)  A \defin{$p$-subtree} (respectively, \defin{$p$-subgraph}) of $\mathcal{T}$ is a $p$-tuple $\mathcal{A}:=(A_1,\ldots,A_p)$ where $A_i$ is a subtree (respectively, subgraph) of $T_i$ for each $i\in\{1,\ldots,p\}$.  Two $p$-subgraphs $\mathcal{A}:=(A_1,\ldots,A_p)$ and $\mathcal{B}:=(B_1,\ldots,B_p)$ of $\mathcal{T}$ \defin{intersect} if $V(A_i)\cap V(B_i)\neq\emptyset$ for at least one $i\in\{1,\ldots,p\}$, otherwise $\mathcal{A}$ and $\mathcal{B}$ are \defin{disjoint}.
 
-\begin{lem}[\citet{gyarfas.lehel:helly}]
+\begin{lem}[\citet{gyarfas.lehel:helly}]\label{gyarfas_lehel}
   There exists a function $\ell:\N\times\N\to\N$ such that the following is true, for every $p,k\in\N$.
-  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of trees and let $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ be a set of $p$-subtrees of $\mathcal{T}$. Then either,
+  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of forests and let $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ be a set of $p$-subtrees of $\mathcal{T}$. Then either,
   \begin{compactenum}[(a)]
     \item $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ contains a set of $k$ pairwise-disjoint $p$-subtrees of $\mathcal{T}$; or
     \item there exists a $p$-subgraph $\mathcal{X}:=(X_1,\ldots,X_k)$ of $\mathcal{T}$ with $\sum_{i=1}^k|V(X_i)|\le \ell(p,k)$ such that $\mathcal{A}_i$ intersects $\mathcal{X}$ for each $i\in\{1,\ldots,m\}$.
@@ -210,18 +210,40 @@ Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:h
 
 \begin{lem}[Hungarian Method]\label{hungarian_method}
   There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $d\ge 1$ and $r\ge d$ be integers.
-  Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_p$ be a $2r$-packing of cycles in $G$ such that
+  Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that
   \begin{compactenum}[(i)]
-    \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p\}$;
-    \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p\}$; and
-    \item $F:=G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-d))$ is a forest.
+    \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p-1\}$;
+    \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p-1\}$; and
+    \item $F:=G-(X\cup \bigcup_{i=1}^{p-1} B_G(V(C_i),r-d))$ is a forest.
   \end{compactenum}
   Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d))$ is a forest.
 \end{lem}
 
 \begin{proof}
+  For each $i\in\{1,\ldots,p-1\}$, select an arbitrary vertex $v_i\in V(C_i)$.  Let $T_i:=G[B_G(V(C_i),r)]-B_G(v_i,r)$.  By (i), $T_i$ is a forest, for each $i\in\{1,\ldots,p-1\}$.
+  Our strategy is use \cref{gyarfas_lehel} on the $(2p-1)$-tuple $(F,T_1,\ldots,T_{p-1},T_1,\ldots,T_{p-1})$.
+
   Define $F^-:=G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-1))$.  Since $F$ is a forest and $F^-$ is a subgraph of $F$, $F^-$ is also a forest.
-  An \defin{$(i,j)$-$F^-$-path} is a path in $F^-$ from a vertex $s$ with  $\dist_G(s,V(C_i))=r$ to a vertex $t$ with $\dist_G(t,V(C_j))=r$.  By (i), there is a unique shortest path $s_r,s_{r-1},\ldots,s_0$ in $G$ from $s_r:=s$ to the unique vertex $s_0\in V(C_i)$ with $\dist(s,s_0)=r$.  Similarly, there is a unique path $t_r,\ldots,t_0$ from $t_r:=t$ to the unique vertex $t_0\in V(C_j)$ with $\dist(t,t_0)=r$. [Continue...]
+  An \defin{$(i,j)$-$F^-$-path} is a path $P$ in $F^-$ from a vertex $s$ with  $\dist_G(s,V(C_i))=r$ to a vertex $t$ with $\dist_G(t,V(C_j))=r$.  By (i), there is a unique shortest path $s_r,s_{r-1},\ldots,s_0$ in $G$ from $s_r:=s$ to the unique vertex $s_0\in V(C_i)$ with $\dist(s,s_0)=r$.  Similarly, there is a unique path $t_r,\ldots,t_0$ from $t_r:=t$ to the unique vertex $t_0\in V(C_j)$ with $\dist(t,t_0)=r$.  We say that $P$ is \defin{admissible} if $s_0\in V(T_i)$ and $t_0\in V(T_j)$. If $P$ is admissible then we define $P(i,j)$ to be the path in $G$ obtained by concatenating $s_0,\ldots,s_{r-1}$, $P$, and $t_{r-1},\ldots,t_0$.  We map the $(i,j)$-$F^-$-path $P$ onto the $(2p-1)$-subtree $\Phi(P):=(F_P, S_{1,P},\ldots,S_{p-1,P},T_{1,P},\ldots,T_{p-1,P})$ where
+  \begin{itemize}
+    \item $F_P:= F[B_F(V(P-\{s,t\}),d)]$;
+    \item $S_{i,P}:=T_i[B_{T_i}(\{s_0,\ldots,s_{r-d}\},d)]$;
+    \item $S_{i',P}$ is the null graph for all $i'\in\{1,\ldots,p-1\}\setminus\{i\}$.
+    \item $T_{j,P}:=T_j[B_{T_j}(\{t_0,\ldots,t_{r-d}\},d)]$.
+    \item $T_{j',P}$ is the null graph for all $j'\in\{1,\ldots,p-1\}\setminus\{j\}$.
+  \end{itemize}
+  We rely on the following important property of this mapping:
+  \begin{clm}
+    If $P$ is an admissible $(i,j)$-$F^-$-path, $P'$ is an admissible $(i',j')$-$F^-$-path and $\Phi(P)$ and $\Phi(P')$ are disjoint, then $\dist_G(V(P(i,j),V(P'(i',j')))\ge d$.
+  \end{clm}
+  \begin{clmproof}
+     Suppose that $\dist_G(V(P(i,j),V(P'(i',j')))< d$ and let $a\in V(P(i,j))$ and $b\in V(P'(i,j))$ be chosen so that $\dist_G(a,b)<d$.
+     \begin{compactitem}
+       \item If $a,b\in V(F^-)$, then $\dist_G(a,b)=\dist_F(a,b)$ then $F_P$ and $F_{P'}$ each contain $b$, so $\Phi(P)$ and $\Phi(P')$ are not disjoint.
+       \item If $a\in BV(C_i)$
+     \end{compactitem}
+  \end{clmproof}
+  [Continue]
 \end{proof}
 
 \begin{thm}
