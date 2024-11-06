@@ -135,14 +135,15 @@
 
 The \defin{length}, $\ell$, of a path $P:=x_0,\ldots,x_\ell$ is the number of edges in $P$.  For two vertices $x$ and $y$ in a  tree $T$, the \defin{$T$-path}, $\mathdefin{\pth_T(x,y)}$ is the unique path $x_0,\ldots,x_\ell$ in $T$ with $x_0=x$ and $x_\ell=y$. If $Y\subseteq V(T)\setminus\{x\}$ and $T[Y]$ is connected, then $\mathdefin{\pth_T(x,Y)}$ is the shortest path $x_0,\ldots,x_{\ell}$ in $T$ with $x_0=x$ and $x_\ell\in Y$.  For a graph $G$, and two vertices $x$ and $y$ of $G$, $\mathdefin{\dist_G(x,y)}$ is the length of a shortest path, in $G$, with endpoints $x$ and $y$.  For subsets $X$ and $Y$ of $V(G)$, $\mathdefin{\dist_G(X,Y)}:=\min\{\dist_G(x,y):(x,y)\in X\times Y\}$.  For an integer $r\ge 0$ and a vertex $x$ of $G$, $\mathdefin{B_G(x,r)}:=\{y\in V(G):\dist_G(x,y)\le r\}$.  For a subset $S$ of $V(G)$, $\mathdefin{B_G(S,r)}:=\bigcup_{x\in S}B_G(x,r)$, $\mathdefin{\diam_G(S)}:=\max\{\dist_G(x,y):\{x,y\}\in\binom{S}{2}\}$ and $\mathdefin{\radius_G(S)}$ is the minimum integer $r$ such that $S\subseteq B_G(v,r)$ for some $v\in V(G)$.
 
+A set $\mathcal{C}$ of cycles in $G$ is a \defin{$d$-packing} (of cycles in $G$) if $\dist_G(V(C),V(C'))\ge d$ for each distinct $C,C'\in\mathcal{C}$.
+The \defin{distance-$d$ $\rho$acking number} of cycles in $G$ is the maximum integer $p$ such that $G$ has a $d$-packing of cycles $\mathcal{C}$ with $|\mathcal{C}|=p$.    For any integer $r\ge 0$, a set $X\subseteq V(G)$ is a \defin{radius-$r$ hitting-set} of cycles in $G$ if $G-B_G(X,r)$ is a forest.  The \defin{radius-$r$ hi$\tau$$\tau$ing number} (of cycles in $G$), $\mathdefin{\tau_r(G)}$, is the minimum integer $t$ such that $G$ has a radius-$r$ hitting set of size $t$.
 
-For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$ such that $G$ contains cycles $C_1,\ldots,C_p$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for all $1\le i < j\le p$.  We call $\rho_d(G)$ the \defin{distance-$d$ $\rho$acking number} of cycles in $G$.  For any integer $r\ge 0$, a set $X\subseteq V(G)$ is a \defin{radius-$r$ hitting-set} of cycles in $G$ if $G-B_G(X,r)$ is a forest.  Let $\mathdefin{\tau_r(G)}$ be the minimum integer $t$ such that $G$ has a radius-$r$ hitting set.  We call $\tau_r(G)$ the \defin{radius-$r$ hi$\tau\tau$ing-number} of cycles in $G$.  Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a subgraph of $G$ then a distance-$d$ packing of cycles in $G'$ may not be a distance-$d$ packing of cycles in $G$ since $\dist_{G'}(x,y)\ge \dist_G(x,y)$.  Similarly, a radius-$r$ hitting set $X$ for cycles in $G$ may not be a radius-$r$ hitting set for cycles in $G'$, since $B_{G'}(x,r)\subseteq B_{G}(x,r)$.
+Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a subgraph of $G$ then a distance-$d$ packing of cycles in $G'$ may not be a distance-$d$ packing of cycles in $G$ since $\dist_{G}(V(C),V(C'))$ may be less than $\dist_G(V(C),V(C'))$.  Similarly, a radius-$r$ hitting set $X$ for cycles in $G$ may not be a radius-$r$ hitting set for cycles in $G'$, since $B_{G'}(X,r)$ may be a strict subset of $B_{G}(x,r)\cap V(G')$.
 
 \begin{conj}
   There exists functions $f:\N\to\N$ and $g:\N\to\N$ such that, for every graph $G$ and every $d,k\in\N$, $\rho_d(G) \ge k$ or $\tau_{g(d)}(G)\le f(k)$.
 \end{conj}
 
-\newpage
 
 \section{An Exponential Bound}
 
@@ -196,25 +197,25 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
 
 
 \begin{lem}\label{short_or_unicycle_nearby}
-  For every integer $t\ge 1$, every graph $G$ and every cycle $C$ in $G$,  $G[B_G(V(C),3t)]$ contains a cycle $C'$ such that
+  For every integer $t\ge 0$, every graph $G$ and every cycle $C$ in $G$,  $G[B_G(V(C),3t)]$ contains a cycle $C'$ such that
   \begin{compactenum}[(a)]
     \item $G[B_G(V(C'),t)]$ is unicyclic; or
-    \item $C'$ has length at most $6t$.
+    \item $C'$ has length at most $6t+2$.
   \end{compactenum}
 \end{lem}
 
 \begin{proof}
   Suppose that $C$ has length greater than $6t$ and that $G[B_G(V(C),t)]$ is not unicyclic.
-  Let $Q_0$ be the shortest cycle in $G[V(C)]$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $Q_{i-1}$ is a subpath of $Q_0$, $P_{i-1}$ is a path with at most $4t-1$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $V(C_{i-1})\subseteq B_G(V(C),2t)$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2t$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
+  Let $Q_0:=C$, and let $P_0$ be a $1$-vertex path that contains an arbitrary vertex of $Q_0$.  For $i\ge 1$, suppose that $Q_{i-1}$ is a subpath of $Q_0$, $P_{i-1}$ is a path with at most $4t$ internal vertices, and that $C_{i-1}:=Q_{i-1}\cup P_{i-1}$ is a cycle that does not satisfy the conditions of the lemma.  Since all the vertices of $Q_0$ are in $V(C)$, these conditions imply that $V(C_{i-1})\subseteq B_G(V(C),2t)$ and $C_{i-1}$ has at most one vertex $v$ such that $\dist_G(v,V(C))=2t$.  Since $C_{i-1}$ does not satisfy the conditions of the lemma, at least one of the following is true:
   \begin{compactenum}
     \item $G[B_G(V(C_{i-1}),t)]$ contains a cycle $C'$ of length at most $6t$; or
-    \item $G[B_G(V(C_{i-1}),t)]$ contains a path $P_i'$ with at least $3$ and at most $2t+1$ vertices that has both endpoints in $V(C_{i-1})$ and whose interior is vertex-disjoint from $V(C_{i-1})$.
+    \item $G[B_G(V(C_{i-1}),t)]$ contains a path $P_i'$ with at least $3$ and at most $2t+2$ vertices that has both endpoints in $V(C_{i-1})$ and whose interior is vertex-disjoint from $V(C_{i-1})$.
   \end{compactenum}
-  In the first case, the cycle $C'$ satisfies the conditions of the lemma, since $B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.  Assume that the first case does not apply, so the second case does.  Let $P_i'$ be the shortest path that satisfies the conditions of this second case.  Note that $V(C_{i-1}\cup P_i')\subseteq B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.   Now there are three possibilities:
+  In the first case, the cycle $C'$ satisfies the conditions of the lemma, since $B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.  Assume that the first case does not apply, so the second case does.  Let $P_i'$ be a path that satisfies the conditions of this second case.  Note that $V(C_{i-1}\cup P_i')\subseteq B_G(V(C_{i-1}),t)\subseteq B_G(V(C),3t)$.   Now there are three possibilities:
   \begin{compactenum}
-    \item Both endpoints of $P_i'$ are in $V(P_{i-1})$: In this case, $P_i'\cup P_{i-1}$ contains a cycle of length at most $|V(P_{i-1}\cup V(P_i'))|\le 4t-1+2t+1=6t$ which is not possible since the first case above does not apply.
-    \item Both endpoints of $P_i'$ are in $V(Q_{i-1})\setminus V(P_{i-i})$.    In this case, we take $C_i$ to be a cycle in $Q_{i-1}\cup P_i'$. This works because $Q_i$ is a non-empty subpath of $Q_{i-1}$ and $P_i:=P_i'$ has at most $|V(P_i')|-2\le 2t-1\le 4t-1$ internal vertices.  Furthermore, $|V(Q_i)|\le |V(Q_{i-1})|-2$ because $C_i$ does not contain either endpoint of $Q_{i-1}$.
-    \item Exactly one endpoint of $P_i'$ is in $V(P_{i-1})$.  In this case, $C_{i-1}\cup P_i'$ has two cycles that each contain $P_i'$.  At most one of the at most $4t-1$ internal vertices of $P_{i-1}$ appears in both of these cycles. The other internal vertices of $P_{i-1}$ appear in exactly one of these two cycles.  Therefore one of these cycles contains at most $2t$ internal vertices of $P_{i-1}$.  We take $C_i$ to be this cycle and define $P_i$ to be the path in $C_i$ whose endpoints are in $Q_{i-1}$ and whose interior is disjoint from $V(Q_{i-1})$.  Then $P_i$ has at most $2t+2t-1= 4t-1$ internal vertices.  Furthermore $|V(Q_i)|\le |V(Q_{i-1})|-1$ because $C_i$ does not contain one of the endpoints of $Q_{i-1}$.
+    \item Both endpoints of $P_i'$ are in $V(P_{i-1})$: In this case, $P_i'\cup P_{i-1}$ contains a cycle of length at most $|V(P_{i-1}\cup V(P_i'))|\le 4t+2t+2=6t+$ which is not possible since the first case above does not apply.
+    \item Both endpoints of $P_i'$ are in $V(Q_{i-1})\setminus V(P_{i-i})$.    In this case, we take $C_i$ to be a cycle in $Q_{i-1}\cup P_i'$. This works because $Q_i$ is a non-empty subpath of $Q_{i-1}$ and $P_i:=P_i'$ has at most $|V(P_i')|-2\le 2t\le 4t$ internal vertices.  Furthermore, $|V(Q_i)|\le |V(Q_{i-1})|-2$ because $C_i$ does not contain either endpoint of $Q_{i-1}$.
+    \item Exactly one endpoint of $P_i'$ is in $V(P_{i-1})$.  In this case, $C_{i-1}\cup P_i'$ has two cycles that each contain $P_i'$.  At most one of the at most $4t$ internal vertices of $P_{i-1}$ appears in both of these cycles. The other internal vertices of $P_{i-1}$ appear in exactly one of these two cycles.  Therefore one of these cycles contains at most $2t$ internal vertices of $P_{i-1}$.  We take $C_i$ to be this cycle and define $P_i$ to be the path in $C_i$ whose endpoints are in $Q_{i-1}$ and whose interior is disjoint from $V(Q_{i-1})$.  Then $P_i$ has at most $2t+2t= 4t$ internal vertices.  Furthermore $|V(Q_i)|\le |V(Q_{i-1})|-1$ because $C_i$ does not contain one of the endpoints of $Q_{i-1}$.
   \end{compactenum}
   This process eventually produces the desired cycle $C'$ since, at each step in the process $|V(Q_i)|$ decreases.
 \end{proof}
@@ -224,7 +225,7 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
 
 
 \begin{lem}\label{a_or_b}
-  Let $G$ be a graph and let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that, for each $i\in\{1,\ldots,p-1\}$,  $G[B_G(V(C_i),r)]$ is unicyclic or $|V(C_i)|\le 6r$.  Then, for every $k\ge p-1$, at least one of the following ((a), (b), or (c)) is true:
+  Let $G$ be a graph and let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that, for each $i\in\{1,\ldots,p-1\}$,  $G[B_G(V(C_i),r)]$ is unicyclic or $|V(C_i)|\le 6r+2$.  Then, for every $k\ge p-1$, at least one of the following ((a), (b), or (c)) is true:
   \begin{compactenum}[(a)]
     \item $G$ contains a cycle $C_p$ such that
     \begin{compactenum}[(i)]
@@ -232,18 +233,18 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
       \item $G[B_G(V(C_p),(r-d)/5)]$ is unicyclic or $|V(C_p)|\le 6(r-d)/5$;
     \end{compactenum}
     \item $\rho_d(G)\ge k$; or
-    \item $\tau_{r'}(G) \le f(k)+p-1$ for $r':=\max\{r+2d,7r\}$.
+    \item $\tau_{r'}(G) \le f(k)+p-1$ for $r':=\max\{r+2d,7r+2\}$.
   \end{compactenum}
 \end{lem}
 
 \begin{proof}
-  First, suppose that $G$ contains a cycle $C$ such that $C_1,\ldots,C_{p-1},C$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/4$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))\ge \dist_G(V(C),V(C_i)) \ge r-d - 3t = 2t$, so $C_p$ satisfies (i).
+  First, suppose that $G$ contains a cycle $C$ such that $C_1,\ldots,C_{p-1},C$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/5$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t+2$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))-3t\ge \dist_G(V(C),V(C_i)) \ge r-d - 3t = 2t$, so $C_p$ satisfies (i).
 
-  Now, suppose that $G$ contains no such cycle.  Let $I:=\{i\in\{1,\ldots,p-1:|V(C_i)|\le 6r\}$ and let $\overline{I}:=\{1,\ldots,p-1\}\setminus I$.
-  Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method \cref{hungarian_method} to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
+  Now, suppose that $G$ contains no such cycle.  Let $I:=\{i\in\{1,\ldots,p-1:|V(C_i)|\le 6r+2\}$ and let $\overline{I}:=\{1,\ldots,p-1\}\setminus I$.
+  Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method (\cref{hungarian_method}) to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
   \begin{compactenum}[(a)]\setcounter{enumi}{1}
     \item $\rho_d(G)\ge k$.  In this case there is nothing more to prove.
-    \item There exists $X'\subseteq V(G'')$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$ is a forest. For each $i\in I$, let $v_i$ be a vertex of $C_i$, define $X:=\{v_i:i\in I\}\cup X'$.  We claim that $G-B_G(X,r')$ is a forest.  Indeed, for each $i\in I$, $B_G(v_i,7r)\supseteq B_G(V(C_i),r)$, so $\bigcup_{i\in I}B_G(v_i)\supseteq B_G(X'',d)$, so $B_G(X,r')\supseteq B_G(X'',d)\cup B_{G}(X',r+2d)$. \qedhere
+    \item There exists $X'\subseteq V(G)$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$ is a forest. For each $i\in I$, let $v_i$ be a vertex of $C_i$, define $X:=\{v_i:i\in I\}\cup X'$.  We claim that $G-B_G(X,r')$ is a forest.  Indeed, for each $i\in I$, $B_G(v_i,7r+2)\supseteq B_G(V(C_i),r)$, so $\bigcup_{i\in I}B_G(v_i)\supseteq B_G(X'',d)$, so $B_G(X,r')\supseteq B_G(X'',d)\cup B_{G}(X',r+2d)$. \qedhere
      %
      %
      %
@@ -257,24 +258,30 @@ For any integer $d\ge 0$, let $\mathdefin{\rho_d(G)}$ be the maximum integer $p$
 
 
 \begin{lem}[Hungarian Method]\label{hungarian_method}
-  There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $r\ge 1$ and $d\ge 1$ be integers.
+  There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $d\ge 1$ and $r\ge d$ be integers.
   Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_p$ be a $2r$-packing of cycles in $G$ such that
   \begin{compactenum}
     \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p\}$;
     \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p\}$; and
     \item $G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-d))$ is a forest.
   \end{compactenum}
-  Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d)$ is a forest; or
+  Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d))$ is a forest.
 \end{lem}
 
+\begin{proof}
+  Use the result in \citet{gyarfas.lehel:helly}.
+\end{proof}
+
 \begin{thm}
-  There exists $f:\N\to N$ and $g:\N^2\to N$ such that for every graph $G$, every integer $k\ge 0$ and every integer $d\ge 0$, $\rho_d(G)\ge k$ or $\tau_{g(k,d)}(G)\le f(k)$ where $g(k,d):=7d5^k$ and $f(k):=f(k,k)$ is the function in \cref{hungarian_method}.
+  There exists $f:\N\to\N$ and $g:\N^2\to\N$ such that for every graph $G$, every integer $k\ge 0$ and every integer $d\ge 0$, $\rho_d(G)\ge k$ or $\tau_{g(k,d)}(G)\le f(k)$ where $g(k,d):=7d5^k+2$ and $f(k):=f(k,k)$ is the function in \cref{hungarian_method}.
 \end{thm}
 
 \begin{proof}
-  Beginning with $r=d5^k$ and repeatedly applying \cref{a_or_b} we either find cycles $C_1,\ldots,C_k$ that prove $\rho_d(G)\ge k$ or that $\tau_{7d5^k}(G) \le f(k)$.
+  Beginning with $r:=d5^k$ and repeatedly applying \cref{a_or_b} we either find cycles $C_1,\ldots,C_k$ that prove $\rho_d(G)\ge k$ or that $\tau_{7d5^k+2}(G) \le f(k)$.
 \end{proof}
 
+\bibliographystyle{plainurlnat}
+\bibliography{cep}
 
 
 
