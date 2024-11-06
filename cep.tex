@@ -1,34 +1,17 @@
 \documentclass{patmorin}
 \listfiles
 \usepackage{pat}
-\usepackage{paralist}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{paralist}
-\usepackage{bbm}  % needed for \mathbbm{1}
-% \usepackage{logix}
-\usepackage{halloweenmath}
-\usepackage{stmaryrd}
 
 \usepackage{todonotes}
-\usepackage{tcolorbox}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{comment}
-
-\usepackage{thm-restate}
-
-
-% etoolbox allows for robust commands that don't need \protect, e.g.
-% \newrobustcmd{\onesub}{\mathord{\includegraphics{figs/one-sub}}}
-% \subsection{Approximate Voronoi Diagrams in $G^{\onesub}_k$}
-\usepackage{etoolbox}
 
 % david proposes the following additions
-\renewcommand{\ge}{\geqslant}
-\renewcommand{\le}{\leqslant}
-\renewcommand{\geq}{\geqslant}
-\renewcommand{\leq}{\leqslant}
+% \renewcommand{\ge}{\geqslant}
+% \renewcommand{\le}{\leqslant}
+% \renewcommand{\geq}{\geqslant}
+% \renewcommand{\leq}{\leqslant}
 
 \newcommand{\vida}[1]{{\color{DarkGreen} Vida: #1}}
 \newcommand{\pat}[1]{\textcolor{Blue}{Pat: #1}}
@@ -42,48 +25,6 @@
 
 \usepackage[longnamesfirst,numbers,sort&compress]{natbib}
 
-\usepackage[mathlines]{lineno}
-\setlength{\linenumbersep}{2em}
-% \linenumbers
-% \rightlinenumbers
-% \linenumbers
-\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
- \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
- \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
- \renewenvironment{#1}%
-    {\linenomath\csname old#1\endcsname}%
-    {\csname oldend#1\endcsname\endlinenomath}}%
-\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
- \patchAmsMathEnvironmentForLineno{#1}%
- \patchAmsMathEnvironmentForLineno{#1*}}%
-\AtBeginDocument{%
-\patchBothAmsMathEnvironmentsForLineno{equation}%
-\patchBothAmsMathEnvironmentsForLineno{align}%
-\patchBothAmsMathEnvironmentsForLineno{flalign}%
-\patchBothAmsMathEnvironmentsForLineno{alignat}%
-\patchBothAmsMathEnvironmentsForLineno{gather}%
-\patchBothAmsMathEnvironmentsForLineno{multline}%
-}
-
-
-
-% Taken from
-% https://tex.stackexchange.com/questions/42726/align-but-show-one-equation-number-at-the-end
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-
-\definecolor{brightmaroon}{rgb}{0.76, 0.13, 0.28}
-\definecolor{linkblue}{rgb}{0, 0.337, 0.227}
-\newcommand{\defin}[1]{\emph{\textcolor{brightmaroon}{#1}}}
-\makeatletter
-\def\mathcolor#1#{\@mathcolor{#1}}
-\def\@mathcolor#1#2#3{%
-  \protect\leavevmode
-  \begingroup
-    \color#1{#2}#3%
-  \endgroup
-}
-\makeatother
-\newcommand{\mathdefin}[1]{\mathcolor{brightmaroon}{#1}}
 % \newcommand{\mathdefin}[1]{\color{brightmaroon}#1}}
 \setlength{\parskip}{1ex}
 
@@ -92,7 +33,6 @@
 \DeclareMathOperator{\pw}{pw}
 \DeclareMathOperator{\bw}{bw}
 \DeclareMathOperator{\td}{td}
-%\DeclareMathOperator{\rtw}{rtw}
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\radius}{radius}
 \DeclareMathOperator{\pth}{path}
@@ -238,7 +178,7 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 \end{lem}
 
 \begin{proof}
-  First, suppose that $G$ contains a cycle $C$ such that $C_1,\ldots,C_{p-1},C$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/5$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t+2$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))-3t\ge \dist_G(V(C),V(C_i)) \ge r-d - 3t = 2t$, so $C_p$ satisfies (i).
+  First, suppose that $G$ contains a cycle $C$ such that $\{C_1,\ldots,C_{p-1},C\}$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/5$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t+2$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))-3t\ge \dist_G(V(C),V(C_i)) \ge r-d - 3t = 2t$, so $C_p$ satisfies (i).
 
   Now, suppose that $G$ contains no such cycle.  Let $I:=\{i\in\{1,\ldots,p-1:|V(C_i)|\le 6r+2\}$ and let $\overline{I}:=\{1,\ldots,p-1\}\setminus I$.
   Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method (\cref{hungarian_method}) to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
@@ -257,19 +197,31 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 \end{proof}
 
 
+Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:helly} which we now explain.  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of trees.  A \defin{$p$-subtree} (respectively, \defin{$p$-subgraph}) of $\mathcal{T}$ is a $p$-tuple $\mathcal{A}:=(A_1,\ldots,A_p)$ where $A_i$ is a subtree (respectively, subgraph) of $T_i$ for each $i\in\{1,\ldots,p\}$.  Two $p$-subgraphs $\mathcal{A}:=(A_1,\ldots,A_p)$ and $\mathcal{B}:=(B_1,\ldots,B_p)$ of $\mathcal{T}$ \defin{intersect} if $V(A_i)\cap V(B_i)\neq\emptyset$ for at least one $i\in\{1,\ldots,p\}$, otherwise $\mathcal{A}$ and $\mathcal{B}$ are \defin{disjoint}.
+
+\begin{lem}[\citet{gyarfas.lehel:helly}]
+  There exists a function $\ell:\N\times\N\to\N$ such that the following is true, for every $p,k\in\N$.
+  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of trees and let $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ be a set of $p$-subtrees of $\mathcal{T}$. Then either,
+  \begin{compactenum}[(a)]
+    \item $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ contains a set of $k$ pairwise-disjoint $p$-subtrees of $\mathcal{T}$; or
+    \item there exists a $p$-subgraph $\mathcal{X}:=(X_1,\ldots,X_k)$ of $\mathcal{T}$ with $\sum_{i=1}^k|V(X_i)|\le \ell(p,k)$ such that $\mathcal{A}_i$ intersects $\mathcal{X}$ for each $i\in\{1,\ldots,m\}$.
+  \end{compactenum}
+\end{lem}
+
 \begin{lem}[Hungarian Method]\label{hungarian_method}
   There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $d\ge 1$ and $r\ge d$ be integers.
   Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_p$ be a $2r$-packing of cycles in $G$ such that
-  \begin{compactenum}
+  \begin{compactenum}[(i)]
     \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p\}$;
     \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p\}$; and
-    \item $G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-d))$ is a forest.
+    \item $F:=G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-d))$ is a forest.
   \end{compactenum}
   Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d))$ is a forest.
 \end{lem}
 
 \begin{proof}
-  Use the result in \citet{gyarfas.lehel:helly}.
+  Define $F^-:=G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-1))$.  Since $F$ is a forest and $F^-$ is a subgraph of $F$, $F^-$ is also a forest.
+  An \defin{$(i,j)$-$F^-$-path} is a path in $F^-$ from a vertex $s$ with  $\dist_G(s,V(C_i))=r$ to a vertex $t$ with $\dist_G(t,V(C_j))=r$.  By (i), there is a unique shortest path $s_r,s_{r-1},\ldots,s_0$ in $G$ from $s_r:=s$ to the unique vertex $s_0\in V(C_i)$ with $\dist(s,s_0)=r$.  Similarly, there is a unique path $t_r,\ldots,t_0$ from $t_r:=t$ to the unique vertex $t_0\in V(C_j)$ with $\dist(t,t_0)=r$. [Continue...]
 \end{proof}
 
 \begin{thm}
