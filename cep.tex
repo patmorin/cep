@@ -140,8 +140,8 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 \piotr{Let $|P|$ be the length of the path $P$, i.e.\ the number of edges in $P$.}
 
 \begin{lem}\label{short_or_unicycle_nearby}
-  Let $t$ be an integer with $t\ge 0$. 
-  Let $G$ be a graph and let $C$ be a cycle in $G$. 
+  Let $t$ be an integer with $t\ge 0$.
+  Let $G$ be a graph and let $C$ be a cycle in $G$.
   Then $B_G(V(C),3t)$ contains a cycle $C'$ such that
   \begin{compactenum}[(a)]
     \item $B_G(V(C'),t)$ is unicyclic; or\label{short_or_unicycle_nearby:unicyclic}
@@ -151,49 +151,49 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 
 \begin{proof}
   Let $C_0:=C$.
-  We construct inductively a sequence of pairs $(C_i,Q_i)_{i\geq0}$ such that 
-  (1) $C_i$ is a cycle in $G$; 
+  We construct inductively a sequence of pairs $(C_i,Q_i)_{i\geq0}$ such that
+  (1) $C_i$ is a cycle in $G$;
   (2) $Q_i\subseteq C_i\cap C$, $Q_i$ is connected and contains at least one edge; and
   (3) $C_i$ contains at most $4t+1$ edges not in $Q_i$.
-  Note that these two conditions imply that there is a path $P_i\subseteq C_i$  such that 
-  $P_i$ and $Q_i$ are edge-disjoint and $C_i=P_i\cup Q_i$. 
-  Thus, $P_i$ is a path of length at most $4t+1$ with both endpoints in $C$ 
+  Note that these two conditions imply that there is a path $P_i\subseteq C_i$  such that
+  $P_i$ and $Q_i$ are edge-disjoint and $C_i=P_i\cup Q_i$.
+  Thus, $P_i$ is a path of length at most $4t+1$ with both endpoints in $C$
   which implies that all vertices of $P_i$ are in distance at most $2t$ from $C$.
   In particular, $C_i\subseteq B_G(V(C),2t)$.
 
-  Let $i\geq0$ and suppose that we already have defined $C_i$. 
-  If $B_G(V(C_i),t)$ is unicyclic, then $C_i$ witnesses~\eqref{short_or_unicycle_nearby:unicyclic}. 
+  Let $i\geq0$ and suppose that we already have defined $C_i$.
+  If $B_G(V(C_i),t)$ is unicyclic, then $C_i$ witnesses~\eqref{short_or_unicycle_nearby:unicyclic}.
 
-  Now suppose that $B_G(V(C_i),t)$ contains a cycle $D$ different than $C_i$. 
-  Let $u$ be a vertex of $D$ that is of maximal distance from $C_i$ among all vertices in $D$. 
-  Let $P(u)$ be a shortest path from $C$ to $u$. 
+  Now suppose that $B_G(V(C_i),t)$ contains a cycle $D$ different than $C_i$.
+  Let $u$ be a vertex of $D$ that is of maximal distance from $C_i$ among all vertices in $D$.
+  Let $P(u)$ be a shortest path from $C$ to $u$.
   Since $u$ is incident to two vertices in $D$ there is a neighbor $v$ of $u$ in $D$ that is not in $P(u)$.
-  Let $P(v)$ be a shortest path from $C_i$ to $v$. 
-  Note that both $P(u)$ and $P(v)$ are of length at most $t$. 
-  If $P(u)\cup P(v)\cup\{uv\}$ contains a cycle, say $E$, then $E$ has length at most $2t+1$ and $E\subseteq B_G(V(C_i),t)\subseteq B_G(V(C),3t)$, so $E$ witnesses~\eqref{short_or_unicycle_nearby:short}. 
-  Thus, we assume that $P:=P(u)\cup P(v)\cup\{uv\}$ contains no cycle so it must be a path. 
+  Let $P(v)$ be a shortest path from $C_i$ to $v$.
+  Note that both $P(u)$ and $P(v)$ are of length at most $t$.
+  If $P(u)\cup P(v)\cup\{uv\}$ contains a cycle, say $E$, then $E$ has length at most $2t+1$ and $E\subseteq B_G(V(C_i),t)\subseteq B_G(V(C),3t)$, so $E$ witnesses~\eqref{short_or_unicycle_nearby:short}.
+  Thus, we assume that $P:=P(u)\cup P(v)\cup\{uv\}$ contains no cycle so it must be a path.
   Also the length of $P$ is at most $2t+1$.
-  
+
   Now there are three possibilities:
   \begin{compactenum}
-    \item Both endpoints of $P$ are in $V(P_{i})$. 
-    In this case, $P\cup P_{i}$ contains a cycle of length at most 
-    $(2t+1)+(4t+1)=6t+2$ and this cycle is contained in $B_G(V(C_i),t)\subseteq B_G(V(C),3t)$, so it satisfies~\eqref{short_or_unicycle_nearby:short}. 
-    \item Both endpoints of $P$ are in $V(Q_{i})\setminus V(P_{i})$. 
+    \item Both endpoints of $P$ are in $V(P_{i})$.
+    In this case, $P\cup P_{i}$ contains a cycle of length at most
+    $(2t+1)+(4t+1)=6t+2$ and this cycle is contained in $B_G(V(C_i),t)\subseteq B_G(V(C),3t)$, so it satisfies~\eqref{short_or_unicycle_nearby:short}.
+    \item Both endpoints of $P$ are in $V(Q_{i})\setminus V(P_{i})$.
     In this case, we take $C_{i+1}$ to be a cycle in $Q_{i}\cup P$ and
-    we take $Q_{i+1}:= Q_i\cap C_{i+1}$. % and $P_{i+1}:=P\cap C_{i+1}$. 
-    This works because $P$ has two distinct endpoints in $Q_{i+1}$ 
-    and therefore $Q_{i+1}$ contains at least one edge, 
-    $Q_{i+1}\subseteq Q_i\subseteq C$, and 
-    $|P_{i+1}|\leq|P|\leq 2t+1$. 
+    we take $Q_{i+1}:= Q_i\cap C_{i+1}$. % and $P_{i+1}:=P\cap C_{i+1}$.
+    This works because $P$ has two distinct endpoints in $Q_{i+1}$
+    and therefore $Q_{i+1}$ contains at least one edge,
+    $Q_{i+1}\subseteq Q_i\subseteq C$, and
+    $|P_{i+1}|\leq|P|\leq 2t+1$.
     Furthermore, note that $|Q_{i+1}| < |Q_{i}|$ because $C_{i+1}$ does not contain either endpoint of $Q_{i}$.
-    \item Exactly one endpoint of $P$ is in $V(P_{i})$. 
-    In this case, $C_{i}\cup P$ has two cycles that each contain $P$. 
-    Each edge of $P_{i}$ belongs to exactly one of these two cycles. 
-    Therefore one of these cycles uses at most $\lfloor\frac{4t+1}{2}\rfloor=2t$ edges of $P_{i}$. 
+    \item Exactly one endpoint of $P$ is in $V(P_{i})$.
+    In this case, $C_{i}\cup P$ has two cycles that each contain $P$.
+    Each edge of $P_{i}$ belongs to exactly one of these two cycles.
+    Therefore one of these cycles uses at most $\lfloor\frac{4t+1}{2}\rfloor=2t$ edges of $P_{i}$.
     We take $C_{i+1}$ to be this cycle and define
-    $Q_{i+1}=C_{i+1}\cap Q_i$. %, and $P_{i+1}=C_{i+1}\cap (P\cup P_{i})$. 
-    Thus, $|P_{i+1}| \leq 2t+|P|\leq 4t+1$. 
+    $Q_{i+1}=C_{i+1}\cap Q_i$. %, and $P_{i+1}=C_{i+1}\cap (P\cup P_{i})$.
+    Thus, $|P_{i+1}| \leq 2t+|P|\leq 4t+1$.
     Furthermore, note that $|Q_{i+1}| < |Q_{i}|$ because $C_{i+1}$ does not contain one of the endpoints of $Q_{i}$.
   \end{compactenum}
   This process eventually produces the desired cycle $C'$ from the statement since, at each step in the process $|Q_i|$ decreases.
@@ -201,28 +201,60 @@ Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a
 
 \begin{lem}\label{grow_unicycle}
   Let $a\ge 2$ be an integer, let $G$ be a graph and let $C$ be a cycle in $G$ such that $G[B_G(V(C),r]$ is unicyclic, for some $r\ge d$.  Then either:
-  \begin{compactenum}[(a)]      
+  \begin{compactenum}[(a)]
     \item $G$ has a $d$-packing of $k$ cycles all of whose vertices are contained in $B_G(V(C), ar)$; or
     \item There exists $Y\subseteq B_G(V(C),ar)$ and $X\subseteq B_G(V(C), ar)$ of size $O(k\log k)$ such that $Y\subseteq B_G(X,(2a+1)r+2+d)$ and $(G-Y)[B_G(V(C),ar)]$ is unicyclic.
   \end{compactenum}
 \end{lem}
 
 \begin{proof}
-    Let $U$ be a ``BFS-unicycle'' that spans $G[B_G(V(C),ar)]$ and contains the unicycle $G[B_G(V(C),r)]$ as a subgraph.  Let $v_0$ be an arbitrary vertex of $C$. For any edge $vw\in E(G[B_G(V(C),ar)])\setminus E(U)$, there $U\cup vw$ has a unique cycle $C_{vw}$ that does not contain $vw$. Let $P_{vw}$ be the (path or cycle) formed by the edges in $E(C_{vw})\setminus E(C)$.  If $C_{vw}$ uses at most $d$ edges of $C$, then we say that $vw$ is of \defin{C-type}, otherwise $vw$ is of \defin{P-type}.  (If $vw$ is of P-type then $P_{vw}$ is indeed a path, but the converse is not necessarily true.)
+  For each $\rho\in\N$, let $G_\rho:=G[B_G(V(C),\rho)]$.  For each $v\in G_{ar}\setminus V(C)$, select a vertex $p_v$ (the \defin{BFS parent} of $v$) such that $\dist_G(p(v),V(C))=\dist_G(v,V(C))-1$.
+  Let $U$ (a \defin{BFS unicycle}) be the subgraph of $G_{ar}$ with vertex set $V(U):=V(G_{ar})$ and edge set $E(U):=E(C)\cup\{vp_v:v\in V(U)\setminus V(C)\}$.  Let $v_0$ be an arbitrary vertex of $C$. For any edge $vw\in E(G_{ar})\setminus E(U)$, $U\cup \{vw\}$ has a unique cycle $C_{vw}$ that does not contain $v_0$. Let $P_{vw}$ be the (path or cycle) formed by the edges in $E(C_{vw})\setminus E(C)$ and let $Q_{vw}$ be the (possibly empty) path formed by the edges in $E(C_{cw})\cap E(C)$.  If $C_{vw}$ uses at most $2d+1$ edges of $C$, then we say that $vw$ is of \defin{C-type}, otherwise $vw$ is of \defin{P-type}.  (If $vw$ is of P-type then $P_{vw}$ is indeed a path, but the converse is not necessarily true.)
 
-    Consider the auxilliary graph $H$ that contains a vertex for each $vw\in E(G[B_G(V(C),r)])\setminus E(U)$ and contains an edge between $vw$ and $xy$ if $\dist_G(V(P_{vw}),V(P_{xy})) \le d$.  Let $I$ be a maximal indepedent set in $H$.  Suppose first that $|I|\ge 2k\log k+k$.  If at least $k$ of the nodes in $I$ are of $C$-type, then the cycles defined by these nodes establish (a) and there is nothing more to do. [\pat{Notice that the definition of C-type is critical here. It prevents two cycles from sharing a segment of $C$, which isn't true for $P$-type nodes.}]  We can therefore assume that $I$ contains at least $2k\log k$ P-type nodes.  Each $P$-type vertex $e$ in $I$ defines a path $P_e$ between two vertices of $C$ that is edge disjoint from $C$.  Consider the graph $S$ obtained by taking the union of $C$ and $P_e$ for every P-type vertex in $I$.  This graph has $2k\log k$ vertices of degree $3$ and all other vertices of degree $2$.  By Simonovitz, this graph has $k$ vertex disjoint cycles $C_1,\ldots,C_k$.  By construction [\pat{Check everything here---the fact that $G[B_G(V(C),r]]$ is unicyclic is critical; it ensures that the parts of cycles formed by segments of $C$ behave like we want.}]  This also establishes (a).
+  Consider the auxilliary graph $H$ that contains a vertex for each $vw\in E(G_{ar})\setminus E(U)$ and contains an edge between $e$ and $e'$ if $\dist_G(V(P_{e}),V(P_{e'})) \le d$.  Let $I$ be a maximal indepedent set in $H$.
+  \begin{clm}
+    For distinct $e,e'\in I$, $V(Q_e)\cap V(Q_{e'})\neq\emptyset$ or $\dist_G(V(C_e),V(C_{e'})) = \dist_G(V(P_e),V(P_{e'})$.
+  \end{clm}
 
-    Therefore, we may assume that $|I|\le 2k\log k+k$.  Since $I$ is a maximal independent set, it is a dominating set in $H$: Every vertex of $H$ is either in $I$ or adjacent to a vertex in $I$.  In $G$ this corresponds to the fact that, for every edge of $vw\in E(G[B_G(V(C),r)])\setminus E(U)$ there exists $xy\in I$ such that $\dist_G(V(P_{vw}),V(P_{xy}))\le d$.  Since $V(P_{xy})\subseteq B_G(x,ar+1)$ and $V(P_{vw})\subseteq B_G(v,ar+1)$, this implies that $B_G(x,(2a+1)r+2+d)$ contains at least one of $v$ or $w$.  We take $X$ to contain one endpoint of each $vw\in I$ and $v_0$.  Since every cycle in $G[B_G(V(C)),ar]$ either contains the vertex $v_0$ or uses some edge $vw\in E(G[B_G(V(C),ar)])\setminus E(U)$, $X$ satisifies (b).
+  \begin{proof}
+    Since $e$ and $e'$ are both in $I$, $\dist_G(V(P_e),V(P_{e'}))> d>0$.  Therefore $V(P_e)\cap V(P_{e'})=\emptyset$.  Therefore $V(Q_e)\cap V(Q_{e'})=\emptyset$ if and only if $V(C_e)\cap V(C_{e'})=\emptyset$.  Therefore, we can assume that $V(C_e)$....
+  \end{proof}
+
+
+
+  Suppose first that $|I|\ge 4k\log k+k$.
+
+  \begin{clm}
+    If distinct $e,e'\in I$ are both of C-type then $C_e$ and $C_e'$ are disjoint.
+  \end{clm}
+  \begin{clmproof}
+    Otherwise $Q_e$ contains an endpoint $v$ of $P_{e'}$, or vice-versa.  Since $Q_e$ has at most $2d+1$ edges, the distance from $v$ to $P_{e}$ is at most $d$, which is not possible because $I$ is an independent set in $H$.
+  \end{clmproof}
+
+
+  If at least $k$ of the nodes in $I$ are of $C$-type, then the cycles defined by these nodes establish (a) and there is nothing more to do. [\pat{Notice that the definition of C-type is critical here. It prevents two cycles from sharing a segment of $C$, which isn't true for $P$-type nodes.}]  We can therefore assume that $I$ contains at least $2k\log k$ P-type nodes.  Each $P$-type vertex $e$ in $I$ defines a path $P_e$ between two vertices of $C$ that is edge disjoint from $C$.  Consider the graph $S$ obtained by taking the union of $C$ and $P_e$ for every P-type vertex in $I$.  This graph has $2k\log k$ vertices of degree $3$ and all other vertices of degree $2$.  By Simonovitz, this graph has $k$ vertex disjoint cycles $C_1,\ldots,C_k$.  By construction [\pat{Check everything here---the fact that $G[B_G(V(C),r]]$ is unicyclic is critical; it ensures that the parts of cycles formed by segments of $C$ behave like we want.}]  This also establishes (a).
+
+  Therefore, we may assume that $|I|\le 2k\log k+k$.  Since $I$ is a maximal independent set, it is a dominating set in $H$: Every vertex of $H$ is either in $I$ or adjacent to a vertex in $I$.  In $G$ this corresponds to the fact that, for every edge of $vw\in E(G[B_G(V(C),r)])\setminus E(U)$ there exists $xy\in I$ such that $\dist_G(V(P_{vw}),V(P_{xy}))\le d$.  Since $V(P_{xy})\subseteq B_G(x,ar+1)$ and $V(P_{vw})\subseteq B_G(v,ar+1)$, this implies that $B_G(x,(2a+1)r+2+d)$ contains at least one of $v$ or $w$.  We take $X$ to contain one endpoint of each $vw\in I$ and $v_0$.  Since every cycle in $G[B_G(V(C)),ar]$ either contains the vertex $v_0$ or uses some edge $vw\in E(G[B_G(V(C),ar)])\setminus E(U)$, $X$ satisifies (b).
 \end{proof}
+
+\begin{lem}\label{double_unicycle}
+  Let $G$ be a graph, let $C_a$ and $C_b$ be cycles in $G$ such that $G_a:=G[B_G(V(C_a),r]$ and $G_b:=G[B_G(V(C_b),r]$ are unicyclic, for some $r\ge d$.  Then either:
+  \begin{compactenum}[(a)]
+    \item $G$ has a $d$-packing of $k$ cycles all of whose vertices are contained in $V(G_a\cup G_b)$; or
+    \item There exists $X\subseteq V(G_a\cup G_b)$ of size $O(k\log k)$ such that $V(G_a)\cap V(G_b)\subseteq B_G(X,r)$.
+  \end{compactenum}
+\end{lem}
+
+
 
 
 REST OF PROOF:
 
-Say that a cycle $C$ in $G$ is \defin{$r$-good} if $G[B_G(V(C),r)]$ is unicyclic.  Take a maximal $d$-packing $C_1,\ldots,C_p$ of $2d$-good cycles.  Then $p< k$. Start with all vertices \defin{unmarked}.  Repeatedly choose a cycle $C$ of length at most $?d$ and \defin{mark} all vertices in $B_G(V(C),d)$.  After less than $k$ iterations, every cycle of length at most $?d$ contains a marked vertex.  Consider some cycle $C$ that contains no marked vertices (so $C$ must have length greater than $?d$.  Then, by \cref{short_or_unicycle_nearby}, $B_G(V(C),6d)$ contains a good cycle $C'$ or a cycle $C''$ of length at most $36d+2\le ?d$.  In the latter case, ignore $C$ and $C''$ (the marked vertices will get them later.  In the former case, $\dist_G(C',C_i)\le d$ for some $i\in\{1,\ldots,p\}$ otherwise $C'$ would be included in our packing.  Therefore $\dist_G(C,C_i)\le 7d$.  
+Say that a cycle $C$ in $G$ is \defin{$r$-good} if $G[B_G(V(C),r)]$ is unicyclic.  Take a maximal $d$-packing $C_1,\ldots,C_p$ of $2d$-good cycles.  Then $p< k$. Start with all vertices \defin{unmarked}.  Repeatedly choose a cycle $C$ of length at most $?d$ and \defin{mark} all vertices in $B_G(V(C),d)$.  After less than $k$ iterations, every cycle of length at most $?d$ contains a marked vertex.  Consider some cycle $C$ that contains no marked vertices (so $C$ must have length greater than $?d$.  Then, by \cref{short_or_unicycle_nearby}, $B_G(V(C),6d)$ contains a good cycle $C'$ or a cycle $C''$ of length at most $36d+2\le ?d$.  In the latter case, ignore $C$ and $C''$ (the marked vertices will get them later.  In the former case, $\dist_G(C',C_i)\le d$ for some $i\in\{1,\ldots,p\}$ otherwise $C'$ would be included in our packing.  Therefore $\dist_G(C,C_i)\le 7d$.
 
 Now mark every vertex within distance $??d$ of some vertex marked above.  Now every cycle $C$ in $G$ contains a marked vertex or $\dist_G(C,C_i)\le 7d$ for some $i\in\{1,\ldots,p\}$.  Apply \cref{grow_unicycle} to each $C_i$ with $a=4$ to get a set $Y_i$ so that $(G-Y)[B_G(V(C_i,8d))]$ is unicyclic.  Mark the vertices in $Y_i$ and fix some spanning unicycle $U_i$ of $G[B_G(V(C_i,8d))]$.
 
-Now we will work with the graph $G'$ that removes the edges of each $G[B_G(V(C_i,8d))]$ and replaces them with the edges of $U_1,\ldots,U_p$.  (If $U_i$ and $U_j$ overlap then we do something Voronoi-like.)  Then each $G'[B_G(V(C_i),14d)$ is unicyclic for each $i\in\{1,\ldots,p\}$ and $F':=G'-B_G(V(C_1\cup\cdots\cup C_p),13d)$ is not quite a forest. The graph $F$ obtained by removing marked vertices of $F'$ is a forest. 
+Now we will work with the graph $G'$ that removes the edges of each $G[B_G(V(C_i,8d))]$ and replaces them with the edges of $U_1,\ldots,U_p$.  (If $U_i$ and $U_j$ overlap then we do something Voronoi-like.)  Then each $G'[B_G(V(C_i),14d)$ is unicyclic for each $i\in\{1,\ldots,p\}$ and $F':=G'-B_G(V(C_1\cup\cdots\cup C_p),13d)$ is not quite a forest. The graph $F$ obtained by removing marked vertices of $F'$ is a forest.
 
 For each $C_i$ and $C_j$ we do something like \cref{grow_unicycle} to take care of all $C_i$ to $C_j$ paths in $G'[B_G(V(C_i\cup C_j),14d]$.  (In fact, \cref{grow_unicycle} might be a special case of this when $i=j$.)
 
@@ -241,13 +273,13 @@ Next we use Hungarians to take care of any $C_i$ to $C_j$ paths that include ver
 
 \piotr{my playground version}
 \begin{lem}\label{a_or_b2}
-  Let $G$ be a graph. 
-  Let $r$ be an integer with $r\geq0$ and 
-  let $\mathcal{C}$ be a $2r$-packing of cycles in $G$ such that 
-  for each $C\in\mathcal{C}$, 
-  either  $B_G(V(C),r)$ is unicyclic 
-  or $|V(C)|\le 6r+2$. 
-  Then, for every $k\ge |\mathcal{C}|$, $d\in\{0,\ldots,r\}$ 
+  Let $G$ be a graph.
+  Let $r$ be an integer with $r\geq0$ and
+  let $\mathcal{C}$ be a $2r$-packing of cycles in $G$ such that
+  for each $C\in\mathcal{C}$,
+  either  $B_G(V(C),r)$ is unicyclic
+  or $|V(C)|\le 6r+2$.
+  Then, for every $k\ge |\mathcal{C}|$, $d\in\{0,\ldots,r\}$
   the following alternative holds:
   \begin{compactenum}[(a)]
     \item $G$ contains a cycle $C'$ such that
@@ -286,7 +318,7 @@ Next we use Hungarians to take care of any $C_i$ to $C_j$ paths that include ver
   Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method (\cref{hungarian_method}) to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
   \begin{compactenum}[(a)]\setcounter{enumi}{1}
     \item $\rho_d(G)\ge k$.  In this case there is nothing more to prove.
-    \item There exists $X'\subseteq V(G)$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$ 
+    \item There exists $X'\subseteq V(G)$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$
     \piotr{$G-(B_G(\bigcup_{i\in I} V(C_i),r)\cup B_{G}(X',r+d))$} is a forest. For each $i\in I$, let $v_i$ be a vertex of $C_i$, define $X:=\{v_i:i\in I\}\cup X'$.  We claim that $G-B_G(X,r')$ is a forest.  Indeed, for each $i\in I$, $B_G(v_i,4r+1)\supseteq B_G(V(C_i),r)$, so $\bigcup_{i\in I}B_G(v_i)\supseteq B_G(X'',d)$, so $B_G(X,r')\supseteq B_G(X'',d)\cup B_{G}(X',r+2d)$. \qedhere
      %
      %
@@ -373,9 +405,9 @@ Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:h
     \item $9d\le \dist_G(V(C),V(C_1\cup\cdots\cup V(C_p)))\le 10r+?$.  Add $C$ to the packing and tighten everything using \cref{short_or_unicycle_nearby}.
     \item $\dist_G(V(C),V(C_1\cup\cdots\cup V(C_p)))> 10r+?$.  Can't happen since then we would have chosen $C$ in some earlier step.
   \end{itemize}
-  
-  
-  
+
+
+
 
   \pat{Old stuff:}
   Beginning with $r:=d?^k$ and repeatedly applying \cref{a_or_b} we either find cycles $C_1,\ldots,C_k$ that prove $\rho_d(G)\ge k$ or that $\tau_{7d5^k+2}(G) \le f(k)$.  \pat{This isn't quite complete.  Each time to we apply \cref{a_or_b} to find $C_p$, we need to tighten each of $C_1,\ldots,C_{p-1}$ using \cref{short_or_unicycle_nearby}. This is ok, since $r$ is decreasing exponentially, so each $C_i$ will not wander very far from its original cycle.}
