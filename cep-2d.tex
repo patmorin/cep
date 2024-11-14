@@ -59,10 +59,6 @@
 
 \title{\MakeUppercase{{E}rdős–{P}ósa property of cycles that are far apart}}
 
-%\title{\MakeUppercase{\boldmath Planar graphs are contained in $\tilde{O}(\sqrt{n})$-blowups of fans}}
-
-%Fan-Partitions of Planar Graphs (and Beyond)  \newline by Local Sparsification and Volume-Preserving Embeddings}}
-
 \author{
  Vida Dujmovi{\'c}\,\footnote{School of Computer Science and Electrical Engineering, University of Ottawa, Ottawa, Canada (\texttt{vida.dujmovic@uottawa.ca}). Research supported by NSERC and a University of Ottawa Research Chair.}
  \qquad
@@ -88,9 +84,6 @@
 
 Let $G$ be a graph and let $d$ be a non-negative integer.
 A set $\mathcal{C}$ of cycles in $G$ is a \defin{$d$-packing of cycles in $G$} if $\dist_G(V(C),V(C'))> d$ for every two distinct $C,C'\in\mathcal{C}$.
-%The \defin{distance-$d$ $\rho$acking number} of cycles in $G$ is the maximum integer $p$ such that $G$ has a $d$-packing of cycles $\mathcal{C}$ with $|\mathcal{C}|=p$.
-%For any integer $r\ge 0$, a set $X\subseteq V(G)$ is a \defin{radius-$r$ hitting-set} of cycles in $G$ if $G-B_G(X,r)$ is a forest.  The \defin{radius-$r$ hi$\tau$$\tau$ing number} (of cycles in $G$), $\mathdefin{\tau_r(G)}$, is the minimum integer $t$ such that $G$ has a radius-$r$ hitting set of size $t$.
-
 
 \begin{thm}\label{thm:main-in-intro}
   There exists a function $f:\mathbb{N}\to\mathbb{N}$ such that for all nonnegative integers $k$ and $d$,  for every graph $G$,  either $G$ contains a $d$-packing of $k$ cycles, or  there exists a subset $X$ of vertices of $G$ with $|X|\leq f(k)$ such that  $G-B_G(X,100d)$ is a forest.
@@ -99,64 +92,6 @@ A set $\mathcal{C}$ of cycles in $G$ is a \defin{$d$-packing of cycles in $G$} i
 
 The \defin{length}, $\ell$, of a path $P:=x_0,\ldots,x_\ell$ is the number of edges in $P$.  For two vertices $x$ and $y$ in a  tree $T$, the \defin{$T$-path}, $\mathdefin{\pth_T(x,y)}$ is the unique path $x_0,\ldots,x_\ell$ in $T$ with $x_0=x$ and $x_\ell=y$. If $Y\subseteq V(T)\setminus\{x\}$ and $T[Y]$ is connected, then $\mathdefin{\pth_T(x,Y)}$ is the shortest path $x_0,\ldots,x_{\ell}$ in $T$ with $x_0=x$ and $x_\ell\in Y$.  For a graph $G$, and two vertices $x$ and $y$ of $G$, $\mathdefin{\dist_G(x,y)}$ is the length of a shortest path, in $G$, with endpoints $x$ and $y$.  For subsets $X$ and $Y$ of $V(G)$, $\mathdefin{\dist_G(X,Y)}:=\min\{\dist_G(x,y):(x,y)\in X\times Y\}$.  For an integer $r\ge 0$ and a vertex $x$ of $G$, $\mathdefin{B_G(x,r)}:=\{y\in V(G):\dist_G(x,y)\le r\}$.  For a subset $S$ of $V(G)$, $\mathdefin{B_G(S,r)}:=\bigcup_{x\in S}B_G(x,r)$, $\mathdefin{\diam_G(S)}:=\max\{\dist_G(x,y):\{x,y\}\in\binom{S}{2}\}$ and $\mathdefin{\radius_G(S)}$ is the minimum integer $r$ such that $S\subseteq B_G(v,r)$ for some $v\in V(G)$.
 
-% \begin{comment}
-% Note that $\tau_r$ and $\rho_d$ are not monotone graph parameters.  If $G'$ is a subgraph of $G$ then a distance-$d$ packing of cycles in $G'$ may not be a distance-$d$ packing of cycles in $G$ since $\dist_{G}(V(C),V(C'))$ may be less than $\dist_G(V(C),V(C'))$.  Similarly, a radius-$r$ hitting set $X$ for cycles in $G$ may not be a radius-$r$ hitting set for cycles in $G'$, since $B_{G'}(X,r)$ may be a strict subset of $B_{G}(x,r)\cap V(G')$.
-%
-% \begin{conj}
-%   There exists functions $f:\N\to\N$ and $g:\N\to\N$ such that, for every graph $G$ and every $d,k\in\N$, $\rho_d(G) \ge k$ or $\tau_{g(d)}(G)\le f(k)$.
-% \end{conj}
-%
-%
-% \section{An Exponential Bound}
-% \end{comment}
-
-% \begin{lem}\label{far_away_er}
-%   Let $G$ be a graph and let $C$ be a cycle in $G$ of length $\girth(G)$.  Then, for every $k,d\ge 0$ and $r\ge d$, at least one of the following is true:
-%   \begin{compactenum}[(a)]
-%     \item $G$ contains a cycle $C'$ with $\dist_G(V(C),V(C'))>r-d$;
-%     \item $\rho_d(G)> k$; or
-%     \item $\tau_{r+2d}(G) \le ck$.
-%     \item $\tau_{5r-d}(G) \le 1$.
-%   \end{compactenum}
-% \end{lem}
-%
-% \begin{proof}
-%   Assume that (a) does not hold. That is, every cycle $C'$ in $G$ has $\dist_G(V(C),V(C'))\le r-d$.  If $\girth(G) \le 4r$, then we can take any vertex $v\in V(C)$ and $B_G(v,5r-d)$ intersects every cycle in $G$, so $\tau_{5r-d}(G)\le 1$, in which case (d) holds.  Now assume $\girth(G) > 4r$.  If $G[B_G(V(C),r)]$ is not unicyclic, then $G[B_G(V(C),r)]$ contains a cycle of length at most
-%   \[
-%     \girth(G)/2 + 2r < \girth(G) - 2r + 2r = \girth(G) \enspace ,
-%   \]
-%   which is a contradiction.  Therefore $A:=G[B_G(V(C),r)]$ is unicyclic and $F:=G-B_G(V(C),r-d)$ is a forest.  Now apply the Hungarian result on $(A,F)$ to conclude that at least one of (b) or (c) holds.
-% \end{proof}
-%
-% \begin{cor}\label{k_equals_one}
-%   Let $G$ be a graph with $\rho_d(G)\le 1$.  Then $\tau_{3d}(G) \le 2c$ or $\tau_{4d}(G) \le 1$.
-% \end{cor}
-%
-% \begin{proof}
-%   If $G$ is a forest, then $\tau_{4d}(G)=0$ and there is nothing to prove. Otherwise, let $C$ be a cycle in $G$ of length $\girth(G)$ and apply \cref{far_away_er} with $r=d$ and $k=1$.  The fact that $\rho_d(G)\le 1$ rules out (a) and (b), leaving only (c) and (d).
-% \end{proof}
-%
-%
-%
-% \begin{cor}
-%   Let $G$ be a graph with $\rho_d(G)\le 2$.  Then $\tau_{?}(G) \le {?}$.
-% \end{cor}
-%
-% \begin{proof}
-%   Let $C$ be a cycle in $G$ of length $\girth(G)$.  Apply \cref{far_away_er} with $r={?}d$ and $k=2$. Then alternative (b) is not possible since, by assumption $\rho_d(G)\le 2$.  Alternatives (c) and (d) establish the corollary.  All that remains is to consider alternative (a).  In this case, $G$ contains a cycle $C'$ with $\dist_G(V(C),V(C'))>r$.  By \cref{short_or_unicycle_nearby}, $G$ contains a cycle $C''$ with $\dist_G(V(C),V(C''))\ge ??-d$
-%
-%
-%
-%   There are two cases to consider:
-% \end{proof}
-%
-%
-%
-%
-%
-%
-
-%\piotr{Maybe we could define a ball, e.g.\ $B_G(V(C),t)$ as a subgraph and not as subset of vertices? Maybe not.}
 
 \piotr{Definitions}
 
@@ -194,8 +129,6 @@ $G$ contains $k$ vertex-disjoint cycles.
 
 
 \section{The proof}
-
-
 
 \begin{lem}\label{short_or_unicycle_nearby}
   Let $t$ be an integer with $t\ge 0$.
