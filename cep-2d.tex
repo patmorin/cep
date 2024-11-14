@@ -300,7 +300,7 @@ $G$ contains $k$ vertex-disjoint cycles.
   Let $G'$ be the graph obtained from $C$ by adding $P_e$ for each $e\in J$.
   Since $\dist_G(V(P_e),V(P_{e'}))>d\ge0$, $G'$ contains only vertices of degree $2$ and degree $3$, and the degree-$3$ vertices correspond to the endpoints of paths in $\set{P_e \mid e\in J}$.
   Therefore, $G'$ contains $2|J|\geq 8k\log k$ vertices of degree $3$.
-  By Simonovits, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
+  By \cref{thm:simonovits}, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
   We claim that $\mathcal{D}$ is a $d$-packing in $G$.
   Let $D$ and $D'$ be two distinct cycles in $\mathcal{D}$.
   Let $v$ and $v'$ be vertices of $D$ and $D'$, respectively,
@@ -378,7 +378,7 @@ $G$ contains $k$ vertex-disjoint cycles.
     Let $G'$ be the subgraph of $G$ obtained from $C_1\cup C_2$ by adding $P_w$ for each $w\in I$.
     Since $\dist_G(V(P_w),V(P_{w'}))>d\ge0$ for all distinct $w,w'\in I$, $G'$ contains only vertices of degree $2$ and degree $3$, and the degree-$3$ vertices correspond to the endpoints of paths in $\set{P_w\mid w\in I}$.
     Therefore, $G'$ contains $2|I|\geq 8k\log k$ vertices of degree $3$.
-    By Simonovits, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
+    By \cref{thm:simonovits}, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
 
     We claim that $\mathcal{D}$ is a $d$-packing in $G$.
     Let $D$ and $D'$ be two distinct cycles in $\mathcal{D}$.
@@ -701,201 +701,9 @@ In case (b), we take the set
 Then $|X|\le f(k) + O(k\log k)$.
 By \cref{hit_cycle}, every cycle $C$ in $G$ contains a vertex in $B_G(X,2R+d)$.
 
-In case (a), we let $S'$ denote the tuples $t$ in $\hat{S}$  such that $W_t$ contains a cycle.  If $|S'|\ge k$ then, by \cref{w_distance}, these cycles give a $d$-packing of $k$ cycles in $G$.  Let $S'':=\hat{S}\setminus S'$.  We apply Siminovits to the subgraph $G'$ of $G$ obtained by taking the union of $C_1,\ldots,C_p$ and $W_t$ for each $t\in S''$.  This gives a collection of $k$ vertex disjoint cycles $C_1',\ldots,C_k'$ in $G'$.  The same argument used to prove \cref{grow_unicycle} shows that $C_1',\ldots,C_k'$ is a $d$-packing of cycles in $G$. BAM!
+In case (a), we let $S'$ denote the tuples $t$ in $\hat{S}$  such that $W_t$ contains a cycle.  If $|S'|\ge k$ then, by \cref{w_distance}, these cycles give a $d$-packing of $k$ cycles in $G$.  Let $S'':=\hat{S}\setminus S'$.  We apply Siminovits to the subgraph $G'$ of $G$ obtained by taking the union of $C_1,\ldots,C_p$ and $W_t$ for each $t\in S''$.  This gives a collection of $k$ vertex disjoint cycles $C_1',\ldots,C_k'$ in $G'$.  The same argument used to prove \cref{grow_unicycle}, along with \cref{w_distance}, shows that $C_1',\ldots,C_k'$ is a $d$-packing of cycles in $G$. BAM!
 \end{proof}
 
 \bibliographystyle{plainurlnat}
 \bibliography{cep}
-
-
-
-
-\end{document}
-
-\section{Gwen's Proof}
-
-\begin{lem}\label{high_girth_high_degree}
-  Let $G$ be a graph with $\mindeg(G)\ge k+1$ and $\girth(G)\ge 4d+3$.  Then $\rho_d(G)\ge k$.
-\end{lem}
-
-\begin{proof}
-  The proof is by induction on $k$.  The case $k=0$ is trivial, so assume $k\ge 1$.  Since $\mindeg(G)\ge k+1\ge 2$, $G$ is not a forest.  Let $C$ be a cycle in $G$ of length $\girth(G)$ and let $B:=B_G(V(C),d)$.  Let $v$ be a vertex in $V(G-B)$.  If $|N_G(v)\cap B|\ge 2$, then $G[B\cup\{v\}]$ contains a cycle of length at most $|V(C)|/2+2(d+1)\le |V(C)|-\girth(G)/2+2(d+1)<|V(C)|=\girth(G)$.  Therefore, each vertex $v\in V(G-B)$ has at most one neighbour in $B$. Therefore $G-B$ has $\mindeg(G)-1\ge (k-1)+1$ and $\girth(G-B)\ge \girth(G)\ge 4d+3$.  By induction $\rho_d(G-B)\ge k-1$, so $G-B$ has a packing of cycles $C_1,\ldots,C_{k-1}$ whose pairwise distances are at least $d$. OOPS. Stuck here, since $\dist_G(V(C_i),V(C_j)$ is, in general, less than $\dist_{G-B}(V(C_i),V(C_j))$, so $C_1,\ldots,C_{k-1}$ is not necessarily a $d$-packing of cycles in $G$.
-\end{proof}
-
-
-
-
-\begin{lem}
-  Let $G$ be a graph with $\mindeg(G)\ge 3$ and $\girth(G)\ge 2(4d+3)\log(k+1)$.  Then $\rho_d(G)\ge k$.
-\end{lem}
-
-\begin{proof}
-  Greedily pack balls of radius $\log(k+1)$ into $G$ to get a set of centers $Z$ such that $\dist_G(v,Z)<2\log(k+1)$ for each $v\in V(G)$.  For each $v\in V(G-Z)$, let $p_v$ be a neighbour of $v$ in $G$ such that $\dist_G(v,Z)=1+\dist_G(p_v,Z)$. Then the graph $F$ with vertex set $V(F):=V(G)$ and edge set $E(F):=\{vp_v:v\in V(G-Z)\}$ is a forest that contains one tree $T_x$ with $x\in V(T_x)$ for each vertex $x\in Z$.  We treat each $T_x$ as a rooted tree whose root is $x$.  For each $x\in Z$, let $B_x:=V(T_x)$.  Observe that, for each $x\in Z$, $G[B_x]=T_x$ since, otherwise, $G[B_x]$ contains a cycle of length at most $4\log(k+1)<\girth(G)$. Similarly, if $G[B_x\cup B_x]\neq T_i\cup T_j$ for some distinct $i,j\{1,\ldots,m\}$, then $G[B_i\cup B_j]$ contains a cycle of length at most $8\log(k+1)<\girth(G)$. Therefore, for distinct $x,y\in Z$, $G[B_x\cup B_y]$ is a forest. In particular, $G$ contains at most one edge $vw$ with $v\in B_x$ and $w\in B_y$.  Since $\mindeg(G)\ge 3$, each $T_x$ has at least $3\cdot2^{\floor{\log(k+1)}-1}> (k+1)/2$ vertices of depth $\floor{\log(k+1)}$, so $T_x$ has at least $(k+1)/2$ leaves.  For each leaf $v$ of $T_x$, $N_G(v)$ contains at least two vertices not in $T_x$. Therefore, for each $x\in Z$, there are at least $k+1$ nodes $y\in Z\setminus\{x\}$ such that $G$ contains an edge $vw$ with $v\in B_x$ and $w\in B_y$.
-
-  Let $G'$ be the induced minor of $G$ obtained by contracting $T_x$, for each $x\in Z$.  Then $\mindeg(G')\ge k+1$ and $\girth(G')\ge \girth(G)/(2\log(k+1))\ge 4d+3$.  By \cref{high_girth_high_degree}, $\rho_d(G')\ge k+1$. Since $G'$ is an induced minor of $G$, $\rho_d(G)\ge \rho_d(G')$.
-\end{proof}
-
-
-Now the proof finishes by eliminating degree-$1$ vertices and replacing long paths of degree-$2$ vertices with paths of length at most $2d$.
-
-\section{Meat}
-
-\begin{lem}\label{hitting_is_additive}
-  Let $G$ be a graph and let $X\subseteq V(G)$.  Then, for any integer $r\ge 0$, $\tau_r(G) \le |X| + \tau_r(G-B_G(X,r))$.
-\end{lem}
-
-\begin{proof}
-  Let $G':=G-B_G(X,r)$.
-  Let $Y$ be a radius-$r$ hitting set of cycles in $G'$ with $|Y|=\tau_r(G')$.  Then $G-(B_G(X\cup Y,r))\subseteq (G-B_G(X,r))-B_{G'}(Y,r)$ is a forest, so $\tau_r(G)\le |X\cup Y|\le |X|+\tau_r(G')$.
-\end{proof}
-
-\begin{lem}\label{fattening}
-  Let $r\ge 1$ be an integer, let $G$ be a graph, let $C_1,\ldots,C_p$ be cycles in $G$ such that $\radius_G(V(C_i))\le r$ for each $i\in\{1,\ldots,p\}$ and $\dist_G(V(C_i),V(C_j)\ge d$ for each distinct $i,j\in\{1,\ldots,p\}$, let $X:=\bigcup_{i=1}^p V(C_i)$, and let $G':=G-B_G(X,d)$.  Then $\rho_d(G)\ge p + \rho_d(G')$ and
-  $\tau_{d+r}(G) \le p + \tau_{r+d}(G')$.
-\end{lem}
-
-\begin{proof}
-  % Let $G':=G-B_G(X,d)$, so we need to show that $\rho_d(G)\ge p+\rho_d(G')$ and $\tau_{r+d}(G)\le p + \tau_{r+d}(G')$.
-  First we show that $\rho_{d}(G)\ge p+\rho_d(G')$.
-  Let $A$ be a distance-$d$ packing of cycles in $G'$ of size $\rho_d(G')$.  Since $\dist_G(x,y)\ge d$ for each $x\in X$ and $y\in V(G')$, $\dist_G(V(C_i),V(C))\ge d$ for each $i\in\{1,\ldots,p\}$ and each $C\in A$. Therefore, $\{C_1,\ldots,C_p\}\cup A$ is a distance-$d$ packing of cycles in $G$, so $\rho_d(G)\ge p + |A| = p + \rho_d(G')$.
-
-  To see why $\tau_{r+d}(G) \le p + \tau_{r+d}(G')$ holds,  let $X':=\{v_1,\ldots,v_p\}$ be vertices of $G$ such that $V(C_i)\subseteq B_G(v_i,r)$ for each $i\in\{1,\ldots,p\}$.  Observe that $B_G(v_i,r+d)\supseteq B_G(V(C_i),d)$, since $\dist_G(x,V(C_i))\le \dist(x,v_i)+r$ for each $x\in V(G)$.   Therefore $B_G(X',r+d)\supseteq B_G(X,d)$ so $G'':=G-B_G(X',r+d)\subseteq G'$.  Let $Y$ be a radius-$(r+d)$ hitting set for cycles in $G'$ of size $\tau_{r+d}(G')$.  We now argue that $G-B_G(X'\cup Y,r+d)$ is a forest. To see this, let $C$ be a cycle in $G$.  If $C$ is not contained in $G''$ then $C$ contains at least one vertex in $B_G(X',r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$.  If $C$ is contained in $G''$ then $C$ is also contained in $G'\supseteq G''$.  Therefore $C$ contains at least one vertex in $B_{G'}(Y,r+d)\subseteq B_G(Y,r+d)$, so $C$ is not a cycle in $G-B_G(X'\cup Y,r+d)$. Therefore  $G-B_G(X'\cup Y,r+d)$ is a forest, so $\tau_{r+d}(G)\le |X'\cup Y| = p+\tau_{r+d}(G')$.
-\end{proof}
-
-\begin{lem}[Simonovitz] \label{Simonovitz_original}
-  There exists a constant $c>0$ such that for every integer $k\ge 2$, every cubic multigraph $G$ with at least $ck\log k$ vertices contains $k$ pairwise vertex-disjoint cycles.
-\end{lem}
-
-A small modification of the original  proof of \cref{Simonovitz_original} yields the following strengthening:
-
-\begin{lem}\label{Simonovitz_distance}
-  There exists a constant $c>0$ such that for every integer $k\ge 2$, every cubic multigraph $G$ with at least $ck\log k$ vertices contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge 2$ for each $i,j\in\{1,\ldots,k\}$.
-\end{lem}
-
-\begin{lem}
-  There exists a constant $c>0$ such that the following is true.
-  Let $G$ be a graph, let $C$ be a cycle in $G$ and, for each $r\in\N$, let $G_r:=G[B_G(V(C),r)]$.  Then, for any integers $d\ge 0$ and $k\ge 1$, either
-  \begin{compactenum}
-    \item $G_{2r}$ contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,m\}$; or
-    \item there exists $X\subseteq V(C)$ of size at most $ck\log k$ such that $G_{2d}-B_G(X,5d)$ is a forest.
-  \end{compactenum}
-\end{lem}
-
-\begin{proof}
-  Let $U$ be a unicyclic subgraph of $G_{2d}$ that spans $V(G_{2d})$, contains every edge of $C$ and for each vertex in $v\in V(G_{2d})\setminus V(C)$ contains exactly one edge $vw$ such that $\dist_G(w,V(C))=\dist_G(v,V(C))-1$.  (Informally, $U$ is obtained from a BFS forest rooted at the vertices of $C$ by adding the edges of $C$.)
-
-  Let $x_0$ be any vertex of $C$ and let $T$ be the tree obtained from $U$ by removing one of the edges of $C$ incident to $x_0$.  For any edge $vw\in E(G_{2d})\setminus E(U)$, consider the subgraph $Q_{vw}$ of $G_{2r}$ formed by taking the union of the edge $vw$, $\pth_T(v,V(C))$, and $\pth_T(w,V(C))$. Then $Q_{vw}$ is either a path with both endpoints in $V(C)$ and no other vertices in $V(C)$ or $Q_{vw}$ is a lollipop whose (possibly $0$-length) handle begin in $V(C)$.\todo{Define lollipop and handle}
-  %
-  %
-  % there is exactly one path $P_{vw}$ in $T-v_0$ with endpoints $v$ and $w$ and $E(P_{vw})\cup\{vw\}$ is the edge set of a cycle $C_{vw}$ in $G_{2d}$. Let $A_{vw}:=E(C_{vw})\setminus E(C)$ and treat $A_{vw}$ as a graph.  Then $A_{vw}$ is a non-empty connected subgraph of $C_{vw}$ having at most $2d$ edges.  Let $B_{vw}:=E(C_{vw})\cap E(C)$.  Treating $B_{vw}$ as a graph, we see that $B_{vw}$ is a connected (possibly null) subgraph of $C$.
-
-  We construct a set $X\subseteq V(G_{2d})$ and a subgraph $Q$ of $G_{2d}$. We begin with $X:=\{x_0\}$ and $Q:=C$.  As long as $G_{2d}-B_G(X,5d)$ contains an edge $vw\not\in E(T)$ such that $V(C_{vw})$ has no vertex in $B_G(X,5d)$, we grow $X$ by adding the at most two vertices $V(Q_{vw})\cap V(C)$ to $X$.  We grow $Q$ by adding $Q_{vw}$ to $Q$.
-
-  Let $t$ be the number of iterations performed by this procedure before stopping.  For each $i\in\{1,\ldots,t\}$, let $v_iw_i$ be the edge of $E(G_{2r})\setminus E(T)$ chosen in iteration $i$, let $X_i$ be the set of one or two vertices of $C$ added to $X$ in iteration $i$ and let $Q_i$ be the subgraph added to $Q$ in iteration $i$.  The stopping condition implies that the edges of $G_{2r}-B_G(X,5d)$ are a subset of the edges of $T$, so $G_{2d}-B_G(X,5d)$ is a forest.  All that remains is to show that, if $t>ck\log k$ then $G_{2d}$ contains $k$ cycles $C_1,\ldots,C_k$ such that $\dist_G(V(C_i),V(C_j))\ge d$ for each distinct $i,j\in\{1,\ldots,k\}$.
-
-  Observe that, for distinct $i,j\in\{1,\ldots,t\}$, $\dist_G(X_i,X_j)\ge 5d$.  Since $V(Q_i)\subseteq B_G(X_i,2d)$ and $V(Q_j)\subseteq B_G(X_j,2d)$, this implies that $\dist_G(V(Q_i),V(Q_j))\ge d$.
-
-  We say that an iteration $i$ is \defin{short} if $Q_i$ is a lollipop or if $Q_i$ is a path with endpoints $x_i$ and $y_i$ in $V(C)$ and $G-(V(Q_i)\setminus\{x_i,y_i\})$ contains a path $P_i$ with endpoints $x_i$ and $y_i$ of length at most $4d$.  In the former case, we define $C_i$ to be the unique cycle in $Q_i$. I the latter case we define $C_i:=P_i\cup Q_i$.  In either case, $V(C_i)\subseteq B_G(X_i,2d)$.  Therefore, iterations $i$ and $j$ are both short, then $\dist_G(V(C_i),V(C_j))\ge d$.  Therefore, if the number of short iterations is at least $k$, then the cycles determined by the set of short iterations satisfy the conditions of the lemma.  We conclude that there are at most $k$ short iterations, so at least $ck\log k-k$ are not short.
-
-  Let $I\subseteq \{1,\ldots,k\}$ index only the iterations that are not short and consider the graph $Q_I:=C\cup\bigcup_{i\in I} Q_i$.  Then $Q_I$ is a graph in which each vertex has degree $3$ or $2$.  Suppress all degree-$2$ vertices in $Q_I$ to obtain a cubic multigraph $Q_I'$.  For a vertex $v$ in $Q_I'$ with incident edges $vv_1$, $vv_2$, and $vv_3$ there is at most one $i\in\{1,2,3\}$ such that $\dist_G(v,v_i)<d$.  CRAP CRAP CRAP.
-
-
-
-  Now apply Simonovitz on $Q':=C\cup \bigcup_{i\in\overline{I}} Q_i$ to obtain $\Omega(k/\log k)$ disjoint cycles.  Finally, observe that for any distinct degree-$3$ vertices $x,y\in V(Q')$, $\dist_G(x,y)\ge d$, so the $\rho_d(G_{2d})\ge \Omega(k/\log k)$.
-\end{proof}
-
-
-
-\begin{lem}
-  Let $G$ be a graph and let $P_0,\ldots,P_m$ be subsets of $V(G)$ such that
-  $\bigcup_{i=1}^m B_G(P_i,d)=V(G)$ and
-  $G[B_G(P_i,2d)]$ is a forest, for each $i\in\{1,\ldots,m\}$.  Then
-\end{lem}
-
-
-
-
-
-
-
-\end{document}
-
-
-
-
-% \gwen{Another option for the title: Planar graphs as blowups of fans}
-%
-% \pat{Planar graphs in blowups of fans(?)}
-%
-% \david{I think `Planar graphs as blowups of fans' reads better than `Planar graphs in blowups of fans', whereas the latter is more accurate. I would weakly lean towards `Planar graphs in blowups of fans'}
-%
-% \pat{Near rootish blowups of fans contain all planar graphs}
-% \david{what does rootish mean, or is it another joke?} \pat{No, not a joke.  Just a way to avoid a square root symbol in a title.} \david{when I read this, I had no idea ``rootish'' refered to square root of $n$.}
-
-
-\begin{abstract}
-\end{abstract}
-
-\section{Introduction}
-
-For a graph $G$ and a vertex $v\in V(G)$, let $\mathdefin{\deg_G(v)}:=|\{w\in V(G):vw\in E(G)\}|$ be the \defin{degree} of $v$ in $G$.  For each non-negative integer $d$, let $\mathdefin{V_d(G)}:=\{v\in V(G):\deg_G(v)=d\}$.
-
-Let $G$ be a graph and let $F$ be a subgraph of $G$ such that $\deg_F(v)\in\{2,3\}$ for each $v\in V(F)$.  We say that a path $P=p_0,\ldots,p_\ell$ in $G$ is an \defin{extension} of $(G,F)$ if
-\begin{compactenum}[(a)]
-  \item $\deg_F(p_0)=\deg_F(u_\ell)=2$;
-  \item $p_1,\ldots,p_m\in V(G)\setminus V(F)$; and
-  \item $G[V(P)]=P$ (i.e., $P$ is an induced path in $G$).
-\end{compactenum}
-In this case, we call $P$ a \defin{$u_0u_m$-extension} of $(G,F)$.
-For a positive integer $k$, we say that an extension $P$ of $(G,F)$ is \defin{$k$-bad} if $F\cup P$ contains a cycle $C$ such that
-\begin{compactenum}[(b-i)]
-  \item $P\subseteq C$;
-  \item $|V(C)\cap V_3(F)|\le \log_2 k$; and
-  \item $G[V(C)]$ is chordal.
-\end{compactenum}
-We say that $C$ \defin{witnesses} the fact that $P$ is $k$-bad.
-If $P$ is not $k$-bad, then $P$ is \defin{$k$-good}.
-
-
-A graph is \defin{outerplanar} if it has a planar drawing in which all vertices appear on a single face.  If this face is unique, we call it the \defin{outer face}.
-
-\begin{obs}\label{hamiltonian}
-  If $H$ is Hamiltonian chordal graph with at least $3$ vertices then, for any Hamiltonian cycle $C$ of $H$, $H$ contains an edge-maximal outerplanar graph $H'$ whose outer face is $C$.
-\end{obs}
-
-A \defin{chord} of a cycle $C$ in a graph $G$ is an edge $vw\in E(G)$ such that $v,w\in V(C)$ but $vw\not\in E(C)$.  $C$ is \defin{chord-free} if has no chord.  A \defin{hole} in $G$ is a chord-free cycle with at least four vertices. $G$ is \defin{chordal} if it has no holes.
-
-Consider the following construction of graphs $F_0,\ldots,F_r\subseteq G$, where $G$ is a non-chordal graph:  Let $F_0$ be a minimum-size hole in $G$. For $i\ge 1$, if all extensions of $(G,F_{i-1})$ are $k$-bad, then $r:=i-1$ and we are done.  Otherwise, let $P_i$ be a good extension of $(G,F_{i-1})$ of minimum size and set $F_i:=F_{i-1}\cup P_i$.
-
-Note that in the following lemma, there can be vertices $v,w\in V_2(F)$, that have no $vw$-extension of $(G,F_r)$.  This happens when $v$ and $w$ are in different components of $G-(V(F)\setminus\{v,w\})$.
-
-\begin{lem}\label{coolio}
-  For each distinct $v,w\in V_2(F_{r})$, and each $vw$-extension $P$ of $F_r$, there exists a cycle $C$ in $F_r\cup P$ that witnesses the fact that $P$ is bad and such that $G[V(C)]$ contains an edge-maximal outerplanar graph $H$ whose outer face is $C$ and such that $V_2(H)=\{v,w\}$.
-  \end{compactenum}
-\end{lem}
-
-
-\begin{proof}
-  Let $P:=p_0,\ldots,p_\ell$ be a $vw$-extension of $(G,F_r)$.  Since the construction of $F_r$ stopped at iteration $r+1$, $P$ is a bad extension of $(G,F_r)$.  Let $C$ be the minimum-length cycle that witnesses the fact that $P$ is $k$-bad.  By \cref{hamiltonian} $G[V(C)]$ contains an edge-maximal outerplanar graph $H$ whose outer face is $C$.  Since $P$ is an induced path in $G$ and $H$ is edge-maximal outerplanar, $\deg_{H}({p_i})\neq 2$ for each $i\in\{1,\ldots,\ell-1\}$.  Let $Q:=q_0,\ldots,q_m=C-\{p_1,\ldots,p_{\ell-1}\}$.  Since $C$ has minimum length, $Q$ is an induced path in $G[V(F_r)]$.  Again, this implies that $\deg_{H}(q_i)}\neq 2$ for each $i\in\{1,\ldots,m-1\}$.  Therefore $V_2(H)=\{p_0,q_0,p_\ell,q_m\}=\{v,w\}$.
-\end{proof}
-
-\begin{lem}
-  Let $P:=p_0,\lots,p_\ell$ be an induced path in $G$ that starts at $p_0\in V_2(F_r)$ in the interior of some extension $P_i$, ends at some vertex $p_\ell\in V_2(F_r)$ in the interior of some extension $P_j$ for some $i\neq j$, and has no interior vertices in $V(F_r)$.  Then, for some $x\in\{1,\ldots,\ell-1\}$,  $N_G(x)$ contains a vertex in $V(P_i)\cap V_3(F_r)$.
-\end{lem}
-
-\begin{proof}
-  Consider the cycle $C$ and the edge-maximal outerplanar graph $H$ guaranteed by \cref{coolio}.  Then $Q:=C-\{p_1,\ldots,p_{\ell-1}\}$ is a path in $F_r$ with endpoints $p_0$ and $p_\ell$.  Therefore $Q$ contains a degree-$3$ vertex $w$ of $P_i$.  Since $p_0,p_\ell\in V_2(F_r)$,  $w\not\in \{p_0,p_{\ell}\}$.  Therefore $\deg_H(w)\ge 3$,  which implies that $w$ is adjacent, in $G$, to some vertex in the interior of $P$.
-\end{proof}
-
-
-\section*{Acknowledgement}
-
-This research was initiated and much of it was done at the \emph{Third Workshop on Graphs and Probability} held in Lac-Sainte-Marie, Québec, October 14--18, 2024.
-% \david{I would replace ``somehow manages to be'' by ``is''.}
-
-% ?Let $\phi'(x):=\phi(x)/\sqrt{L}$ for each $x\in V(H\boxtimes P)$.
-
-\bibliographystyle{plainurlnat}
-\bibliography{fan-partition}
-
 \end{document}
