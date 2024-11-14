@@ -336,144 +336,6 @@ $G$ contains $k$ vertex-disjoint cycles.
   Let $X\subseteq V(G)$ be the set obtained by taking both endpoints of $e$ for each $e\in I$.  Then, for each $e\in E(G_R)\setminus E(U)$, $B_G(X,2R+d)$ contains at least one endpoint of $e$, which we place in the set $Y$.  Then $C$ is $R$-unicyclic in $G-Y$ and $Y\subseteq B_G(X,2R+d)$, as required.
 \end{proof}
 
-  % Since $V(P_{e})\subseteq B_G(x,R)$ and $V(P_{e'})\subseteq B_G(v,ar+1)$, this implies that $B_G(x,(2a+1)r+2+d)$ contains at least one of $v$ or $w$.  We take $X$ to contain one endpoint of each $vw\in I$ and $v_0$.  Since every cycle in $G[B_G(V(C)),ar]$ either contains the vertex $v_0$ or uses some edge $vw\in E(G[B_G(V(C),ar)])\setminus E(U)$, $X$ satisifies (b).
-
-
-
-  % Consider two distinct $e,e'\in J$.
-  % We claim that $\dist_G(V(C_e), V(C_{e'}))>d$.
-  % Let $v$ and $v'$ be vertices of $C_e$ and $C_{e'}$, respectively,
-  % such that $\dist_G(v, v')=\dist_G(V(C_e), V(C_{e'}))$.
-  % If $v \in V(P_e)$ and $v'\in V(P_{e'})$, then
-  % $\dist_G(v, v')=\dist_G(V(P_e), V(P_{e'}))>d$, as claimed.
-  % Thus, we can assume that $v \in V(Q_e)\setminus V(P_e)$.
-  % Let $P$ be a shortest path in $G$ from $v$ to $v'$.
-  % If $P$ contains a vertex outside of $G_r$, then
-  % $P$ starts at a vertex in $C$ and after at least $r+1$ edges leaves $G_r$ and than eventually comes back to $v'$ in $G_r$.
-  % In particular, $|P|\geq r+2 > d$ in this case, as claimed.
-  % Now consider the case tha all vertices of $P$ lie in $G_r$.
-  % Recall that $C$ is $r$-unicyclic in $G$.
-
-
-
-  % ...
-
-  % In the former case, let $I'\subseteq I$ contain the $C$-type nodes of $I$. By \cref{disjoint_in_c} and \cref{real_distance},
-  % $\{C_e\mid e\in I'\}$ is a $d$-packing of $k$ cycles, which establishes (a) and there is nothing more to do.
-  % We can therefore assume that $I''=I\setminus I'$ is a set of at least $4k\log k$ $P$-type nodes.
-
-
-
-  % \begin{clm}\label{real_distance}
-  %   Let $e,e'\in I$ and $e\neq e'$, then either \[
-  %   \textrm{$V(Q_e)\cap V(Q_{e'})\neq\emptyset$\quad or\quad $\dist_G(V(C_e),V(C_{e'})) \ge \min\{r+1,\dist_G(V(P_e),V(P_{e'})\}$.}
-  %   \]
-  %   %\piotr{And where does $2r+2$ come from? In the statement we have $ar$.}
-  %   %\piotr{I'm good if we drop $a$ in the statement atm. I prefer to have it less abstract atm.} \pat{It comes from $G_r$ being unicyclic.  If you don't want to follow a shortest path in $G_r$, you have to leave $G_r$ (a distance of $r+1$) and come back to $C$ (another $r+1$).}
-  %   %\piotr{OK, I understand.}
-  % \end{clm}
-
-  % \begin{clmproof}
-  %   If $V(Q_e)\cap V(Q_{e'})\neq\emptyset$, then there is nothing to prove.
-  %   Thus, suppose $V(Q_e)\cap V(Q_{e'})=\emptyset$.
-  %   If $V(Q_e)$ and $V(Q_{e'})$ are empty, then obviously
-  %   $\dist_G(V(C_e),V(C_{e'})) \geq \dist_G(P(C_e),V(P_{e'}))$ and there is nothing to prove.
-
-  %   Thus we assume without loss of generality that $V(Q_e)$ is non-empty.
-
-
-  %   \piotr{Hmm. I just realized that Claim 4 is false.}
-
-  %   ...
-
-  %   Since $e$ and $e'$ are both in $I$, $\dist_G(V(P_e),V(P_{e'}))> d\geq0$ and so $V(P_e)\cap V(P_{e'})=\emptyset$.
-  %   Therefore, $V(C_e)\cap V(C_{e'})=\emptyset$.
-  %   % To establish the claim, we need only show that $\dist_G(V(Q_e),V(Q_{e'})) \ge \min\{2r+2,\dist_G(V(P_e),V(P_{e'}))\}$
-  %   %\piotr{What about $\dist_G(V(Q_e),V(P_{e'}))$?} \pat{Oh yeah, I forgot I was talking about $Q$'s on one side and $C$'s on the other.  Then it will become $r+1$ instead of $2r+2$.  Good reading!}.
-  %   % \noindent\pat{Working....\newline}
-  %   %By definition, $\dist_G(V(C_e),V(C_{e'}))$ is the minimum of four quantities:
-  %   Clearly,
-  %   \[
-  %   \dist_G(V(C_e),V(C_{e'})) \geq \max\set{\dist_G(V(P_e),V(P_{e'}),\dist_G(V(Q_e),V(C_{e'})),\dist_G(V(C_{e}),V(Q_{e'})))}
-  %   \]
-  %   Now, we aim to lower bound $\dist_G(V(Q_e),V(C_{e'}))$.
-  %   Consider a path $P$ in $G$ from $V(Q_e)$ to $V(C_{e'})$.
-  %   We split into two cases: either $P$ contains a vertex outside $G_r$ or all vertices of $P$ lie in $G_R$.
-  %   In the former case, $P$ connects a vertex in $V(Q_e)\subseteq V(C)$ with a vertex outside $G_r$ and then goes back to a vertex in $G_r$, which implies that $|P|\geq (r+1)+1$.
-  %   In the latter case, $P$ is contained ...
-
-  %   \begin{compactitem}
-  %       \item $\dist_G(V(P_e),V(P_{e'}))$. Clearly, $\dist_G(V(P_e),V(P_{e'}))\ge \min\{r+1,\dist_G(V(P_e),V(P_{e'}))\}$.
-
-  %       \item $\dist_G(V(Q_e),V(Q_{e'}))$. Since $G_r$ is unicyclic and $Q_e$ is vertex-disjoint from $Q_{e'}$, any path in $G_r$ from $Q_e$ to $Q_{e'}$ includes the endpoints of $P_e$ and $P_{e'}$.  Therefore, $\dist_{G_r}(V(Q_e),V(Q_{e'}))\ge \dist_{G_r}(V(P_e),V(P_{e'}))\ge\dist_{G}(V(P_e),V(P_{e'}))$. On the other hand, any path in $G$ from $C$ to a vertex not in $G_r$ has length at least $r+1$.  Therefore any path in $G$ from $V(Q_e)$ to $V(Q_{e'})$ that includes a vertex not in $G_r$ has length at least $2r+2$.  Therefore $\dist_G(V(Q_e),V(Q_{e'})\ge\min\{2r+2,\dist_G(V(P_e),V(P_{e'})\}$.
-
-  %       \item $\dist_G(V(Q_e),V(P_{e'})$. Since $G_r$ is unicyclic and $Q_e$ is vertex-disjoint from $P_{e'}$, every path in $G_r$ from a vertex of $Q_e$ to a vertex of $P_{e'}$ includes an endpoint of $P_{e}$.
-  %       Therefore, $\dist_{G_r}(V(Q_e),V(P_{e'}))\ge \dist_{G_r}(V(P_e),V(P_{e'}))\ge\dist_{G}(V(P_e),V(P_{e'}))$. On the other hand, any path in $G$ from $C$ to a vertex not in $G_r$ has length at least $r+1$.  Therefore $\dist_G(V(Q_e),V(P_{e'}))\ge\min\{r+1,\dist_G(V(P_e),V(P_{e'})\}$.
-
-  %       \item $\dist_G(V(P_e),V(Q_{e'})$.  This is symmetric to the previous case.
-  %   \end{compactitem}
-    % \pat{Pffft}
-    % To establish the claim, we need only show that $\dist_G(V(Q_e),V(C_{e'})) \ge \min\{r+1,\dist_G(V(P_e),V(P_{e'}))\}$.
-    % Let $v$ be a vertex of $C_e$ and $w$ be vertex of $C_{e'}$.
-    % Since $G_r$ is unicyclic, $\dist_{G_r}(V(Q_e),V(Q_{e'}))=\dist_{C}(V(Q_e),V(Q_{e'}))=\dist_{C}(V(P_e)\cap V(C),V(P_{e'})\cap V(C))\ge\dist_{G}(V(P_e),V(P_{e'}))$.
-    % On the other hand, any path in $G$ from $C$ to a vertex not in $G_r$ has length at least $r+1$.  Therefore any path in $G$ from $V(Q_e)$ to $V(Q_{e'})$ that includes a vertex not in $G_r$ has length at least $2r+2$, so
-    % \begin{align*}
-    %     \dist_G(V(Q_e),V(Q_{e'}))
-    %         & \ge \min\{2r+2,\dist_{G_r}(V(Q_e),V(Q_{e'}))\} \\
-    %         & \ge \min\{2r+2,\dist_{G_r}(V(P_e),V(P_{e'}))\} \\
-    %         & \ge \min\{2r+2,\dist_{G}(V(P_e),V(P_{e'}))\}\enspace .
-    % \end{align*}
-  % \end{clmproof}
-
-  % \begin{clm}\label{disjoint_in_c}
-  %   Let $e,e'\in I$ be distinct and let both be of $C$-short. Then $C_e$ and $C_{e'}$ are disjoint.
-  % \end{clm}
-  % \begin{clmproof}
-  %   Suppose otherwise and let $v$ be a common vertex of $C_e$ and $C_{e'}$.
-  %   Since $e,e'\in I$ and $I$ is an independent set in $H$, we have $\dist_G(V(P_e),V(P_{e'}))>d$.
-  %   Thus, $v$ lies in $Q_e$ or in $Q_{e'}$.
-  %   But in both cases this forces $v\in V(C)$ and
-  %   therefore $v\in V(Q_e)\cap V(Q_{e'})$.
-  %   Thus, $Q_e$ and $Q_{e'}$ intersect.
-  %   Since $Q_e$ and $Q_{e'}$ are subpaths of $C$ one of them contains an endpoint of the other.
-  %   Without lost of generality, say the endpoint $u$ of $Q_e$ lies in $Q_{e'}$.
-  %   In particular $u$ witnesses that $P_e$ and $Q_{e'}$ intersect.
-  %   Since $e'$ is of $C$-type, we have $|Q_{e'}|\leq 2d+1$. Thus, $\dist_C(u,P_{e'})\leq \lfloor\frac{2d+1}{2}\rfloor=d$.
-  %   Finally, $\dist_G(P_{e},P_{e'})\leq \dist_C(u,P_{e'})\leq d$ which makes $e$ and $e'$ adjacent in $H$ and contradicts that they lie in the independent set $I$ of $H$.
-  % \end{clmproof}
-
-  % Suppose first that $|I|\ge k+4k\log k$.
-  % Therefore, either $I$ contains at least $k$ nodes of $C$-type or $I$ contains at least $4k\log k$ nodes of $P$-type.
-  % In the former case, let $I'\subseteq I$ contain the $C$-type nodes of $I$. By \cref{disjoint_in_c} and \cref{real_distance},
-  % $\{C_e\mid e\in I'\}$ is a $d$-packing of $k$ cycles, which establishes (a) and there is nothing more to do.
-  % We can therefore assume that $I''=I\setminus I'$ is a set of at least $4k\log k$ $P$-type nodes.
-
-  % % Each $P$-type vertex $e$ in $I$ defines a path $P_e$ between two vertices of $C$ that is edge disjoint from $C$.
-  % Consider the graph $G'':=C\cup\bigcup_{e\in I''} P_e$. Then $G''$ has at least $8k\log k$ vertices of degree $3$ and all other vertices of degree $2$.
-  % \begin{clm}\label{d_distance}
-  %   For every two distinct degree-$3$ vertices $v$, and $w$ in $G''$, we have $\dist_G(v,w)> d$.
-  % \end{clm}
-  % \begin{clmproof}
-  %   Let $v$ and $w$ be degree-$3$ vertices in $G''$.
-  %   Thus, both $v$ and $w$ lie in $C$.
-  %   Let $P$ be a shortest path from $v$ to $w$ in $G$. One of the following holds:
-  %   \begin{compactitem}
-  %       \item $P$ contains a vertex not in $V(G_r)$.
-  %       In this case, the path $P$ starting from $v$ in $C$ must leave $G_r$ which takes at least $r+1$ edges and then has to come back to $w$ in $C$ which takes again at least $r+1$ edges.
-  %       Thus, $|P|\geq 2r+2$ in this case.
-  %       \item All vertices of $P$ lie in $V(G_r)$.
-  %       Recall that $G_r$ is unicyclic and both $v$ and $w$ lie in $C$.
-  %       This implies that $P$ is contained in $C$.
-  %       Now, if $v$ and $w$ are two endpoints of some path $P_e$ with $e\in I''$,
-  %       then we have $\dist_{G_r}(v,w)=\dist_C(v,w)\geq 2d+1$.
-  %       Otherwise, $v$ is an endpoint of $P_e$ and $w$ is an endpoint of $P_{e'}$ for distinct $e,e'\in I''$.
-  %       Thus, $\dist_G(V(P_e),V(P_{e'}))>d$ and we have $\dist_G(v,w)\geq\dist_C(v,w)>d$, as desired.
-  %   \end{compactitem}
-  % \end{clmproof}
-
-  % By Simonovits~\cite{Simonovits67}, $G''$ has $k$ vertex disjoint cycles $C_1,\ldots,C_k$.  Since all vertices in $G''$ have degree $2$ or $3$ any path from $C_i$ to $C_j$, for $i\neq j$, contains at least two vertices of degree $3$. Therefore, by \cref{d_distance}, $\dist_G(V(C_i),V(C_j))> d$ for all $i\neq j$.  This also establishes (a).
-
-  % Therefore, we may assume that $|I|\le 4k\log k+k$.  Since $I$ is a maximal independent set, it is a dominating set in $H$: Every vertex of $H$ is either in $I$ or adjacent to a vertex in $I$.  In $G$ this corresponds to the fact that, for every edge of $vw\in E(G[B_G(V(C),r)])\setminus E(U)$ there exists $xy\in I$ such that $\dist_G(V(P_{vw}),V(P_{xy}))\le d$.  Since $V(P_{xy})\subseteq B_G(x,ar+1)$ \piotr{Why $ar+1$ and not $ar$?} and $V(P_{vw})\subseteq B_G(v,ar+1)$ \piotr{the same.} \pat{$P_{xy}$ can have $2ar+1$ edges (two paths of length $ar$ plus a flat edge.} \piotr{But $V(P_{xy})$ is contained already in the $ar$-ball, right?}, this implies that $B_G(x,(2a+1)r+2+d)$ contains at least one of $v$ or $w$.  We take $X$ to contain one endpoint of each $vw\in I$ and $v_0$.  Since every cycle in $G[B_G(V(C)),ar]$ either contains the vertex $v_0$ or uses some edge $vw\in E(G[B_G(V(C),ar)])\setminus E(U)$, $X$ satisifies (b).
 
 \begin{lem}\label{double_unicycle}
   Let $R,d$ be integers with $R\geq 2d\geq 0$.
@@ -575,72 +437,56 @@ $G$ contains $k$ vertex-disjoint cycles.
 \end{proof}
 
 \begin{thm}\label{thm:the-big-ball-of-wax}
-Let $f$ and $g$ be the following functions:
-\[
-f(x)= x^{x^x}\cdot x\log x,\qquad
-g(x)= 15x +3.
-\]
-For all non-negative integers $d$ and $k$, for every graph $G$,
-either $G$ contains a $d$-packing of $k$ cycles or
-there exists $X\subseteq V(G)$ with $|X|\leq f(k)$ such that
-$G-B_G(X,g(d))$ is a forest.
+  Let $f$ and $g$ be the following functions:
+  \[
+    f(x)= x^{x^x}\cdot x\log x,\qquad
+    g(x)= 15x +3.
+  \]
+  For all non-negative integers $d$ and $k$, for every graph $G$, either $G$ contains a $d$-packing of $k$ cycles or there exists $X\subseteq V(G)$ with $|X|\leq f(k)$ such that $G-B_G(X,g(d))$ is a forest.
 \end{thm}
 
 \begin{proof}
-Let $d$ and $k$ be non-negative integers.
-Let $G$ be a graph.
-If $G$ contains a $d$-packing of $k$ cycles then there is nothing to prove.
-Thus, assume the opposite.
-Let $\set{\mathdefin{C_1,\ldots,C_p}}$ be a maximal $2d$-packing of cycles that are $d$-unicyclic in $G$.  Since $G$ has no $d$-packing of $k$ cycles, $p<k$.
+  Let $d$ and $k$ be non-negative integers. Let $G$ be a graph. If $G$ contains a $d$-packing of $k$ cycles then there is nothing to prove. Thus, assume the opposite. Let $\set{\mathdefin{C_1,\ldots,C_p}}$ be a maximal $2d$-packing of cycles that are $d$-unicyclic in $G$.  Since $G$ has no $d$-packing of $k$ cycles, $p<k$.
 
-%For each $i\in\{1,\ldots,p\}$, let $\mathdefin{v_i}$ be an arbitrary vertex of $C_i$.
-Begin with every vertex of $G$ \defin{unmarked}.  While $G$ contains a cycle $D$ having no marked vertices and no vertex in $B_G(\bigcup_{i=1}^p V(C_i),5d)$, do the following:  Apply \cref{short_or_unicycle_nearby} to $D$ to find a cycle $D'$ with all vertices in  $B_G(V(D),3d)$ such that either $|D'|\leq 6d+2$ or $D'$ is $d$-unicyclic in $G$. Since $V(D)\cap B_G(\bigcup_{i=1}^p V(C_i),5d)=\emptyset$ and $V(D')\subseteq B_G(V(D),3d)$, we have that $V(D')\cap B_G(\bigcup_{i=1}^p V(C_i),2d)=\emptyset$. Since $\{C_1,\ldots,C_p\}$ is maximal, $D'$ is not $d$-unicyclic in $G$, so $D'$ has length at most $6d+2$.  \defin{Mark} all vertices in $B_G(V(D'),d)$.
-This completes the description of the process.  Let $\mathdefin{M}$ be the set of vertices of $G$ marked by the process.  The set $\{D_1,\ldots,D_{q}\}$ of cycles found by this process is a $d$-packing of cycles in $G$.  Since $G$ has no $d$-packing of size $k$, $q<d$. Let $\mathdefin{X_M}:=\{x_1,\ldots,x_{q}\}$ where  $x_i$ is a vertex of $D_i$ for each $i\in\{1,\ldots,q\}$. Then $M\subseteq B_G(X_M,4d+1)$.
+  Begin with every vertex of $G$ \defin{unmarked}.  While $G$ contains a cycle $D$ having no marked vertices and no vertex in $B_G(\bigcup_{i=1}^p V(C_i),5d)$, do the following:  Apply \cref{short_or_unicycle_nearby} to $D$ to find a cycle $D'$ with all vertices in  $B_G(V(D),3d)$ such that either $|D'|\leq 6d+2$ or $D'$ is $d$-unicyclic in $G$. Since $V(D)\cap B_G(\bigcup_{i=1}^p V(C_i),5d)=\emptyset$ and $V(D')\subseteq B_G(V(D),3d)$, we have that $V(D')\cap B_G(\bigcup_{i=1}^p V(C_i),2d)=\emptyset$. Since $\{C_1,\ldots,C_p\}$ is maximal, $D'$ is not $d$-unicyclic in $G$, so $D'$ has length at most $6d+2$.  \defin{Mark} all vertices in $B_G(V(D'),d)$. This completes the description of the process.  Let $\mathdefin{M}$ be the set of vertices of $G$ marked by the process.  The set $\{D_1,\ldots,D_{q}\}$ of cycles found by this process is a $d$-packing of cycles in $G$.  Since $G$ has no $d$-packing of size $k$, $q<d$. Let $\mathdefin{X_M}:=\{x_1,\ldots,x_{q}\}$ where  $x_i$ is a vertex of $D_i$ for each $i\in\{1,\ldots,q\}$. Then $M\subseteq B_G(X_M,4d+1)$.
 
 Every cycle in $G-M$ contains a vertex in $\bigcup_{i=1}^p B_G(V(C_i),5d)$.
 Let $\mathdefin{R}:=7d$.
-Then,
+Let
 \[
-\textstyle\mathdefin{F}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-2d)\right)
+  \textstyle\mathdefin{F_0}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-2d)\right)
 \]
-is a forest.
+and let
+\[
+  \textstyle\mathdefin{F^-_0}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-d)\right) \enspace .
+\]
+Then $F_0$ is a forest and $F^-_0$  (which is an induced subgraph of $F_0$) is also a forest.
 
-
-For each $i\in\{1,\ldots,p\}$, apply \cref{grow_unicycle} to obtain a set $\mathdefin{Y_i}\subseteq V(G)\setminus B_G(V(C_i),d)$ and a set $\mathdefin{X_i}\subseteq V(G)$ of size $\Oh(k\log k)$ such that $Y_i\subseteq B_G(X_i,2R+d)$ and such that, for each $i\in\{1,\ldots,p\}$, $C_i$ is $R$-unicyclic in $G-Y_i$.
+For each $i\in\{1,\ldots,p\}$, apply \cref{grow_unicycle} to obtain a set $\mathdefin{Y_i}\subseteq V(G)\setminus B_G(V(C_i),d)$ and a set $\mathdefin{X_i}\subseteq V(G)$ of size $\Oh(k\log k)$ such that $Y_i\subseteq B_G(X_i,2R+d)$ and such that, for each $i\in\{1,\ldots,p\}$, $C_i$ is $R$-unicyclic in $G-Y_i$.  For each $i\in\{1,\ldots,p\}$, let $U_i$ be the component of $G[B_{G-Y_i}(V(C_i),R)]$ that contains $V(C_i)$ and let $U_i^-:=U_i[B_{G-Y_i}(V(C_i),R-d)]$.  Then each of $U_i$ and $U^-_i$ is a unicyclic graph whose only cycle is $C_i$.   For each $i\in\{1,\ldots,p\}$, let $y_i$ be an arbitrary vertex of $C_i$, let $F_i:=U_i-y_i$, and let $F^-_i:=U^-_i-y_i$. Then $F_i$ and $F_i^-$ are forests, for each $i\in\{1,\ldots,p\}$.
 
 For each $(i,j)$ with $1\le i < j \le p$, let $\mathdefin{Y_{i,j}}:=B_{G-Y_i}(V(C_i),R)\cap B_{G-Y_j}(V(C_j),R)$.  Apply \cref{double_unicycle} to $C_i$ and $C_j$ to obtain a subset $\mathdefin{X_{i,j}}$ of $V(G)$ such that $Y_{i,j}\subseteq B_G(X_{i,j},2R+d) \cup B_G(Y_i\cup Y_j,R)$.
 
-Let
-\[
-  \textstyle\mathdefin{F^-}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-d)\right) \enspace .
-\]
-Then $F^-$ is a forest, since $F^-\subseteq F$.
+% Let
+% \[
+%   \textstyle\mathdefin{F^-}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-d)\right) \enspace .
+% \]
+% Then $F^-$ is a forest, since $F^-\subseteq F$.
 
 % \pat{We need to rework this definition so that we can have admissible tuples of the form $(e,i,e,j)$ with $i\neq j$. Currently, the forest leg of such a tuple has no vertices, but we still need to hit it. (Think of a cycle $y_1,\ldots,y_p$ where $y_i$ is in $B_G(V(C_i),R)$ and not in any other ball.) I think this means that we want to define the forest leg of $(e,i,e',j)$ as $eP_0e'$.}
-Let $i,j\in[p]$. An \defin{$i$-exit edge} is an edge $e$ of $G-Y_i$ with exactly one endpoint in $B_{G-Y_i}(V(C_i),R-d)$.
+Let $i,j\in[p]$. An \defin{$i$-exit edge} is an edge $e$ of $U_i$ with exactly one endpoint in $U^-_i$.
 A $4$-tuple $(e,i,e',j)$ is a \defin{good tuple} if
 \begin{compactitem}
   \item $e\neq e'$ and $e$ and $e'$ are incident to the same component of $F^-$;
   \item $e$ is an $i$-exit edge;
   and \item $e'$ is a $j$-exit edge.
 \end{compactitem}
-% Let $(e,e')$ be an $(i,j)$-exit pair.
-% A \defin{good tuple}  is a $4$-tuple $(e,i,e',j)$, where
-% $(e,e')$ is an $(i,j)$-exit pair.
-
-
-Let $t:=(e,i,e',j)$ be a good tuple.
-This tuple defines a walk $W_t$ in $G$ from a vertex of $C_i$ to a vertex of $C_j$ that includes both edges $e$ and $e'$ as follows. %, and consists of five segments as follows.
-Recall that $C_i$ is $R$-unicyclic in $G-Y_i$ and
-$C_j$ is $R$-unicyclic in $G-Y_j$.
-Let $P_1$ be the shortest path in $G[B_{G-Y_i}(V(C_i),R-d)]$ from $V(C_i)$ to the endpoint of $e$ in $B_{G-Y_i}(V(C_i),R-d)$.
-Let $P_2$ be the shortest path in $G[B_{G-Y_j}(V(C_j),R-d)]$ from the endpoint of $e'$ in $B_{G-Y_j}(V(C_j),R-d)$ to $V(C_j)$.
-Recall that both edges have exactly one endpoint in the same component of $F^-$.
-Let $P_0$ be the unique path in $F^-$
-from the endpoint of $e$ in $F^-$ to the endpoint of $e'$ in $F^-$.
-Let $\mathdefin{W_t}:=P_1eP_0e'P_2$.
-% $\mathdefin{W_t}:= P_1P^+_0P_2$.
-We call $P_0$ the \defin{forest leg} of $W_t$, $P_1$ the \defin{first leg} of $W_t$, and $P_2$ the \defin{second leg} of $W_t$.  The walk $eP_0e'$ is called the \defin{extended forest leg} of $W_t$.
+Each good tuple $t:=(e,i,e',j)$  defines a walk $\mathdefin{W_t}:=P_1eP_0e'_2$ in $G$ where
+\begin{compactitem}
+  \item $P_1$ is the shortest path in $U_i^-$ from $V(C_i)$ to the end point of $e$ in $U^-_i$;
+  \item $P_0$ is the unique path in $F_0^-$ from the endpoint of $e$ in $F^-_0$ to the endpoint of $e'$ in $F^-_0$; and
+  \item $P_2$ is the shortest path in $U_j^-$ from the endpoint of $e'$ in $U_j^-$ to $V(C_j)$.
+\end{compactitem}
+We call the path $P_0$ the \defin{forest leg} of $W_t$, $P_1$ the \defin{first leg} of $W_t$, and $P_2$ the \defin{second leg} of $W_t$.  The walk $eP_0e'$ is called the \defin{extended forest leg} of $W_t$.
 
 
 % We distinguish the following segments of $W-\set{e,e'}$:
@@ -658,27 +504,52 @@ We call $P_0$ the \defin{forest leg} of $W_t$, $P_1$ the \defin{first leg} of $W
 % \textstyle M':= M \cup \bigcup_{i\in[p]} (Y_i\cup\{v_i\}) \cup \bigcup_{i,j\in[p],\ i<j} Y_{i,j}).
 % \]
 % \pat{Why the awkward double-indexing in the second union? I suggest
-For each $i\in\{1,\ldots,p\}$, let $\mathdefin{y_i}$ be an arbitrary vertex of $C_i$ and define
+% For each $i\in\{1,\ldots,p\}$, let $\mathdefin{y_i}$ be an arbitrary vertex of $C_i$ and define
+Define
 \[
-\textstyle \mathdefin{M'}:= M \cup \bigcup_{i=1}^p \left(Y_i\cup\{y_i\} \cup \bigcup_{j=i+1}^{p} Y_{i,j}\right).
+  \textstyle \mathdefin{M'}:= M \cup \bigcup_{i=1}^p \left(Y_i\cup\{y_i\} \cup \bigcup_{j=i+1}^{p} Y_{i,j}\right).
 \]
+A good tuple $t$ is \defin{admissible} if $B_G(V(W_t),d) \cap M' = \emptyset$.
 
-Let $t$ be a good tuple, let $Q_0$ be the forest leg of $t$, let $Q_1$ be the first leg of $t$, and let $Q_2$ be the second leg of $t$.
-We say that $t$ is \defin{admissible} if
-$B_G(V(Q_i),d) \cap M' = \emptyset$ for each $i\in\set{0,1,2}$.   The following lemma allows us to finish the proof by finding a set of balls that intersects the forest leg of each admissible tuple.
 
-\begin{clm}
+\begin{clm}\label{grow_in_forests}
+  Let $t:=(e,i,e',j)$ be a good admissible tuple where $P_1eP_0e'P_2:=W_t$.  Then
+  \begin{compactenum}[(i)]
+    \item $V(P_1)\cap V(P_0)=\emptyset$ and $V(P_2)\cap V(P_0)=\emptyset$;\label[p]{gif_disjoint}
+    \item $V(P_1)\cap B_G(V(C_\ell),R)=\emptyset$ for each $\ell\in\{1,\ldots,p\}\setminus\{i\}$ and $V(P_2)\cap B_G(V(C_\ell),R)=\emptyset$ for each $\ell\in\{1,\ldots,p\}\setminus\{j\}$;\label[p]{gif_unique_ends}
+    \item $G[B_G(V(P_0),d)]=F_0[B_{F_0}(V(P_0),d)]$; \label[p]{gif_zero}
+    \item $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$ and $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$; \label[p]{gif_ij}
+  \end{compactenum}
+\end{clm}
+
+\begin{clmproof}\
+  \begin{compactenum}[(i)]
+    \item It follows immediately from their definitions that $U_i^-$ and $F_0^-$ are vertex disjoint, for each $i\in\{1,\ldots,p\}$. Thus (i) follows immediately since $P_1\subseteq U^-_i$, $P_2\subseteq U^-_j$, and $P_0\subseteq F_0^-$.
+
+    \item If $V(P_1)\cap B_G(V(C_\ell),R)$ contains a vertex $v$ for some $\ell\neq i$ then $v\in Y_{i,\ell}$ (if $i<\ell$) or $v\in Y_{\ell,i}$ (if $\ell < i$).  In either case $t$ would be inadmissible.  The same argument applies if $V(P_2)\cap B_G(V(C_\ell),R)$ contains a vertex $v$ for some $\ell\neq j$.
+
+    \item Since $t$ is admissible, $B_G(V(P_0),d)$ contains no vertex in $M$.  Since $P_0\subseteq F^-_0$, $B_G(V(P_0),d)$ contains no vertex in $B_G(V(C_i),R-2d)$ for each $i\in\{1,\ldots,p\}$.  Therefore $B_G(V(P_0),d)\subseteq V(F_0)$.  Since $F_0$ is an induced subgraph of $G$,  $B_G(V(P_0),d)=B_{F_0}(V(P_0),d)$.  Again, since $F$ is an induced subgraph of $G$, $G[B_G(V(P_0),d)]=F_0[B_{F_0}(V(P_0),d)]$.
+
+    \item Since $t$ is admissible, $B_G(V(P_1),d)$ contains no vertex in $Y_i$.  Therefore,
+    $B_G(V(P_1),d)=B_{G-Y_i}(V(P_1),d)$. Since $P_1$ contains a vertex of $C_i$, $P_1$ is contained in $U_i$ and $B_G(V(P_1),d)=B_{U_i}(V(P_1),d)$.  Since $t$ admissible, $B_G(V(P_1),d)$ does not contain $y_i$.  Since $F_i$ is an induced subgraph of $G$, $B_G(V(P_1),d)=B_{F_i}(V(P_1),d)$.  Since $F_i$ is an induced subgraph of $G$, $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$.  The same argument, using $j$ in place of $i$ and $P_2$ in place of $P_1$ establishes that $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$. \qedhere
+  \end{compactenum}
+\end{clmproof}
+
+
+The following lemma allows us to finish the proof by finding a set of balls that intersects the forest leg of each admissible tuple.
+
+\begin{clm}\label{hit_cycle}
   Let $C$ be a cycle in $G$.  Then  $C$ contains a vertex in $B_G(M',R+d)$ or $C$ contains the extended forest leg of some admissible tuple.
 \end{clm}
 
 \begin{clmproof}
-  Since $F^-$ is a forest, $C$ must contain some vertex not in $F^-$.  Therefore $C$ contains a vertex in $B_G(V(C_i),R-d)$ for some $i\in\{1,\ldots,p\}$.
+  Since $F_0^-$ is a forest, $C$ must contain some vertex not in $F_0^-$.  Therefore $C$ contains a vertex in $F_i$ for some $i\in\{1,\ldots,p\}$.
 
-  Recall that $C_i$ is $R$-unicyclic in $G-Y_i$ for each $i\in\{1,\ldots,p\}$.  Therefore  $C_i-v_i$ is $R$-acyclic in $G-(Y_i\cup\{v_i\})$ for each $i\in\{1,\ldots,p\}$.  Therefore, if $V(C)$ is contained in $B_G(V(C_i),R-d)$ for some $i\in\{1,\ldots,p\}$ then $C$ contains a vertex in $Y_i\cup\{v_i\}\subseteq B_G(M',R+d)$.
+  Since $F_i$ is an induced forest in $G$, $C$ contains a vertex not in $F_i$. If $C$ contains a vertex in $Y_i\cup\{y_i\}$ then we are done, since $Y_i\cup\{y_i\}\subseteq M'\subseteq B_G(M',R+d)$.
 
-  Therefore, $C$ contains an $i$-exit edge $v_0v_1$ with $v_0\in B_G(V(C_i),R-d)$ and $v_1\notin B_G(V(C_i),R-d)$ for some $i\in\{1,\ldots,p\}$.  If $v_0\in B_G(V(C_j),R-d)$ for some $j\in\{1,\ldots,p\}\setminus\{i\}$, then $v_0\in Y_{i,j}$ (if $i< j$) or $v_0\in Y_{j,i}$ (if $j<i$).  In either case, $v_0\in M'\subseteq B_G(M',d)$.  We now assume that $v_0\notin B_G(V(C_j),R-d)$ for any $j\in\{1,\ldots,p\}$.  Therefore $v_1$ is a vertex of $F^-$.
+  Therefore, $C$ contains an $i$-exit edge $v_0v_1$ with $v_0\in V(F^-_i)$ and $v_1\not\in V(F^-_i)$ for some $i\in\{1,\ldots,p\}$.  If $v_0\in V(F^-_j)$ for some $j\in\{1,\ldots,p\}\setminus\{i\}$, then $v_0\in Y_{i,j}$ (if $i< j$) or $v_0\in Y_{j,i}$ (if $j<i$).  In either case, $v_0\in M'\subseteq B_G(M',d)$.  We now assume that $v_0\notin F^-_j$ for any $j\in\{1,\ldots,p\}$.  Therefore $v_1$ is a vertex of $F_0^-$.
 
-  Consider the maximal path $v_1,\ldots,v_{r-1}$ in $C$ that contains $v_1$ and that is contained in $F^-$. Let $v_r$ be the neighbour of $v_{r-1}$ in $C-v_{r-2}$.  (Possibly $v_r=v_0$)  Since $v_r$ is not a vertex of $F^-$, $v_r\in B_G(V(C_j),R-d)$ for some $j\in\{1,\ldots,p\}$.  Then $v_0,\ldots,v_{r}$ is the extended forest leg of the tuple $t:=(v_0v_1,i,v_{r-1}v_r,j)$.   If $t$ is admissible, then there is nothing more to prove.  If $t$ is inadmissible, then the forest leg of $t$ contains a vertex in $B_G(M',d)\subseteq B_G(M',R+d)$ or the first or second leg of $t$ contains a vertex in $B_G(M',d)$.  If the forest leg $v_1,\ldots,v_{r-1}$ of $t$ contains a vertex in $B_G(M',d)$ then $C\supseteq v_1,\ldots,v_{r-1}$ contains a vertex in $B_G(M',d)\subseteq B_G(M',R+d)$.  If the first leg of $t$ contains a vertex in $B_G(M',d)$ then $v_0\in B_G(M',R+d)$.  If the second leg of $t$ contains a vertex in $B_G(M',d)$ then $v_r\in B_G(M',R+d)$.
+  Consider the maximal path $v_1,\ldots,v_{r-1}$ in $C$ that contains $v_1$ and that is contained in $F_0^-$. Let $v_r$ be the neighbour of $v_{r-1}$ in $C-v_{r-2}$.  (Possibly $v_r=v_0$)  Since $v_r$ is not a vertex of $F_0^-$, $v_r\in V(F^-_j)$ for some $j\in\{1,\ldots,p\}$.  Then $v_0,\ldots,v_{r}$ is the extended forest leg of the tuple $t:=(v_0v_1,i,v_{r-1}v_r,j)$.   If $t$ is admissible, then there is nothing more to prove.  If $t$ is inadmissible, then the forest leg of $W_t$ contains a vertex in $B_G(M',d)\subseteq B_G(M',R+d)$ or the first or second leg of $t$ contains a vertex in $B_G(M',d)$.  If the forest leg $v_1,\ldots,v_{r-1}$ of $t$ contains a vertex in $B_G(M',d)$ then $C\supseteq v_1,\ldots,v_{r-1}$ contains a vertex in $B_G(M',d)\subseteq B_G(M',R+d)$.  If the first leg of $t$ contains a vertex in $B_G(M',d)$ then $v_0\in B_G(M',R+d)$.  If the second leg of $t$ contains a vertex in $B_G(M',d)$ then $v_r\in B_G(M',R+d)$.
 \end{clmproof}
 
 At this point it is tempting to mimic the proofs of \cref{grow_unicycle} and \cref{double_unicycle} and define an auxilliary graph $H$ with vertex set $V(H):=\{t:\textrm{$t$ is an admissible good tuple}\}$ and that contains an edge $st$ if and only if $\dist_G(V(W_s),V(W_t))\le d$. However, this does not work because $W_s$ and $W_t$ do not have diameter bounded by any function of $d$.  More precisely this fails because the assumption that $B_G(X,r)$ contains a vertex in the (extended) forest leg of $t$ does not imply that $B_G(X,r+g(d))$ contains a vertex in the (extended) forest leg of $s$, for any function $g$.  Instead we have to resort to the Hungarian Lemma, which is what the next paragraph is preparing for.
@@ -709,28 +580,24 @@ At this point it is tempting to mimic the proofs of \cref{grow_unicycle} and \cr
 % \end{compactitem}
 % \end{comment}
 
-Let $t=(e,i,e',j)$ be an admissible tuple,
-let $P_0$ be the forest leg of $W_t$,
-let $P_1$ be the first leg of $W_t$, and
-let $P_2$ be the second leg of $W_t$.
+Let $t=(e,i,e',j)$ be an admissible good tuple with $P_1eP_0e'P_2:=W_t$.
 Define the $(p+1)$-tuple $\mathdefin{\Psi(t)}:=(\Psi_0(t),\Psi_1(t),\ldots,\Psi_p(t))$ where
 \begin{align*}
 % \Psi_0(t) &:= B_G(V(Q_0),d),\\
 \mathdefin{\Psi_\ell(t)} &:=\begin{cases}
-B_G(V(P_0),d)&\textrm{if $\ell=0$,}\\
-B_G(V(P_1),d)&\textrm{if $\ell=i$ and $\ell\neq j$,}\\
-B_G(V(P_2),d)&\textrm{if $\ell\neq i$ and $\ell= j$,}\\
-B_G(V(P_1),d)\cup B_G(V(P_2),d)&\textrm{if $\ell= i$ and $\ell= j$,}\\
+B_{F_0}(V(P_0),d)&\textrm{if $\ell=0$,}\\
+B_{F_i}(V(P_1),d)&\textrm{if $\ell=i$ and $\ell\neq j$,}\\
+B_{F_j}(V(P_2),d)&\textrm{if $\ell\neq i$ and $\ell= j$,}\\
+B_{F_i}(V(P_1),d)\cup B_{F_j}(V(P_2),d)&\textrm{if $\ell= i$ and $\ell= j$,}\\
 \emptyset&\textrm{if $\ell\notin\{0,i,j\}$.}
 \end{cases}
 \end{align*}
-
-For each $i\in\{1,\ldots,p\}$, define $U_i$ to be the component of $G[B_{G-Y_i}(V(C_i),R)]$ that contains $C_i$, and define $F_i:=U_i-y_i$
+Note that, by \cref{grow_in_forests}\cref{gif_zero} and \cref{grow_in_forests}\cref{gif_ij}, each of the balls that defines $\Psi$ is equivalent to a ball in $G$.
 
 \begin{clm}
 Let $t$ be an admissible good tuple. Then
 \begin{compactenum}[(i)]
-\item $G[\Psi_0(t)]$ is a connected subgraph of $F$,
+\item $G[\Psi_0(t)]$ is a connected subgraph of $F_0$,
 % \piotr{discuss definition of $F$}\pat{Why?} \piotr{We don't remove the $Y$-sets in the defintion of $F$.}
 \item For each $\ell\in\{1,\ldots,p\}$, $G[\Psi_\ell(t)]$ is a subgraph of $F_i$ that has at most two components.
 %$G[B_G(V(C_\ell),R)]$
@@ -739,22 +606,28 @@ Let $t$ be an admissible good tuple. Then
 \end{compactenum}
 \end{clm}
 
-\begin{clmproof}
-  Let $P_1$, $P_2$, and $P_0$ be the first, second, and forest leg of an admissible good tuple $t$, respectively.
-
+\begin{clmproof}\
   \begin{enumerate}[(i)]
-    \item  Since $t$ is admissible, $P_0\subseteq
-    %  G-B_G(M'\cup \bigcup_{i=1}^pB_G(V(C_i),R-d),d)=
-    F^--B_G(M',d)$.
-    % \piotr{We dont remove $M'$ in the current definition. This is what I want to discuss.} \pat{Yes, but $P_0$ still avoids this ball because $t$ is admissible.}.
-    Therefore, $B_G(V(P_0),d)\cap M'=\emptyset$ and, by the definition of $F^-$, $B_G(V(P_0),d)\cap B_G(V(C_i),R-d)=\emptyset$ for each $i\in\{1,\ldots,p\}$.  Therefore $B_G(V(P_0),d)\subseteq V(F)$.  Since $F$ is an induced subgraph of $G$, this implies that $B_G(V(P_0),d)=B_F(V(P_0),d)$ and that $G[B_G(V(P_0),d)]=F[B_F(V(P_0),d)]$. Since $P_0$ is a connected subgraph of $G$, $G[\Psi_0(t)]=G[B_G(V(P_0),d)]=F[B_F(V(P_0),d)]$ is connected.
+    \item Since $P_0$ is a connected subgraph of $F_0$, $G[\Psi_0(t)]=F_0[\Psi_0(t)]=F_0[B_{F_0}(V(P_0),d)]$ is a connected subgraph of $F_0$.  By \cref{grow_in_forests}\cref{gif_zero}, $F_0[\Psi_0(t)]=G[\Psi_0(t)]$.
 
-    \item If $\ell\not\in\{i,j\}$, $\Psi_\ell(t)=\emptyset$ so $G[\Psi_\ell(t)]$ is the empty graph, which has zero components.
-
-    If $\ell=i\neq j$ then, since $t$ is admissible $B_G(V(P_1),d))$ has no vertex in $Y_i\cup\{y_i\}$.  Therefore $G[\Psi_\ell(t)]=G[B_G(V(P_1),d)]= G[B_{G-Y_i\cup\{y_i\}}(V(P_1),d)]=(G-\{Y_i\cup\{y_i\})[B_{G-(Y_i\cup\{y_i\}}(V(P_1),d)=F_i[B_{F_i}(V(P_1),d)]$, where the last equality follows from the fact that $P_1$ contains a vertex of $C_i$.  Again,  $G[\Psi_\ell(t)]=G[B_G(V(P_1),d)]$ is connected because $P_1$ is a connected subgraph of $G$.  The case $\ell=j\neq i$ is handled by a symmetric argument that swaps the roles of $i$ and $j$ and considers $P_2$ rather than $P_1$.
-
-    Finally, in the case $\ell=i=j$, the same reasoning shows that $G[\Psi_\ell(t)]=F_i[B_{F_i}(V(P_1)\cup V(P_2),d]$, which has at most two components since each of $P_1$ and $P_2$ is a connnected subgraph of $F_i$. \qedhere
+    \item For each $\ell\in\{1,\ldots,p\}$, $\Psi_\ell(t)$ is a ball, in $F_\ell$ around zero one or two connected subgraphs of $F_\ell$.  Thus $F_\ell[\Psi_\ell(t)]$ has at most two connected components.  By \cref{grow_in_forests}\cref{gif_ij}, $F_\ell[\Psi_{\ell}(t)]=G[\Psi_{\ell}(t)]$. \qedhere
   \end{enumerate}
+  % Let $P_1eP_0e'P_2:=W_t$.
+  %
+  % \begin{enumerate}[(i)]
+  %   \item
+  %   \item  Since $t$ is admissible, $P_0\subseteq
+  %   %  G-B_G(M'\cup \bigcup_{i=1}^pB_G(V(C_i),R-d),d)=
+  %   F^--B_G(M',d)$.
+  %   % \piotr{We dont remove $M'$ in the current definition. This is what I want to discuss.} \pat{Yes, but $P_0$ still avoids this ball because $t$ is admissible.}.
+  %   Therefore, $B_G(V(P_0),d)\cap M'=\emptyset$ and, by the definition of $F^-$, $B_G(V(P_0),d)\cap B_G(V(C_i),R-d)=\emptyset$ for each $i\in\{1,\ldots,p\}$.  Therefore $B_G(V(P_0),d)\subseteq V(F)$.  Since $F$ is an induced subgraph of $G$, this implies that $B_G(V(P_0),d)=B_F(V(P_0),d)$ and that $G[B_G(V(P_0),d)]=F[B_F(V(P_0),d)]$. Since $P_0$ is a connected subgraph of $G$, $G[\Psi_0(t)]=G[B_G(V(P_0),d)]=F[B_F(V(P_0),d)]$ is connected.
+  %
+  %   \item If $\ell\not\in\{i,j\}$, $\Psi_\ell(t)=\emptyset$ so $G[\Psi_\ell(t)]$ is the empty graph, which has zero components.
+  %
+  %   If $\ell=i\neq j$ then, since $t$ is admissible $B_G(V(P_1),d))$ has no vertex in $Y_i\cup\{y_i\}$.  Therefore $G[\Psi_\ell(t)]=G[B_G(V(P_1),d)]= G[B_{G-Y_i\cup\{y_i\}}(V(P_1),d)]=(G-\{Y_i\cup\{y_i\})[B_{G-(Y_i\cup\{y_i\}}(V(P_1),d)=F_i[B_{F_i}(V(P_1),d)]$, where the last equality follows from the fact that $P_1$ contains a vertex of $C_i$.  Again,  $G[\Psi_\ell(t)]=G[B_G(V(P_1),d)]$ is connected because $P_1$ is a connected subgraph of $G$.  The case $\ell=j\neq i$ is handled by a symmetric argument that swaps the roles of $i$ and $j$ and considers $P_2$ rather than $P_1$.
+  %
+  %   Finally, in the case $\ell=i=j$, the same reasoning shows that $G[\Psi_\ell(t)]=F_i[B_{F_i}(V(P_1)\cup V(P_2),d]$, which has at most two components since each of $P_1$ and $P_2$ is a connnected subgraph of $F_i$. \qedhere
+  % \end{enumerate}
 \end{clmproof}
 
 % \begin{clm}\label{s_path}
@@ -768,19 +641,14 @@ Let $t$ be an admissible good tuple. Then
 % \end{clmproof}
 
 \begin{clm}\label{overlap}
-  Let $t:=(e,i,e',j)$ be an admissible good tuple and let $P_0$, $P_1$, and $P_2$ be the forest, first, and second legs, respectively, of $W_t$.  Then
-  \begin{compactenum}[(a)]
-    \item $\Psi_0(t)\supseteq V(Q_t)\cap V(F)$,\label[p]{overlap:zero}
-    \item $\Psi_i(t)\supseteq V(P_1\cup P_0)\cap B_G(V(C_i),R)$,
-    and \item $\Psi_j(t)\supseteq V(P_0\cup P_2)\cap B_G(V(C_j),R)$.
-  \end{compactenum}
+  Let $t:=(e,i,e',j)$ be an admissible good tuple and let $P_0$ be the forest leg of $W_t$.  Then $\Psi_0(t)\supseteq V(Q_t)\cap V(F)$.
 \end{clm}
 
 \begin{clmproof}
-  We first show that $\Psi_0(t)\supseteq V(Q_t)\cap V(F)$.  Let $v$ be a vertex in $V(Q_t)\cap V(F)$.  If $v\in V(F^-)$ then $v\in V(P_0)\subseteq\Psi_0(t)$ and there is nothing to prove.  Now assume $v\in V(F)\setminus V(F^-)$. Therefore $v\in B_G(V(C_\ell),R-d)\setminus B_G(V(C_\ell),R-2d)$ for some $\ell\in\{1,\ldots,p\}$.  More specifically, $\ell=i$ if $v\in V(P_1)$ and $\ell=j$ if $v\in V(P_2)$. Without loss of generality, suppose $v\in V(P_1)$, so $\ell=i$. Then $P_0$ contains an endpoint $w$ of the $i$-exit edge $e$. Then $v\in B_G(w,d)\subseteq\Psi_0(t)$.
+  Let $v$ be a vertex in $V(Q_t)\cap V(F)$.  If $v\in V(F^-)$ then $v\in V(P_0)\subseteq\Psi_0(t)$ and there is nothing to prove.  Now assume $v\in V(F)\setminus V(F^-)$. Therefore $v\in B_G(V(C_\ell),R-d)\setminus B_G(V(C_\ell),R-2d)$ for some $\ell\in\{1,\ldots,p\}$.  More specifically, $\ell=i$ if $v\in V(P_1)$ and $\ell=j$ if $v\in V(P_2)$. Without loss of generality, suppose $v\in V(P_1)$, so $\ell=i$. Then $P_0$ contains an endpoint $w$ of the $i$-exit edge $e$. Then $v\in B_G(w,d)\subseteq\Psi_0(t)$.
 \end{clmproof}
 
-\begin{clm}
+\begin{clm}\label{w_distance}
   Let $t_1$ and $t_2$ be admissible good tuples with $\dist_G(V(W_{t_1}),V(W_{t_2}))\le d$.  Then $\Psi_i(t_1)\cap \Psi_i(t_2)\neq\emptyset$ for some $i\in\{0,\ldots,p\}$.
 \end{clm}
 
@@ -788,13 +656,12 @@ Let $t$ be an admissible good tuple. Then
 % \pat{HMMMMM: Problems here caused by these stupid tuples with empty forest legs.  These still need to have a non-empty projection onto $F$.  Otherwise, the Hungarians have no way of knowing that the walk of $(e,i,d,j)$ is close to the walk of  $(e',i',d',j')$ when $|\{i,i',j,j'\}|=4$}
 
 \begin{clmproof}
-  Let $v\in V(W_{t_1})$ and $w\in V(W_{t_2})$ be such that $\dist_G(v,w)=\dist_G(V(W_{t_1}),V(W_{t_2}))$ and let $S$ be a shortest path, in $G$, from $v$ to $w$.  Let $(e,i,e',j):=t$.  Without loss of generality, one of the following cases applies:
+  Let $v\in V(W_{t_1})$ and $w\in V(W_{t_2})$ be such that $\dist_G(v,w)=\dist_G(V(W_{t_1}),V(W_{t_2}))$.
+   % and let $S$ be a shortest path, in $G$, from $v$ to $w$.  Let $(e,i,e',j):=t$.
 
-  \begin{compactitem}
-      \item $v$ lies in the forest leg $P_0$ of $t_1$: Then $w\in B_G(v,d)\subseteq B_G(V(P_0),d)\subseteq\Psi_0(t_1)\subseteq V(F)$.  By \cref{overlap}\cref{overlap:zero}, $w\in \Psi_0(t_2)$.   Therefore $\Psi_0(t_1)\cap\Psi_0(t_2)\supseteq\{w\}\supsetneq\emptyset$.
+  We first consider the case in which at least one of $v$ is in the forest leg of $W_{t_1}$ or $w$ is in the forest leg of $W_{t_2}$.  Without loss of generality, suppose $v$ is in the forest leg $P_0$ of $W_{t_1}$. Then $w\in B_G(v,d)\subseteq B_G(V(P_0),d)\subseteq\Psi_0(t_1)\subseteq V(F)$.  By \cref{overlap}, $w\in \Psi_0(t_2)$.   Therefore $\Psi_0(t_1)\cap\Psi_0(t_2)\supseteq\{w\}\supsetneq\emptyset$.
 
-      \item $v$ lies in the first leg $P_1$ of $t_1$: Then $w\in B_G(v,d)\subseteq B_G(V(P_1),d)=\Psi_i(t_1)\subseteq B_G(V(C_i),R)$. \qedhere
-      % We may assume that $w$ is in the first or second leg of $W_{t_2}$ since, otherwise $w$ is in the forest leg of $W_{t_2}$ and we can reverse the roles of $v$ and $w$ and apply the previous argument.  Assume, without loss of generality, that $w$ is in the first leg $Q_1$ of $W_{t_2}$.  Since $t_2$ is admissible and $w\in B_G(V(C_i),R)$, $w\not\in B_G(V(C_j),R)$ for each $j\in\{1,\ldots,p\}\setminus\{i\}$ (otherwise $w$ would be in $Y_{i,j}$ or $Y_{j,i}$, making $t_2$ inadmissible). Therefore $Q_1\subseteq B_G(V(C_i),R)$ and $\Psi_i(t_2)=B_G(V(Q_1),d)$.  Therefore $\Psi_i(t_1)\cap\Psi_i(t_2)\supseteq\{w\}\supsetneq \emptyset$.
+  Next we consider the case where $v$ is not in the forest leg of $W_{t_1}$ and $w$ is not in the forest leg of $W_{t_2}$.  Without loss of generality, suppose $v$ is in the first leg $P_1$ of $W_{t_1}$ and $w$ is in the first leg $Q_1$ of $W_{t_2}$.  Let $(e,i,e',j):=t_1$, so $P_1\subseteq F_i^-$. Then $w\in B_G(v,d)\subseteq B_G(V(P_1),d)$ and, by \cref{grow_in_forests}\cref{gif_ij}, $B_G(V(P_1),d)=\Psi_i(t_1)\subseteq V(F_i)$.  By \cref{grow_in_forests}\cref{gif_unique_ends}, $Q_1\subseteq F_i$.  Therefore $\Psi_i(t_2)=B_{F_i}(V(Q_1),d)$.  Therefore $\Psi_i(t_1)\cap\Psi_i(t_2)\supseteq\{w\}\supsetneq \emptyset$. \qedhere
       %
       % If $w\notin B_G(V(C_i),R-2d)$ then $w\in V(F)$, so $w$ is in the first or second leg of $W_{t_2}$.  Assume, without loss of generality, that $w$ is in the first leg $Q_1$ of $W_{t_2}$.  Since $t_2$ is admissible and $w\in B_G(V(C_i),R)$, $w\not\in B_G(V(C_j),R)$ for each $j\in\{1,\ldots,p\}\setminus\{i\}$. Therefore $Q_1\subseteq B_G(V(C_i),R)$ and $\Psi_i(t_2)=B_G(V(Q_1),d)$.  Therefore $\Psi_i(t_1)\cap\Psi_i(t_2)\supseteq\{w\}\supsetneq \emptyset$.
       %
@@ -811,222 +678,31 @@ Let $t$ be an admissible good tuple. Then
       % If $i=j$ then there are two possibilities:  If $S$ contains a vertex $z$ in $F^-$ then $\Psi_0(t_1)\cap\Psi_0(t_2)\supseteq\{z\}\neq\emptyset$ and there is nothing more to prove.\pat{CAREFUL: Now we have to deal with the case in which $\Psi_{0}(t_1)$ or $\Psi_0(t_2)$ is the null graph!} Now assume that $S$ contains no vertex of $F^-$. Then, by \cref{s_path}, $S$ is a path in the unicyclic graph $G[B_{G-Y_i}(V(C_i),R)]$.   If $S$ contains a vertex $z$ in the first leg of $t_1$ then $w\in B_G(z,d)\subseteq\Psi_i(t_1)$, so $\Psi_i(t_1)\cap\Psi_i(t_2)\supseteq\{w\}\neq\emptyset$.  The same argument applies if $S$ contains a vertex $z$ in the first leg of $t_2$.  Otherwise, let $z$ be the vertex in $B_{G-Y_i}(V(C_i),R-d)$ that minimizes $\dist_{G-Y_i}(z,V(S))$.  Then $z$ is in the first leg of $t_1$ and in the first leg of $t_2$, so $z\in\Psi_i(t_1)\cap\Psi_i(t_2)$.
       %
       % If $i\neq j$ then there are two possibilities: If $S$ contains a vertex $z$ in $F^-$ then $z\in\Psi_0(t_1)\cap\Psi_0(t_2)$. Otherwise, $\dist_G(v,w)=\dist_{G-Y_i-Y_j}(v,w)\ge a+b$ where $a := R-\dist_G(V(C_i),v)$ and $b:=R-\dist_G(V(C_j),w)$. Let $P_0$ be the forest leg of $t_1$ and let $Q_0$ be the forest leg of $t_2$.  Then $\dist_G(V(P_0),v)\le a$ and $\dist_G(V(Q_0),w)\le b$.  Therefore $\dist_G(V(P_0),V(Q_0))\le 2a+2b\le 2d$.  Therefore, $\Psi_0(t_1)\cap\Psi_0(t_1)\neq\emptyset$.
-  \end{compactitem}
+  % \end{compactitem}
 \end{clmproof}
 
 
 \begin{clm}
-  Let $X\subseteq V(G)$ and let $t:=(e,i,e',j)$ be an admissible tuple with forest leg $P_0$ and such that $X\cap \Psi_\ell(t)\neq\emptyset$ for some $\ell\in\{0,\ldots,p\}$.  Then $\dist_G(X,V(P_0))\le R+d+1$.
+  Let $X\subseteq V(G)$ and let $t:=(e,i,e',j)$ be an admissible tuple with extended forest leg $eP_0e'$ and such that $X\cap \Psi_\ell(t)\neq\emptyset$ for some $\ell\in\{0,\ldots,p\}$.  Then $B_G(X,R+d)\cap V(P_0)\neq\emptyset$.
 \end{clm}
 
 \begin{clmproof}
-  If $\ell=0$ then $\dist_G(X,V(P_0))\le d$ and there is nothing more to prove.
+  If $\ell=0$ then, by definition $X$ contains a vertex in $B_G(V(P_0),d)=\Psi_0(t)$.  Therefore $B_G(X,d)\subseteq B_G(X,R+d)$ contains a vertex of $P_0$ and there is nothing more to prove.
   Otherwise, let $P_1$ be the first leg of $t$ and let $P_2$ be the second leg of $t$.
-  If $\ell=i$ then $\dist_G(X,V(P_1))\le d$.  Therefore $B_G(X,d)$ contains a vertex of $P_1$.  Therefore $B_G(X,R+d)$ contains all vertices of $P_1$ and all vertices in the first buffer of $t$.  Therefore $B_G(X,R+d+1)$ contains the first vertex $P_0$.
-  If $\ell=j$, then the same argument shows that $B_G(X,R+d+1)$ contains the last vertex of $P_0$.
+  If $\ell=i$ then $\dist_G(X,V(P_1))\le d$.  Therefore $B_G(X,d)$ contains a vertex of $P_1$.  Therefore $B_G(X,R+d)$ contains all vertices of $P_1$, including the endpoint of $e$ in $P_1$.  If $\ell=j$, then the same argument shows that $B_G(X,R+d)$ contains the endpoint of $e'$ in $P_2$.
 \end{clmproof}
 
-\begin{clm}
+Now we can complete the proof. Consider the collection $S:=\{\Psi(t):\text{$t$ is an admissible tuple}\}$.  By \cref{thm:gyarfas-lehel}, either (a) there exists $\hat{S}\subseteq S$ of size at least $4k\log k+k$ such that for each distinct  $t_1,t_2\in S'$, $\Psi_\ell(t_1)\cap\Psi_\ell(t_2)=\emptyset$ for each $\ell\in\{0,\ldots,p\}$, or (b) there exists $\tilde{X}\subseteq V(G)$ of size at most $f(k)$ such that $\tilde{X}\cap(\bigcup_{\ell=0}^p \Psi_\ell(t))\neq\emptyset$ for each $t\in S$.
 
-\end{clm}
+In case (b), we take the set
+\[
+   X:=\tilde{X}\cup X_M\cup \bigcup_{i=1}^p \left(X_i\cup \bigcup_{j=i+1}^p X_{i,j} \right)
+\]
+Then $|X|\le f(k) + O(k\log k)$.
+By \cref{hit_cycle}, every cycle $C$ in $G$ contains a vertex in $B_G(X,2R+d)$.
 
-
-
-
-% An $(i,j)$-exit pair  leaving $F'$: edges going out to $\bigcup_{i=1}^p B_G(V(C_i),6d)$
-
-% for every two exit edges $e_1, e_2$ (in a component) define an $F'$-ear
-
-% let $W$ be an $F'$-ear. define extension $W^+$. these two paths to unicycles.
-
-% admissibility: $\dist_G(V(U^+), M\cup \bigcup_{i,j}Y_{i,j})>d$.
-
-% for admissible ear $W$ define an object which a $(p+1)$-tuple $(W_0,W_1,\ldots,W_p)$:
-
-% $W_0$ lives in $F$ and is a $d$-thickening of $W$
-
-% most of $W_i$'s are empty
-
-% two non-empty where you $d$-thicken the legs
-
-% key property:
-
-% If $th(W^+)$ and $th(V^+)$ are disjoint then $\dist_G(V(W^+),V(V^+))> d$.
-
-% $\Pi \dist_{U_i}(proj(W_i,V_i))>d$
-
-
-% Say that a cycle $C$ in $G$ is \defin{$r$-good} if $G[B_G(V(C),r)]$ is unicyclic.  Take a maximal $d$-packing $C_1,\ldots,C_p$ of $2d$-good cycles.  Then $p< k$. Start with all vertices \defin{unmarked}.  Repeatedly choose a cycle $C$ of length at most $?d$ and \defin{mark} all vertices in $B_G(V(C),d)$.  After less than $k$ iterations, every cycle of length at most $?d$ contains a marked vertex.  Consider some cycle $C$ that contains no marked vertices (so $C$ must have length greater than $?d$.  Then, by \cref{short_or_unicycle_nearby}, $B_G(V(C),6d)$ contains a good cycle $C'$ or a cycle $C''$ of length at most $36d+2\le ?d$.  In the latter case, ignore $C$ and $C''$ (the marked vertices will get them later.  In the former case, $\dist_G(C',C_i)\le d$ for some $i\in\{1,\ldots,p\}$ otherwise $C'$ would be included in our packing.  Therefore $\dist_G(C,C_i)\le 7d$.
-
-% Now mark every vertex within distance $??d$ of some vertex marked above.  Now every cycle $C$ in $G$ contains a marked vertex or $\dist_G(C,C_i)\le 7d$ for some $i\in\{1,\ldots,p\}$.  Apply \cref{grow_unicycle} to each $C_i$ with $a=4$ to get a set $Y_i$ so that $(G-Y)[B_G(V(C_i,8d))]$ is unicyclic.  Mark the vertices in $Y_i$ and fix some spanning unicycle $U_i$ of $G[B_G(V(C_i,8d))]$.
-
-% Now we will work with the graph $G'$ that removes the edges of each $G[B_G(V(C_i,8d))]$ and replaces them with the edges of $U_1,\ldots,U_p$.  (If $U_i$ and $U_j$ overlap then we do something Voronoi-like.)  Then each $G'[B_G(V(C_i),14d)$ is unicyclic for each $i\in\{1,\ldots,p\}$ and $F':=G'-B_G(V(C_1\cup\cdots\cup C_p),13d)$ is not quite a forest. The graph $F$ obtained by removing marked vertices of $F'$ is a forest.
-
-% For each $C_i$ and $C_j$ we use \cref{double_unicycle} to take care of all $C_i$ to $C_j$ paths in $G'[B_G(V(C_i\cup C_j),14d]$.
-% % (In fact, \cref{grow_unicycle} might be a special case of this when $i=j$.)
-
-% Next we use Hungarians to take care of any $C_i$ to $C_j$ paths that include vertices in $F$. We don't pass a path $P$ to the Hungarians if $B_G(V(P),d)$ includes a marked vertex.  By now every path that includes a vertex that appears only in $B_G(V(C_i,14d))$ is either close to a marked vertex or is hit by the Hungarian set. DONE!
+In case (a), we let $S'$ denote the tuples $t$ in $\hat{S}$  such that $W_t$ contains a cycle.  If $|S'|\ge k$ then, by \cref{w_distance}, these cycles give a $d$-packing of $k$ cycles in $G$.  Let $S'':=\hat{S}\setminus S'$.  We apply Siminovits to the subgraph $G'$ of $G$ obtained by taking the union of $C_1,\ldots,C_p$ and $W_t$ for each $t\in S''$.  This gives a collection of $k$ vertex disjoint cycles $C_1',\ldots,C_k'$ in $G'$.  The same argument used to prove \cref{grow_unicycle} shows that $C_1',\ldots,C_k'$ is a $d$-packing of cycles in $G$. BAM!
 \end{proof}
-
-% \pat{Actually, I think we may be able to avoid Hungarians entirely.  Why not do something like \cref{grow_unicycle} on the graph $G'$?  Throw in all the $C_i$ to $C_j$ and ($C_i$ to $C_i$) paths that are not close to a marked vertex and make an auxilliary graph where two of these paths are adjacent if they are at distance less than $d$ from each other in $G$. Find a maximal independent set $I$ in this graph.  If $I$ defines a subgraph of $G$ with more than $k\log k$ degree-$3$ vertices the we found our $d$-packing of $k$ cycles.  Otherwise, the degree-$3$ vertices can be used to hit all these paths.  Any path that doesn't appear in $I$ is close to some path in $I$ or close to some marked vertex.  In the latter case it will get hit by balls around marked vertices.  In the former case, the only way it can be close to a path in $I$----NAH, this doesn't work.  It might be close because of a path in $F$, and then we won't hit it with balls near the endpoints of paths defined by $I$.}
-
-
-
-% \piotr{my playground version}
-% \begin{lem}\label{a_or_b2}
-%   Let $G$ be a graph.
-%   Let $r$ be an integer with $r\geq0$ and
-%   let $\mathcal{C}$ be a $2r$-packing of cycles in $G$ such that
-%   for each $C\in\mathcal{C}$,
-%   either  $B_G(V(C),r)$ is unicyclic
-%   or $|V(C)|\le 6r+2$.
-%   Then, for every $k\ge |\mathcal{C}|$, $d\in\{0,\ldots,r\}$
-%   the following alternative holds:
-%   \begin{compactenum}[(a)]
-%     \item $G$ contains a cycle $C'$ such that
-%     \begin{compactenum}[(i)]
-%       \item $\mathcal{C}\cup\{C'\}$ is a $2(r-d)/5$-packing and
-%       %\item $\dist_G(V(C'),\bigcup_{C\in\mathcal{C}} V(C))\ge 2(r-d)/5$ and
-%       \item $B_G(V(C'),(r-d)/5)$ is unicyclic or $C'$ has length at most $6(r-d)/5+2$;
-%     \end{compactenum}
-%     \item $\rho_d(G)\ge k$; or
-%     \item $\tau_{r'}(G) \le f(k)+ |\mathcal{C}|$ for $r':=7r+2$.
-%   \end{compactenum}
-% \end{lem}
-
-% \pat{Suggestion: Replace alternatives (b) and (c) in \cref{a_or_b} with  $G-B_G(V(C_1\cup\cdots\cup C_{p-1}),r-d)$ is a forest.  Then the proof is one paragraph and we can use a separate lemma to explain that this alternative implies one of (b) or (c).}
-
-
-% \begin{lem}\label{a_or_b}
-%   Let $G$ be a graph and let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that, for each $i\in\{1,\ldots,p-1\}$,  $G[B_G(V(C_i),r)]$ is unicyclic or $|V(C_i)|\le 6r+2$.  Then, for every $k\ge p$, $d\in\{0,\ldots,r\}$
-%   %\ge p-1$
-%   , at least one of the following ((a), (b), or (c)) is true:
-%   \begin{compactenum}[(a)]
-%     \item $G$ contains a cycle $C_p$ such that
-%     \begin{compactenum}[(i)]
-%       \item $\dist_G(V(C_p),V(C_1\cup\cdots\cup C_{p-1}))\ge 2(r-d)/5$ and
-%       \item $G[B_G(V(C_p),(r-d)/5)]$ is unicyclic or $|V(C_p)|\le 6(r-d)/5+2$;
-%     \end{compactenum}
-%     \item $\rho_d(G)\ge k$; or
-%     \item $\tau_{r'}(G) \le f(k)+p-1$ for $r':=4r+1$.
-%   \end{compactenum}
-% \end{lem}
-
-% \begin{proof}
-%   First, suppose that $G$ contains a cycle $C$ such that $\{C_1,\ldots,C_{p-1},C\}$ is an $(r-d)$-packing of cycles in $G$.  Apply \cref{short_or_unicycle_nearby} with $t:=(r-d)/5$ to find a cycle $C_p$ with $V(C_p)\subseteq B_G(V(C),3t)$ such that $G[B_G(V(C_p),t)]$ is unicyclic or $|V(C_p)|\le 6t+2$.  Thus, $C_p$ satisfies (ii).  For each $i\in\{1,\ldots,p-1\}$, $\dist_G(V(C_p),V(C_i))\ge \dist_G(V(C),V(C_i))-3t > r-d - 3t = 2t$, so $C_p$ satisfies (i). \pat{We actually need $2t+1$ here if we want a $2t$-packing.}
-
-%   Now, suppose that $G$ contains no such cycle.  Let $I:=\{i\in\{1,\ldots,p-1\}:|V(C_i)|\le 6r+2\}$ and let $\overline{I}:=\{1,\ldots,p-1\}\setminus I$.
-%   Let $X'':=\bigcup_{i\in I}B_G(V(C_i),r-d)$.  Apply the Hungarian Method (\cref{hungarian_method}) to $G$,$X''$, and $\{C_i:i\in\overline{I}\})$ to deduce that at least one of the following holds:
-%   \begin{compactenum}[(a)]\setcounter{enumi}{1}
-%     \item $\rho_d(G)\ge k$.  In this case there is nothing more to prove.
-%     \item There exists $X'\subseteq V(G)$ such that $|X'|\le f(k,p)$ and $G-(B_G(X'',d)\cup B_{G}(X',r+2d))$
-%     \piotr{$G-(B_G(\bigcup_{i\in I} V(C_i),r)\cup B_{G}(X',r+d))$} is a forest. For each $i\in I$, let $v_i$ be a vertex of $C_i$, define $X:=\{v_i:i\in I\}\cup X'$.  We claim that $G-B_G(X,r')$ is a forest.  Indeed, for each $i\in I$, $B_G(v_i,4r+1)\supseteq B_G(V(C_i),r)$, so $\bigcup_{i\in I}B_G(v_i)\supseteq B_G(X'',d)$, so $B_G(X,r')\supseteq B_G(X'',d)\cup B_{G}(X',r+2d)$. \qedhere
-%      %
-%      %
-%      %
-%      %
-%      %
-%      % Indeed, since $G''-B_G(X',r+2d)$ is acyclic, any cycle $C$ of $G$ that does not contain a vertex in $B_G(X',r')\supseteq B_G(X',r+2d)$ must contain a vertex in $V(G)\setminus V(G'')=B_G(\bigcup_{i\in I}V(C_i),r)\subseteq B_G(X'',7r)$.
-%     %
-%     % G''$ contains cycles $D_1,\ldots,D_k$ such that $\dist_{G'}(V(D_i),V(D_j))\ge d$ for each distinct $i,j\in\{1,\ldots,k\}$.  Observe that, for any two vertices $v,w\in V(G'')$, $\dist_{G'}(v,w)\ge d$ implies that $\dist_{G}(v,w)\ge d$.  Therefore $D_1,\ldots,D_k$ is a $d$-packing of cycles in $G$, so $\rho_d(G)\ge k$.
-%   \end{compactenum}
-% \end{proof}
-
-
-
-
-% Our proof makes use of an Erd\H{o}s-P\'osa type result of \citet{gyarfas.lehel:helly} which we now explain.  Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of forests.  (So $T_i$ is a forest, for each $i\in\{1,\ldots,p\}$.)  A \defin{$p$-subtree} (respectively, \defin{$p$-subgraph}) of $\mathcal{T}$ is a $p$-tuple $\mathcal{A}:=(A_1,\ldots,A_p)$ where $A_i$ is a subtree (respectively, subgraph) of $T_i$ for each $i\in\{1,\ldots,p\}$.  Two $p$-subgraphs $\mathcal{A}:=(A_1,\ldots,A_p)$ and $\mathcal{B}:=(B_1,\ldots,B_p)$ of $\mathcal{T}$ \defin{intersect} if $V(A_i)\cap V(B_i)\neq\emptyset$ for at least one $i\in\{1,\ldots,p\}$, otherwise $\mathcal{A}$ and $\mathcal{B}$ are \defin{disjoint}.
-
-% \piotr{We need more than subtrees. We need a new parameter, say $c$, and we need each $A_i$ to have at most $c$ components. In our application we will work with $c=2$.}
-
-% \pat{If we can do this, then we can easily deal with the fact that our graphs are unicyclic and not trees.  If $B$ is a ball in a unicycle $U$ and $T$ is a tree obtained by removing one edge from $U$, then $B$ is contained in two subtrees of $T$.}
-
-% \begin{lem}[\citet{gyarfas.lehel:helly}]\label{gyarfas_lehel}
-%   There exists a function $\ell:\N\times\N\to\N$ such that the following is true, for every $p,k\in\N$.
-%   Let $\mathcal{T}:=(T_1,\ldots,T_p)$ be a $p$-tuple of forests and let $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ be a set of $p$-subtrees of $\mathcal{T}$. Then either,
-%   \begin{compactenum}[(a)]
-%     \item $\{\mathcal{A}_1,\ldots,\mathcal{A}_m\}$ contains a set of $k$ pairwise-disjoint $p$-subtrees of $\mathcal{T}$; or
-%     \item there exists a $p$-subgraph $\mathcal{X}:=(X_1,\ldots,X_k)$ of $\mathcal{T}$ with $\sum_{i=1}^k|V(X_i)|\le \ell(p,k)$ such that $\mathcal{A}_i$ intersects $\mathcal{X}$ for each $i\in\{1,\ldots,m\}$.
-%   \end{compactenum}
-% \end{lem}
-
-% \begin{lem}[Hungarian Method]\label{hungarian_method}
-%   There exists a non-decreasing function $f:\N^2\to N$ such that the following is true: Let $d\ge 1$ and $r\ge d$ be integers.
-%   Let $G$ be a graph. Let $X''\subseteq V(G)$. Let $C_1,\ldots,C_{p-1}$ be a $2r$-packing of cycles in $G$ such that
-%   \begin{compactenum}[(i)]
-%     \item $G[B_G(V(C_i),r)]$ is unicyclic for each $i\in\{1,\ldots,p-1\}$;
-%     \item $\dist_G(V(C_i),X'')\ge r+d$ for each $i\in\{1,\ldots,p-1\}$; and
-%     \item $F:=G-(X''\cup \bigcup_{i=1}^{p-1} B_G(V(C_i),r-d))$ is a forest.
-%   \end{compactenum}
-%   Then $\rho_d(G)\ge k$ or there exists $X'\subseteq V(G)$ of size at most $f(k,p)$ such that $G-(B_G(X'',d)\cup B_G(X',r+2d))$ is a forest.
-% \end{lem}
-
-% \begin{proof}
-%   For each $i\in\{1,\ldots,p-1\}$, select an arbitrary vertex $v_i\in V(C_i)$.  Let $T_i:=G[B_G(V(C_i),r)]-B_G(v_i,r)$.  By (i), $T_i$ is a forest, for each $i\in\{1,\ldots,p-1\}$.
-%   Our strategy is use \cref{gyarfas_lehel} on the $(2p-1)$-tuple $(F,T_1,\ldots,T_{p-1},T_1,\ldots,T_{p-1})$.
-
-%   Define $F^-:=G-(X\cup \bigcup_{i=1}^p B_G(V(C_i),r-1))$.  Since $F$ is a forest and $F^-$ is a subgraph of $F$, $F^-$ is also a forest.
-%   An \defin{$(i,j)$-$F^-$-path} is a path $P$ in $F^-$ from a vertex $s$ with  $\dist_G(s,V(C_i))=r$ to a vertex $t$ with $\dist_G(t,V(C_j))=r$.  By (i), there is a unique shortest path $s_r,s_{r-1},\ldots,s_0$ in $G$ from $s_r:=s$ to the unique vertex $s_0\in V(C_i)$ with $\dist(s,s_0)=r$.  Similarly, there is a unique path $t_r,\ldots,t_0$ from $t_r:=t$ to the unique vertex $t_0\in V(C_j)$ with $\dist(t,t_0)=r$.  We say that $P$ is \defin{admissible} if $s_0\in V(T_i)$ and $t_0\in V(T_j)$. If $P$ is admissible then we define $P(i,j)$ to be the path in $G$ obtained by concatenating $s_0,\ldots,s_{r-1}$, $P$, and $t_{r-1},\ldots,t_0$.  We map the $(i,j)$-$F^-$-path $P$ onto the $(2p-1)$-subtree $\Phi(P):=(F_P, S_{1,P},\ldots,S_{p-1,P},T_{1,P},\ldots,T_{p-1,P})$ where
-%   \begin{itemize}
-%     \item $F_P:= F[B_F(V(P-\{s,t\}),d)]$;
-%     \item $S_{i,P}:=T_i[B_{T_i}(\{s_0,\ldots,s_{r-d}\},d)]$;
-%     \item $S_{i',P}$ is the null graph for all $i'\in\{1,\ldots,p-1\}\setminus\{i\}$.
-%     \item $T_{j,P}:=T_j[B_{T_j}(\{t_0,\ldots,t_{r-d}\},d)]$.
-%     \item $T_{j',P}$ is the null graph for all $j'\in\{1,\ldots,p-1\}\setminus\{j\}$.
-%   \end{itemize}
-%   We rely on the following important property of this mapping:
-%   \begin{clm}
-%     If $P$ is an admissible $(i,j)$-$F^-$-path, $P'$ is an admissible $(i',j')$-$F^-$-path and $\Phi(P)$ and $\Phi(P')$ are disjoint, then $\dist_G(V(P(i,j),V(P'(i',j')))\ge d$.
-%   \end{clm}
-%   \begin{clmproof}
-%      Suppose that $\dist_G(V(P(i,j),V(P'(i',j')))< d$ and let $a\in V(P(i,j))$ and $b\in V(P'(i,j))$ be chosen so that $\dist_G(a,b)<d$.
-%      \begin{compactitem}
-%        \item If $a,b\in V(F^-)$, then $\dist_G(a,b)=\dist_F(a,b)$ then $F_P$ and $F_{P'}$ each contain $b$, so $\Phi(P)$ and $\Phi(P')$ are not disjoint.
-%        \item If $a\in BV(C_i)$
-%      \end{compactitem}
-%   \end{clmproof}
-%   [Continue]
-% \end{proof}
-
-% \begin{thm}
-%   There exists $f:\N\to\N$ and $g:\N^2\to\N$ such that for every graph $G$, every integer $k\ge 0$ and every integer $d\ge 0$, $\rho_d(G)\ge k$ or $\tau_{g(k,d)}(G)\le f(k)$ where $g(k,d):=7d5^k+2$ and $f(k):=f(k,k)$ is the function in \cref{hungarian_method}.
-% \end{thm}
-
-% \begin{proof}
-%   \pat{Working here.}
-%   If $G$ is a forest, then $\tau_0(G)=0$ and there is nothing to prove. Otherwise, let $C_1$ be the shortest cycle in $G$.  We greedily construct a sequence of cycles $C_1,\ldots,C_p$ in $G$ and integers $r_1,\ldots,r_p$ with the following properties:
-%   \begin{compactenum}
-%     \item $r_{i+1}\le r_i/2$ for each $i\in\{1,\ldots,p-1\}$
-%     \item $\dist_G(V(C_i),V(C_1\cup\cdots\cup C_{i-1}))\ge 2r_i+1$
-%   \end{compactenum}Let $r:=r(\{C_1,\ldots,C_p\}):=(\min\{\dist_G(V(C_i),V(C_j)): 1\le i < j \le p\}-1)/10$. (If $p=1$, we define $r:=\infty$.  Thus $C_1,\ldots,C_p$ is a $10r$-packing of cycles in $G$.  We will always guarantee that $r\ge 10d$ and that, for each $i\in\{1,\ldots,p\}$, $G[B_G(V(C_i),r)]$ is unicyclic or $|V(C_i)|\le 6r+2$.
-
-%   Suppose that we have already constructed $C_1,\ldots,C_p$ satisfying this condition.  Let $C$ be a cycle in $G$ that maximizes $\dist_G(V(C),V(C_1\cup\cdots\cup V(C_p)))$.  We distinguish between the following cases:
-%   \begin{itemize}
-%     \item $\dist_G(V(C),V(C_1\cup\cdots\cup V(C_p))) < 9d$.  Stop and use Hungarians.  (Probably we should replace alternatives (b) and (c) in \cref{coolio} with a simple condition of the form $G-B_G(V(C_1\cup\cdots\cup C_{p-1}),r-d)$ is a forest.)
-%     \item $9d\le \dist_G(V(C),V(C_1\cup\cdots\cup V(C_p)))\le 10r+?$.  Add $C$ to the packing and tighten everything using \cref{short_or_unicycle_nearby}.
-%     \item $\dist_G(V(C),V(C_1\cup\cdots\cup V(C_p)))> 10r+?$.  Can't happen since then we would have chosen $C$ in some earlier step.
-%   \end{itemize}
-
-
-
-
-%   \pat{Old stuff:}
-%   Beginning with $r:=d?^k$ and repeatedly applying \cref{a_or_b} we either find cycles $C_1,\ldots,C_k$ that prove $\rho_d(G)\ge k$ or that $\tau_{7d5^k+2}(G) \le f(k)$.  \pat{This isn't quite complete.  Each time to we apply \cref{a_or_b} to find $C_p$, we need to tighten each of $C_1,\ldots,C_{p-1}$ using \cref{short_or_unicycle_nearby}. This is ok, since $r$ is decreasing exponentially, so each $C_i$ will not wander very far from its original cycle.}
-% \end{proof}
-
-% \section{Pat's Playground}
-
-% Going back to an old idea that I couldn't get to work before, but I think it can take care of our endgame problem.
-
-
-% Let $C_1,\ldots,C_p$ be a maximal collection of cycles in $G$ that satisfy the following conditions (for $r\ge 100d$):
-% \begin{compactitem}
-%     \item $C_1,\ldots,C_p$ is a $2d$-packing of cycles in $G$.
-%     \item $G[B_G(V(C_i),r)]$ is unicyclic.
-% \end{compactitem}
-% Let $C$ be shortest cycle in $G-B_G(V(C_1\cup\cdots\cup C_p),r-d)$.  Since $C_1,\ldots,C_p$ is maximal, it must be that $B_G(V(C),r)$ is not unicyclic.
-% By \cref{short_or_unicycle_nearby}, $B_G(V(C),3r)$ contains a cycle $C'$ such that $|V(C')|\ge 6r+2$ or $B_G(V(C'),r)$ is unicyclic.  In the former case, we will eventually put $B_G(V(C'),3r)$ into our hitting set.  In the latter case, it must be that $\dist_G(V(C'),V(C_i))\le 2d$ for some $i\in\{1,\ldots,p\}$.  Since $G[B_G(V(C_i),r))]$ is unicyclic, $C'$ contains an edge $vw$ not in $G[B_G(V(C_i),r))]$.  In fact, it contains an edge $vw$ with $\dist_G(v,V(C_i))=r$ and $\dist_G(v,V(C_i))\in\{r,r+1\}$.
-
 
 \bibliographystyle{plainurlnat}
 \bibliography{cep}
