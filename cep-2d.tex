@@ -448,11 +448,11 @@ $G$ contains $k$ vertex-disjoint cycles.
 \begin{proof}
   Let $d$ and $k$ be non-negative integers. Let $G$ be a graph. If $G$ contains a $d$-packing of $k$ cycles then there is nothing to prove. Thus, assume the opposite. Let $\set{\mathdefin{C_1,\ldots,C_p}}$ be a maximal $2d$-packing of cycles that are $d$-unicyclic in $G$.  Since $G$ has no $d$-packing of $k$ cycles, $p<k$.
 
-  Begin with every vertex of $G$ \defin{unmarked}.  While $G$ contains a cycle $D$ having no marked vertices and no vertex in $B_G(\bigcup_{i=1}^p V(C_i),5d)$, do the following:  Apply \cref{short_or_unicycle_nearby} to $D$ to find a cycle $D'$ with all vertices in  $B_G(V(D),3d)$ such that either $|D'|\leq 6d+2$ or $D'$ is $d$-unicyclic in $G$. Since $V(D)\cap B_G(\bigcup_{i=1}^p V(C_i),5d)=\emptyset$ and $V(D')\subseteq B_G(V(D),3d)$, we have that $V(D')\cap B_G(\bigcup_{i=1}^p V(C_i),2d)=\emptyset$. Since $\{C_1,\ldots,C_p\}$ is maximal, $D'$ is not $d$-unicyclic in $G$, so $D'$ has length at most $6d+2$.  \defin{Mark} all vertices in $B_G(V(D'),d)$. This completes the description of the process.  Let $\mathdefin{M}$ be the set of vertices of $G$ marked by the process.  The set $\{D_1,\ldots,D_{q}\}$ of cycles found by this process is a $d$-packing of cycles in $G$.  Since $G$ has no $d$-packing of size $k$, $q<d$. Let $\mathdefin{X_M}:=\{x_1,\ldots,x_{q}\}$ where  $x_i$ is a vertex of $D_i$ for each $i\in\{1,\ldots,q\}$. Then $M\subseteq B_G(X_M,4d+1)$.
+  Begin with every vertex of $G$ \defin{unmarked}.  While $G$ contains a cycle $D$ having no marked vertices and no vertex in $B_G(\bigcup_{i=1}^p V(C_i),5d)$, do the following:  Apply \cref{short_or_unicycle_nearby} to $D$ to find a cycle $D'$ with all vertices in  $B_G(V(D),3d)$ such that either $|D'|\leq 6d+2$ or $D'$ is $d$-unicyclic in $G$. Since $V(D)\cap B_G(\bigcup_{i=1}^p V(C_i),5d)=\emptyset$ and $V(D')\subseteq B_G(V(D),3d)$, we have that $V(D')\cap B_G(\bigcup_{i=1}^p V(C_i),2d)=\emptyset$. Since $\{C_1,\ldots,C_p\}$ is maximal, $D'$ is not $d$-unicyclic in $G$, so $D'$ has length at most $6d+2$.  \defin{Mark} all vertices in $B_G(V(D'),d)$. This completes the description of the process.  Let $\mathdefin{M}$ be the set of vertices of $G$ marked by the process and let $D'_1,\ldots,D'_{q}$ be the sequence of cycles found by this process. Then $\{D'_1,\ldots,D'_q\}$ is a $d$-packing of cycles in $G$.  Since $G$ has no $d$-packing of size $k$, $q<k$. Let $\mathdefin{X_M}:=\{x_1,\ldots,x_{q}\}$ where  $x_i$ is a vertex of $D'_i$ for each $i\in\{1,\ldots,q\}$. Then $M\subseteq B_G(X_M,4d+1)$.
 
 Every cycle in $G-M$ contains a vertex in $\bigcup_{i=1}^p B_G(V(C_i),5d)$.
-Let $\mathdefin{R}:=7d$.
-Let
+Let $\mathdefin{R}:=7d$,
+let
 \[
   \textstyle\mathdefin{F_0}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-2d)\right)
 \]
@@ -460,11 +460,11 @@ and let
 \[
   \textstyle\mathdefin{F^-_0}:=G-\left(M\cup \bigcup_{i=1}^p B_G(V(C_i),R-d)\right) \enspace .
 \]
-Then $F_0$ is a forest and $F^-_0$  (which is an induced subgraph of $F_0$) is also a forest.
+Then $F_0$ is an induced forest in $G$ and $F^-_0$  is an induced forest in $F_0$.
 
-For each $i\in\{1,\ldots,p\}$, apply \cref{grow_unicycle} to obtain a set $\mathdefin{Y_i}\subseteq V(G)\setminus B_G(V(C_i),d)$ and a set $\mathdefin{X_i}\subseteq V(G)$ of size $\Oh(k\log k)$ such that $Y_i\subseteq B_G(X_i,2R+d)$ and such that, for each $i\in\{1,\ldots,p\}$, $C_i$ is $R$-unicyclic in $G-Y_i$.  For each $i\in\{1,\ldots,p\}$, let $U_i$ be the component of $G[B_{G-Y_i}(V(C_i),R)]$ that contains $V(C_i)$ and let $U_i^-:=U_i[B_{G-Y_i}(V(C_i),R-d)]$.  Then each of $U_i$ and $U^-_i$ is a unicyclic graph whose only cycle is $C_i$.   For each $i\in\{1,\ldots,p\}$, let $y_i$ be an arbitrary vertex of $C_i$, let $F_i:=U_i-y_i$, and let $F^-_i:=U^-_i-y_i$. Then $F_i$ and $F_i^-$ are forests, for each $i\in\{1,\ldots,p\}$.
+For each $i\in\{1,\ldots,p\}$, apply \cref{grow_unicycle} to obtain a set $\mathdefin{Y_i}\subseteq V(G)\setminus B_G(V(C_i),d)$ and a set $\mathdefin{X_i}\subseteq V(G)$ of size $\Oh(k\log k)$ such that $Y_i\subseteq B_G(X_i,2R+d)$ and $C_i$ is $R$-unicyclic in $G-Y_i$.  For each $i\in\{1,\ldots,p\}$, let $\mathdefin{U_i}$ be the component of $G[B_{G-Y_i}(V(C_i),R)]$ that contains $V(C_i)$ and let $\mathdefin{U_i^-}:=U_i[B_{G-Y_i}(V(C_i),R-d)]$.  Then each of $U_i$ and $U^-_i$ is a unicyclic graph whose only cycle is $C_i$.   For each $i\in\{1,\ldots,p\}$, let $\mathdefin{y_i}$ be an arbitrary vertex of $C_i$, let $\mathdefin{F_i}:=U_i-y_i$, and let $\mathdefin{F^-_i}:=U^-_i-y_i$. Then $F_i$ and $F_i^-$ are forests, for each $i\in\{1,\ldots,p\}$.
 
-For each $(i,j)$ with $1\le i < j \le p$, let $\mathdefin{Y_{i,j}}:=B_{G-Y_i}(V(C_i),R)\cap B_{G-Y_j}(V(C_j),R)$.  Apply \cref{double_unicycle} to $C_i$ and $C_j$ to obtain a subset $\mathdefin{X_{i,j}}$ of $V(G)$ such that $Y_{i,j}\subseteq B_G(X_{i,j},2R+d) \cup B_G(Y_i\cup Y_j,R)$.
+For each $(i,j)$ with $1\le i < j \le p$, let $\mathdefin{Y_{i,j}}:=B_{G-Y_i}(V(C_i),R)\cap B_{G-Y_j}(V(C_j),R)$.  Apply \cref{double_unicycle} to $C_i$ and $C_j$ to obtain $\mathdefin{X_{i,j}}\subseteq V(G)$ such that $Y_{i,j}\subseteq B_G(X_{i,j},2R+d) \cup B_G(Y_i\cup Y_j,R)$.
 
 % Let
 % \[
@@ -473,14 +473,14 @@ For each $(i,j)$ with $1\le i < j \le p$, let $\mathdefin{Y_{i,j}}:=B_{G-Y_i}(V(
 % Then $F^-$ is a forest, since $F^-\subseteq F$.
 
 % \pat{We need to rework this definition so that we can have admissible tuples of the form $(e,i,e,j)$ with $i\neq j$. Currently, the forest leg of such a tuple has no vertices, but we still need to hit it. (Think of a cycle $y_1,\ldots,y_p$ where $y_i$ is in $B_G(V(C_i),R)$ and not in any other ball.) I think this means that we want to define the forest leg of $(e,i,e',j)$ as $eP_0e'$.}
-Let $i,j\in[p]$. An \defin{$i$-exit edge} is an edge $e$ of $U_i$ with exactly one endpoint in $U^-_i$.
+For $i\in\{1,\ldots,p\}$, an \defin{$i$-exit edge} is an edge $e$ of $U_i$ with exactly one endpoint in $U^-_i$.
 A $4$-tuple $(e,i,e',j)$ is a \defin{good tuple} if
 \begin{compactitem}
-  \item $e\neq e'$ and $e$ and $e'$ are incident to the same component of $F^-$;
+  \item $e\neq e'$ and $e$ and $e'$ are incident to the same component of $F_0^-$;
   \item $e$ is an $i$-exit edge;
   and \item $e'$ is a $j$-exit edge.
 \end{compactitem}
-Each good tuple $t:=(e,i,e',j)$  defines a walk $\mathdefin{W_t}:=P_1eP_0e'_2$ in $G$ where
+Each good tuple $t:=(e,i,e',j)$  defines a walk $\mathdefin{W_t}:=P_1eP_0e'P_2$ in $G$ where
 \begin{compactitem}
   \item $P_1$ is the shortest path in $U_i^-$ from $V(C_i)$ to the end point of $e$ in $U^-_i$;
   \item $P_0$ is the unique path in $F_0^-$ from the endpoint of $e$ in $F^-_0$ to the endpoint of $e'$ in $F^-_0$; and
@@ -517,8 +517,8 @@ A good tuple $t$ is \defin{admissible} if $B_G(V(W_t),d) \cap M' = \emptyset$.
   \begin{compactenum}[(i)]
     \item $V(P_1)\cap V(P_0)=\emptyset$ and $V(P_2)\cap V(P_0)=\emptyset$;\label[p]{gif_disjoint}
     \item $V(P_1)\cap B_G(V(C_\ell),R)=\emptyset$ for each $\ell\in\{1,\ldots,p\}\setminus\{i\}$ and $V(P_2)\cap B_G(V(C_\ell),R)=\emptyset$ for each $\ell\in\{1,\ldots,p\}\setminus\{j\}$;\label[p]{gif_unique_ends}
-    \item $G[B_G(V(P_0),d)]=F_0[B_{F_0}(V(P_0),d)]$; \label[p]{gif_zero}
-    \item $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$ and $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$; \label[p]{gif_ij}
+    \item $G[B_G(V(P_0),d)]=F_0[B_{F_0}(V(P_0),d)]$; \pat{Maybe just show $B_G(V(P_0),d)=B_{F_0}(V(P_0),d)$?}; \label[p]{gif_zero}
+    and \item $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$ and $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$; \pat{Similar comment to the previous.}\label[p]{gif_ij}
   \end{compactenum}
 \end{clm}
 
@@ -531,10 +531,11 @@ A good tuple $t$ is \defin{admissible} if $B_G(V(W_t),d) \cap M' = \emptyset$.
     \item Since $t$ is admissible, $B_G(V(P_0),d)$ contains no vertex in $M$.  Since $P_0\subseteq F^-_0$, $B_G(V(P_0),d)$ contains no vertex in $B_G(V(C_i),R-2d)$ for each $i\in\{1,\ldots,p\}$.  Therefore $B_G(V(P_0),d)\subseteq V(F_0)$.  Since $F_0$ is an induced subgraph of $G$,  $B_G(V(P_0),d)=B_{F_0}(V(P_0),d)$.  Again, since $F$ is an induced subgraph of $G$, $G[B_G(V(P_0),d)]=F_0[B_{F_0}(V(P_0),d)]$.
 
     \item Since $t$ is admissible, $B_G(V(P_1),d)$ contains no vertex in $Y_i$.  Therefore,
-    $B_G(V(P_1),d)=B_{G-Y_i}(V(P_1),d)$. Since $P_1$ contains a vertex of $C_i$, $P_1$ is contained in $U_i$ and $B_G(V(P_1),d)=B_{U_i}(V(P_1),d)$.  Since $t$ admissible, $B_G(V(P_1),d)$ does not contain $y_i$.  Since $F_i$ is an induced subgraph of $G$, $B_G(V(P_1),d)=B_{F_i}(V(P_1),d)$.  Since $F_i$ is an induced subgraph of $G$, $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$.  The same argument, using $j$ in place of $i$ and $P_2$ in place of $P_1$ establishes that $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$. \qedhere
+    $B_G(V(P_1),d)=B_{G-Y_i}(V(P_1),d)$. Since $P_1$ contains a vertex of $C_i$, $P_1$ is contained in $U_i$ and $B_G(V(P_1),d)=B_{U_i}(V(P_1),d)$.  Since $t$ is admissible, $B_G(V(P_1),d)$ does not contain $y_i$.  Since $F_i$ is an induced subgraph of $G$, $B_G(V(P_1),d)=B_{F_i}(V(P_1),d)$.  Since $F_i$ is an induced subgraph of $G$, $G[B_G(V(P_1),d)]=F_i[B_{F_i}(V(P_1),d)]$.  The same argument, using $j$ in place of $i$ and $P_2$ in place of $P_1$ establishes that $G[B_G(V(P_2),d)]=F_j[B_{F_j}(V(P_2),d)]$. \qedhere
   \end{compactenum}
 \end{clmproof}
 
+\pat{We could add a discussion here explaining everything about $W_t$ for admissible $t$: each of $P_1$ and $P_2$ is a path of length $R$, $P_1\cup P_2=W_t-V(F^-_0)$, $P_0=W_t[V(F_0)]$, etc.}
 
 The following lemma allows us to finish the proof by finding a set of balls that intersects the forest leg of each admissible tuple.
 
@@ -543,9 +544,7 @@ The following lemma allows us to finish the proof by finding a set of balls that
 \end{clm}
 
 \begin{clmproof}
-  Since $F_0^-$ is a forest, $C$ must contain some vertex not in $F_0^-$.  Therefore $C$ contains a vertex in $F_i$ for some $i\in\{1,\ldots,p\}$.
-
-  Since $F_i$ is an induced forest in $G$, $C$ contains a vertex not in $F_i$. If $C$ contains a vertex in $Y_i\cup\{y_i\}$ then we are done, since $Y_i\cup\{y_i\}\subseteq M'\subseteq B_G(M',R+d)$.
+  Since $F_0^-$ is a forest, $C$ must contain some vertex not in $F_0^-$.  If this vertex is in $M'$ then there is nothing more to prove. Therefore $C$ contains a vertex of $F^-_i$ for some $i\in\{1,\ldots,p\}$. \pat{Should we specify, in \cref{grow_unicycle}, that $Y_i=B_G(V(C_i),R)\setminus B_{G-Y_i}(V(C_i),R)$?  If not, then we should explain here why $C$ can't contain a vertex in $B_G(V(C_i),R)\setminus B_{G-Y_i}(V(C_i),R)$---it's because these vertices are contained in $B_G(Y_i,R)\subseteq B_G(M',R+d)$.}  Since $F^-_i$ is an induced forest in $G$, $C$ contains a vertex not in $F^-_i$. If $C$ contains a vertex in $Y_i\cup\{y_i\}$ then we are done, since $Y_i\cup\{y_i\}\subseteq M'\subseteq B_G(M',R+d)$.
 
   Therefore, $C$ contains an $i$-exit edge $v_0v_1$ with $v_0\in V(F^-_i)$ and $v_1\not\in V(F^-_i)$ for some $i\in\{1,\ldots,p\}$.  If $v_0\in V(F^-_j)$ for some $j\in\{1,\ldots,p\}\setminus\{i\}$, then $v_0\in Y_{i,j}$ (if $i< j$) or $v_0\in Y_{j,i}$ (if $j<i$).  In either case, $v_0\in M'\subseteq B_G(M',d)$.  We now assume that $v_0\notin F^-_j$ for any $j\in\{1,\ldots,p\}$.  Therefore $v_1$ is a vertex of $F_0^-$.
 
@@ -610,7 +609,7 @@ Let $t$ be an admissible good tuple. Then
   \begin{enumerate}[(i)]
     \item Since $P_0$ is a connected subgraph of $F_0$, $G[\Psi_0(t)]=F_0[\Psi_0(t)]=F_0[B_{F_0}(V(P_0),d)]$ is a connected subgraph of $F_0$.  By \cref{grow_in_forests}\cref{gif_zero}, $F_0[\Psi_0(t)]=G[\Psi_0(t)]$.
 
-    \item For each $\ell\in\{1,\ldots,p\}$, $\Psi_\ell(t)$ is a ball, in $F_\ell$ around zero one or two connected subgraphs of $F_\ell$.  Thus $F_\ell[\Psi_\ell(t)]$ has at most two connected components.  By \cref{grow_in_forests}\cref{gif_ij}, $F_\ell[\Psi_{\ell}(t)]=G[\Psi_{\ell}(t)]$. \qedhere
+    \item For each $\ell\in\{1,\ldots,p\}$, $\Psi_\ell(t)$ is a ball, in $F_\ell$ around zero, one, or two connected subgraphs of $F_\ell$.  Thus $F_\ell[\Psi_\ell(t)]$ has at most two connected components.  By \cref{grow_in_forests}\cref{gif_ij}, $F_\ell[\Psi_{\ell}(t)]=G[\Psi_{\ell}(t)]$. \qedhere
   \end{enumerate}
   % Let $P_1eP_0e'P_2:=W_t$.
   %
@@ -641,10 +640,11 @@ Let $t$ be an admissible good tuple. Then
 % \end{clmproof}
 
 \begin{clm}\label{overlap}
-  Let $t:=(e,i,e',j)$ be an admissible good tuple and let $P_0$ be the forest leg of $W_t$.  Then $\Psi_0(t)\supseteq V(Q_t)\cap V(F)$.
+  Let $t:=(e,i,e',j)$ be an admissible good tuple and let $P_0$ be the forest leg of $W_t$.  Then $\Psi_0(t)\supseteq V(W_t)\cap V(F)$.
 \end{clm}
 
 \begin{clmproof}
+  Let $(e,i,e',j):=W_t$.
   Let $v$ be a vertex in $V(Q_t)\cap V(F)$.  If $v\in V(F^-)$ then $v\in V(P_0)\subseteq\Psi_0(t)$ and there is nothing to prove.  Now assume $v\in V(F)\setminus V(F^-)$. Therefore $v\in B_G(V(C_\ell),R-d)\setminus B_G(V(C_\ell),R-2d)$ for some $\ell\in\{1,\ldots,p\}$.  More specifically, $\ell=i$ if $v\in V(P_1)$ and $\ell=j$ if $v\in V(P_2)$. Without loss of generality, suppose $v\in V(P_1)$, so $\ell=i$. Then $P_0$ contains an endpoint $w$ of the $i$-exit edge $e$. Then $v\in B_G(w,d)\subseteq\Psi_0(t)$.
 \end{clmproof}
 
