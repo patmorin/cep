@@ -284,95 +284,54 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 \end{lem}
 
 \begin{proof}
-    % For each $i\in[2]$ and each $v\in V(U_i)$, let $P_{i,v}$ be the shortest path from $v$ to $V(C_i)$ in $U_i$.
-    % Let $Y:=B_G(V(C_1),r)\cap B_G(V(C_2),r)$.
-    % For each vertex $y\in Y$, define $Q_y:= P_{1,y}\cup P_{2,y}$ and define $P_y$ to be a shortest path from $V(C_1)$ to $V(C_2)$ in $Q_y$.  Observe that, for each $y\in Y$, $P_y$ is a path between $V(C_1)$ and $V(C_2)$ of length at most $2r$.  (Such a path $P_y$ does not necessarily contain the vertex $y$.)
-    % A vertex $y\in Y$ \defin{uninteresting} if $y$ is a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$,  otherwise $y$ is \defin{interesting}.
-    % \piotr{Alternative paragraph:}
-    For each $i\in[2]$ and each $v\in V(U_i)$, let $P_{i,v}$ be the shortest path from $v$ to $V(C_i)$ in $U_i$.
-    Let $Y_0:=B_G(V(C_1),r)\cap B_G(V(C_2),r)$.
-    Let $Z$ be the set of edges of $G$ between $V(G_{1,r})$ and $V(G_{2,r})$.
-    For each $e=uv\in Z$ with $u\in V(G_{1,r})$ and $v\in V(G_{2,r})$, define $P_{1,e}:=P_{1,u}$ and $P_{2,e}=P_{2,v}$.
-    For each $x$ in $Y_0\cup Z$, define
-    $Q_x:=P_{1,x}\cup\set{x}\cup P_{2,x}$ and define $P_x$ to be a shortest path from $V(C_1)$ to $V(C_2)$ in $Q_x$.
+  For each $i\in[2]$ and each $v\in V(U_i)$, let $P_{i,v}$ be the shortest path from $v$ to $V(C_i)$ in $U_i$. Let $Y_0:=B_G(V(C_1),r)\cap B_G(V(C_2),r)$. Let $Z$ be the set of edges of $G$ between $V(G_{1,r})$ and $V(G_{2,r})$. For each $e=uv\in Z$ with $u\in V(G_{1,r})$ and $v\in V(G_{2,r})$, define $P_{1,e}:=P_{1,u}$ and $P_{2,e}=P_{2,v}$. For each $x$ in $Y_0\cup Z$, define $Q_x:=P_{1,x}\cup\set{x}\cup P_{2,x}$ and define $P_x$ to be a shortest path from $V(C_1)$ to $V(C_2)$ in $Q_x$.
 
-    Let $x$ be an element of $Y_0\cup Z$.  Since $\dist(V(C_1),V(C_2))>d\ge 0$, the cycles $C_1$ and $C_2$ are vertex disjoint.  The path $P_x$ is a path between $V(C_1)$ and $V(C_2)$ of length at least $1$ and at most $\len(P_{1,x})+1+\len(P_{2,x})\le 2r+1$.  ($P_x$ does not necessarily contain the vertex/edge $x$.)
-    We say that $x\in Y_0\cup Z$ is \defin{uninteresting} if $P_x$ contains a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$,  otherwise $x$ is \defin{interesting}.
+  Let $x$ be an element of $Y_0\cup Z$.  Since $\dist(V(C_1),V(C_2))>d\ge 0$, the cycles $C_1$ and $C_2$ are vertex disjoint.  The path $P_x$ is a path between $V(C_1)$ and $V(C_2)$ of length at least $1$ and at most $\len(P_{1,x})+1+\len(P_{2,x})\le 2r+1$.  ($P_x$ does not necessarily contain the vertex/edge $x$.) We say that $x\in Y_0\cup Z$ is \defin{uninteresting} if $P_x$ contains a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$,  otherwise $x$ is \defin{interesting}.
 
-    Let $H$ be an auxiliary graph whose vertex set is the set of interesting elements in $Y_0\cup Z$ and in which two distinct vertices $x$ and $x'$ are adjacent if and only if $\dist_G(V(P_x),V(P_{x'}))\leq d$.
-    Let $I$ be a maximal independent set in $H$.
-    We split the proof into two cases.  If
-    $|I|\geq \frac{1}{2}s(k)$ we will show that outcome \cref{double_unicycle:packing} holds.  Otherwise, we show that outcome \cref{double_unicycle:hitting} holds.
+  Let $H$ be an auxiliary graph whose vertex set is the set of interesting elements in $Y_0\cup Z$ and in which two distinct vertices $x$ and $x'$ are adjacent if and only if $\dist_G(V(P_x),V(P_{x'}))\leq d$. Let $I$ be a maximal independent set in $H$. We split the proof into two cases.  If $|I|\geq \frac{1}{2}s(k)$ we will show that outcome \cref{double_unicycle:packing} holds.  Otherwise, we show that outcome \cref{double_unicycle:hitting} holds.
 
-    First consider the case in which $|I|\ge\tfrac{1}{2}s(k)$.
-    Let $G':=C_1\cup C_2\cup\bigcup_{x\in I}P_x$.
-    For distinct $x,x'\in I$, $xx'$ is not an edge of $H$, so $\dist_G(V(P_x),V(P_{x'}))>d\ge 0$.
-    This together with the fact that $C_1$ is vertex-disjoint from $C_2$ gives that $G'$ contains only vertices of degree $2$ and degree $3$.
-    Recall that for each $x\in Y_0\cup Z$, the path $P_x$ contains two different endpoints.
-    Therefore, the degree-$3$ vertices of $G'$ are exactly the endpoints of paths in $\set{P_x\mid x\in I}$.
-    This implies that $G'$ contains $2|I|\geq s(k)$ vertices of degree $3$.
-    By \cref{thm:simonovits}, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
+  First consider the case in which $|I|\ge\tfrac{1}{2}s(k)$. Let $G':=C_1\cup C_2\cup\bigcup_{x\in I}P_x$. For distinct $x,x'\in I$, $xx'$ is not an edge of $H$, so $\dist_G(V(P_x),V(P_{x'}))>d\ge 0$. This together with the fact that $C_1$ is vertex-disjoint from $C_2$ gives that $G'$ contains only vertices of degree $2$ and degree $3$. Recall that for each $x\in Y_0\cup Z$, the path $P_x$ contains two different endpoints. Therefore, the degree-$3$ vertices of $G'$ are exactly the endpoints of paths in $\set{P_x\mid x\in I}$. This implies that $G'$ contains $2|I|\geq s(k)$ vertices of degree $3$. By \cref{thm:simonovits}, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles.
 
-    We claim that $\mathcal{D}$ is a $d$-packing of cycles in $G$. If $d=0$, this is immediate, because the cycles in $\mathcal{D}$ are pairwise vertex-disjoint.  Now suppose $d\ge 1$.
-    % The remainder of the proof of this claim is similar to that of the same claim in the proof of \cref{grow_unicycle}, except for one case that depends critically on the assumption that $\dist_G(V(C_1),V(C_2))>2d$.
-    Let $D$ and $D'$ be two distinct cycles in $\mathcal{D}$ and let $v\in V(D)$ and $v'\in V(D')$ be such that $\dist_G(v,v')=\dist_G(V(D),V(D'))$.  We must show that $\dist_G(v,v')>d$.
+  We claim that $\mathcal{D}$ is a $d$-packing of cycles in $G$. If $d=0$, this is immediate, because the cycles in $\mathcal{D}$ are pairwise vertex-disjoint.  Now suppose $d\ge 1$. Let $D$ and $D'$ be two distinct cycles in $\mathcal{D}$ and let $v\in V(D)$ and $v'\in V(D')$ be such that $\dist_G(v,v')=\dist_G(V(D),V(D'))$.  We must show that $\dist_G(v,v')>d$.
 
-%    If $v\in V(P_y)$ for some $y\in I$
+  If $v\in V(P_x)$ and $v'\in V(P_{x'})$ for some  $x,x' \in I$ such that $P_x\subseteq D$ and $P_{x'}\subseteq D'$ then, since $D$ and $D'$ are vertex-disjoint, $x\neq x'$, and therefore $\dist_G(v,v'))\ge  \dist_G(V(P_x),V(P_{x'}))>d$, as desired.  Therefore, without loss of generality we may assume that $v\in V(C_1)$ and that $v\notin V(P_x)$ for any $x\in I$ with $P_x\subseteq D$.
 
-    If $v\in V(P_x)$ and $v'\in V(P_{x'})$ for some  $x,x' \in I$ such that $P_x\subseteq D$ and $P_{x'}\subseteq D'$ then,
-    since $D$ and $D'$ are vertex-disjoint, $x\neq x'$, and therefore
-    $\dist_G(v,v'))\ge  \dist_G(V(P_x),V(P_{x'}))>d$, as desired.  Therefore, without loss of generality we may assume that $v\in V(C_1)$ and that $v\notin V(P_x)$ for any $x\in I$ with $P_x\subseteq D$.
-    % If $v'\in V(C_2)$ then $\dist_G(v,v')\ge \dist_G(V(C_1),V(C_2))>2d\geq d$, as required.
+  Let $P$ be a shortest path in $G$ between $v$ and $v'$.  Since $P$ is a shortest path in $G$ from $V(D)$ to $V(D')$, $E(P)\cap E(D)=\emptyset$ and $E(P)\cap E(D')=\emptyset$.  If the first edge $e$ of $P$ (incident to $v$) is an edge of $C_1$, then $e$ and the two edges of $D$ incident to $v$ are contained in $G'$. Therefore $v$ has degree $3$ in $G'$ and $v$ is the endpoint of $P_y$ for some $y\in I$ such that $P_y\subseteq D$.  This contradicts the definition of $v$. Thus, we assume that the first edge of $P$ (incident to $v$) is not in $C_1$.
 
-    Let $P$ be a shortest path in $G$ between $v$ and $v'$.  Since $P$ is a shortest path in $G$ from $V(D)$ to $V(D')$, $E(P)\cap E(D)=\emptyset$ and $E(P)\cap E(D')=\emptyset$.  If the first edge $e$ of $P$ (incident to $v$) is an edge of $C_1$, then $e$ and the two edges of $D$ incident to $v$ are contained in $G'$. Therefore $v$ has degree $3$ in $G'$ and $v$ is the endpoint of $P_y$ for some $y\in I$ such that $P_y\subseteq D$.  This contradicts the definition of $v$.
-    Thus, we assume that the first edge of $P$ (incident to $v$) is not in $C_1$.
+  If $P$ contains a vertex not in $B_G(V(C_1),d)$ then $\dist_G(v,v')=\len(P)>d$, as required.  Thus we assume that $V(P)\subseteq B_G(V(C_1),d)$. Since $C_1$ is $d$-unicyclic in $G$, this implies that $P\subseteq U_1$ with $\len(P)\leq d$ and $V(P)\cap V(C_1)=\set{v}$. Since $v'$ is an endpoint of $P$, this implies that $v'\notin V(C_1)$.  If $v'\in V(C_2)$ then $\dist_G(v,v')\ge \dist_G(V(C_1),V(C_2))>2d\geq d$, as required.
 
-    If $P$ contains a vertex not in $B_G(V(C_1),d)$ then $\dist_G(v,v')=\len(P)>d$, as required.  Thus we assume that $V(P)\subseteq B_G(V(C_1),d)$.
-    Since $C_1$ is $d$-unicyclic in $G$, this implies that $P\subseteq U_1$ with $\len(P)\leq d$ and $V(P)\cap V(C_1)=\set{v}$.
-    Since $v'$ is an endpoint of $P$, this implies that $v'\notin V(C_1)$.  If $v'\in V(C_2)$ then $\dist_G(v,v')\ge \dist_G(V(C_1),V(C_2))>2d\geq d$, as required.
+  The only remaining possibility is that $v'$ is an internal vertex of $P_{x'}$ for some $x'\in I$.  Since every internal vertex of $P_{x'}$ has degree $2$ in $G'$, this implies that  $P_{x'}\subseteq D'$. Let $w'$ be the endpoint of $P_{x'}$ in $C_1$. Since $x'\in I\subseteq V(H)$, $x'$ is interesting. Therefore $P_{x'}\subseteq P_{1,x'}\cup P_{2,x'}$ contains no vertex in $Y_1\cup Y_2$.
 
-    The only remaining possibility is that $v'$ is an internal vertex of $P_{x'}$ for some $x'\in I$.  Since every internal vertex of $P_{x'}$ has degree $2$ in $G'$, this implies that  $P_{x'}\subseteq D'$.
-    Let $w'$ be the endpoint of $P_{x'}$ in $C_1$. Since $x'\in I\subseteq V(H)$, $x'$ is interesting.
-    Therefore $P_{x'}\subseteq P_{1,x'}\cup P_{2,x'}$ contains no vertex in $Y_1\cup Y_2$.
+  Consider the maximal subpath $Q'$ of $P_{x'}$ that contains $w'$ and whose vertices are contained in $B_G(V(C_1),r)$.  We distinguish between two cases, depending on whether $v'\in V(Q')$ or not.
 
-    Consider the maximal subpath $Q'$ of $P_{x'}$ that contains $w'$ and whose vertices are contained in $B_G(V(C_1),r)$.  We distinguish between two cases, depending on whether $v'\in V(Q')$ or not.
+  First suppose that $v'\in V(Q')$. Let $Q$ be the subpath of $Q'$ from $w'$ to $v'$. Since $Q\subseteq Q'\subseteq P_{x'}$ contains  no vertex in $Y_1$ and $V(Q')\subseteq B_G(V(C_1),r)$, we have that $Q\subseteq U_1$. Since $U_1$ is a $C_1$-rooted spanning BFS-unicycle of $G_{1,r}$, $\dist_G(w',v')=\dist_{U_1}(w',v')=|Q|$. Observe that $Q$ is a shortest path in $G$ between $V(C_1)$ and $v'$, and thus $|Q| \leq \len(P) \leq d$. It follows that $Q\subseteq G[B_G(V(C_1),d)]$. Since $C_1$ is $d$-unicyclic, all paths from $V(C_1)$ to $v'$ in $G[B_G(V(C_1),d)]$ contain $w'$. In particular, $P\subseteq G[B_G(V(C_1),d)]$ is a path from $v\in V(C_1)$ to $v'$, so $w'\in V(P)$.  Since $V(P)\cap V(C_1)=\{v\}$, this implies that $v=w'$. However $v=w' \in V(P_{y'})\subseteq V(D')$. This implies that $v$ is a vertex of both $D$ and $D'$, which contradicts the fact that $D$ and $D'$ are vertex-disjoint.
 
-    First suppose that $v'\in V(Q')$. Let $Q$ be the subpath of $Q'$ from $w'$ to $v'$. Since $Q\subseteq Q'\subseteq P_{x'}$ contains  no vertex in $Y_1$ and $V(Q')\subseteq B_G(V(C_1),r)$, we have that $Q\subseteq U_1$. Since $U_1$ is a $C_1$-rooted spanning BFS-unicycle of $G_{1,r}$, $\dist_G(w',v')=\dist_{U_1}(w',v')=|Q|$. Observe that $Q$ is a shortest path in $G$ between $V(C_1)$ and $v'$, and thus $|Q| \leq \len(P) \leq d$. It follows that $Q\subseteq G[B_G(V(C_1),d)]$. Since $C_1$ is $d$-unicyclic, all paths from $V(C_1)$ to $v'$ in $G[B_G(V(C_1),d)]$ contain $w'$. In particular, $P\subseteq G[B_G(V(C_1),d)]$ is a path from $v\in V(C_1)$ to $v'$, so $w'\in V(P)$.  Since $V(P)\cap V(C_1)=\{v\}$, this implies that $v=w'$. However $v=w' \in V(P_{y'})\subseteq V(D')$. This implies that $v$ is a vertex of both $D$ and $D'$, which contradicts the fact that $D$ and $D'$ are vertex-disjoint.
-
-    Next we consider the case when $v'\notin V(Q')$. Let $q$ be the last vertex of $Q'$ and let $q'$ be the neighbour of $q$ in $P_{y'}$ that is not in $Q'$.  Then
-    \begin{align*}
-    \len(P_{y'})
-        & \ge \dist_G(w',q') + \dist_G(q',v') + \dist_G(v',V(C_2)) \\
-        & \ge \dist_G(V(C_1),q') + (\dist_G(V(C_1),q') - \dist_G(V(C_1),v')) \\
-        & \quad {} + (\dist_G(V(C_1),V(C_2))-\dist_G(v',V(C_1)) \\
-        & = 2\dist_G(V(C_1),q') - 2\dist_G(V(C_1),v') + \dist_G(V(C_1),V(C_2)) \\
-        & \geq 2(r+1) - 2d + (2d+1) \geq 2r+3 \enspace .
-    \end{align*}
-    (The second inequality follows from $\dist_G(V(C_1),q')\leq \dist_G(V(C_1),v')+\dist_G(v',q')$ and
-    $\dist_G(V(C_1),V(C_2))\le \dist_G(V(C_1),v')+\dist_G(v',V(C_2))$.) This contradicts the fact that $\len(P_{x'})\le \len(P_{1,x'})+\len(P_{2,x'})+1\le 2r+1$.  This completes the proof (assuming $|I|\ge\tfrac{1}{2}s(k)$) that outcome \cref{double_unicycle:packing} holds.
+  Next we consider the case when $v'\notin V(Q')$. Let $q$ be the last vertex of $Q'$ and let $q'$ be the neighbour of $q$ in $P_{y'}$ that is not in $Q'$.  Then
+  \begin{align*}
+  \len(P_{y'})
+    & \ge \dist_G(w',q') + \dist_G(q',v') + \dist_G(v',V(C_2)) \\
+    & \ge \dist_G(V(C_1),q') + (\dist_G(V(C_1),q') - \dist_G(V(C_1),v')) \\
+    & \quad {} + (\dist_G(V(C_1),V(C_2))-\dist_G(v',V(C_1)) \\
+    & = 2\dist_G(V(C_1),q') - 2\dist_G(V(C_1),v') + \dist_G(V(C_1),V(C_2)) \\
+    & \geq 2(r+1) - 2d + (2d+1) \geq 2r+3 \enspace .
+  \end{align*}
+  (The second inequality follows from $\dist_G(V(C_1),q')\leq \dist_G(V(C_1),v')+\dist_G(v',q')$ and $\dist_G(V(C_1),V(C_2))\le \dist_G(V(C_1),v')+\dist_G(v',V(C_2))$.) This contradicts the fact that $\len(P_{x'})\le \len(P_{1,x'})+\len(P_{2,x'})+1\le 2r+1$.  This completes the proof (assuming $|I|\ge\tfrac{1}{2}s(k)$) that outcome \cref{double_unicycle:packing} holds.
 
 
-    What remains is to consider the case where $|I|<\frac{1}{2}s(k)$.  Let
-    \[
-      \textstyle X:=\bigcup_{y\in I}\left( V(P_y)\cap(V(C_1)\cup V(C_2))\right) \enspace ,
-    \]
-    be the set of degree-$3$ vertices in $G'$.
-    Note that $|X| = 2\cdot|I| < s(k)$.
-    We now define the set $Y_Z\subseteq V(G)$, define $Y:=Y_0\cup Y_Z$, and show that this choice of $X$ and $Y$ satisfies \cref{double_unicycle:hitting}.
+  What remains is to consider the case where $|I|<\frac{1}{2}s(k)$.  Let
+  \[
+    \textstyle X:=\bigcup_{y\in I}\left( V(P_y)\cap(V(C_1)\cup V(C_2))\right) \enspace ,
+  \]
+  be the set of degree-$3$ vertices in $G'$. Note that $|X| = 2\cdot|I| < s(k)$. We now define the set $Y_Z\subseteq V(G)$, define $Y:=Y_0\cup Y_Z$, and show that this choice of $X$ and $Y$ satisfies \cref{double_unicycle:hitting}.
 
-    Consider some element $x\in Y_0\cup Z$.  If $x=y$ for some $y\in Y_0$ is a vertex and $y$ is a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$, then $y$ satisfies \cref{du_yi_hits_y}.
-    If $x=e$ is an edge in $Z$ and an endpoint of $e$ is  a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$, then we add this endpoint of $e$ to the set $Y_Z$ and this newly added vertex satisfies \cref{du_yi_hits_y}.
+  Consider some element $x\in Y_0\cup Z$.  If $x=y$ for some $y\in Y_0$ is a vertex and $y$ is a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$, then $y$ satisfies \cref{du_yi_hits_y}. If $x=e$ is an edge in $Z$ and an endpoint of $e$ is  a $U_i$-descendant of some vertex in $Y_i$ for some $i\in[2]$, then we add this endpoint of $e$ to the set $Y_Z$ and this newly added vertex satisfies \cref{du_yi_hits_y}.
 
-    Therefore, we assume that this is not the case, which implies that $x$ is interesting, so $x\in V(H)$.
-    Since $I$ is a maximal independent set in $H$, the set $I$ is also a dominating set.
-    Therefore, either $x\in I$ or $x$ has a neighbor in $I$.  In $G$, this translates into the statement:
-    there exists $x'\in I$ such that $\dist_G(V(P_x),V(P_{x'}))\le d$.
-    (This includes the case $x=x'$, which applies when $x\in I$.)
+  Therefore, we assume that this is not the case, which implies that $x$ is interesting, so $x\in V(H)$. Since $I$ is a maximal independent set in $H$, the set $I$ is also a dominating set. Therefore, either $x\in I$ or $x$ has a neighbor in $I$.  In $G$, this translates into the statement: there exists $x'\in I$ such that $\dist_G(V(P_x),V(P_{x'}))\le d$.
+  (This includes the case $x=x'$, which applies when $x\in I$.)
 
-    Let $x'\in I$ be such that $\dist_G(V(P_{x'}),V(P_x))\le d$.  Then $X$ contains the endpoints $u_1'$ and $u_2'$ of $P_{x'}$.  Then $V(P_{x'})\subseteq V(P_{1,x'}\cup P_{2,x'})\subseteq B_G(\{u_1',u_2'\},r)$.  Since $\dist_G(V(P_{x'}),V(P_x))\le d$, we have that
-    $B_G(\{u_1',u_2'\},r+d)$ contains some vertex in $V(P_x)\subseteq V(P_{1,x})\cup V(P_{2,x})$. If $x\in Y_0$ then $B_G(\{u_1',u_2'\},2r+d)$ contains $x$.  If $x\in Z$  then $B_G(\{u_1',u_2'\},2r+d)$ contains an endpoint of $x$.  We add this endpoint to the set $Y_Z$ and this newly added vertex satisfies \cref{du_ball_hits_y}.
+  Let $x'\in I$ be such that $\dist_G(V(P_{x'}),V(P_x))\le d$.  Then $X$ contains the endpoints $u_1'$ and $u_2'$ of $P_{x'}$.  Then $V(P_{x'})\subseteq V(P_{1,x'}\cup P_{2,x'})\subseteq B_G(\{u_1',u_2'\},r)$.  Since $\dist_G(V(P_{x'}),V(P_x))\le d$, we have that $B_G(\{u_1',u_2'\},r+d)$ contains some vertex in $V(P_x)\subseteq V(P_{1,x})\cup V(P_{2,x})$. If $x\in Y_0$ then $B_G(\{u_1',u_2'\},2r+d)$ contains $x$.  If $x\in Z$  then $B_G(\{u_1',u_2'\},2r+d)$ contains an endpoint of $x$.  We add this endpoint to the set $Y_Z$ and this newly added vertex satisfies \cref{du_ball_hits_y}.
 
-    Recall that $Y:=Y_0\cup Y_Z$.  We have just shown that $X$ and $Y$ satisfy \cref{something_hits_y}.  Furthermore, $Y_0=V(G_{1,r})\cap V(G_{2,r})$ and, for each $e\in Z$, $Y_Z$ contains an endpoint of $e$, so $Y$ satisfies \cref{y_covers_everything}.  Thus, the sets $X$ and $Y$ satisfy the conditions of outcome \cref{double_unicycle:hitting}.
+  Recall that $Y:=Y_0\cup Y_Z$.  We have just shown that $X$ and $Y$ satisfy \cref{something_hits_y}.  Furthermore, $Y_0=V(G_{1,r})\cap V(G_{2,r})$ and, for each $e\in Z$, $Y_Z$ contains an endpoint of $e$, so $Y$ satisfies \cref{y_covers_everything}.  Thus, the sets $X$ and $Y$ satisfy the conditions of outcome \cref{double_unicycle:hitting}.
 \end{proof}
 
 
