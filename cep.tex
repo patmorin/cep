@@ -10,6 +10,22 @@
 % \usepackage{todonotes}
 % \usepackage{comment}
 
+% Greek numbering system, taken from here: https://tex.stackexchange.com/questions/4058/greek-numbering
+\makeatletter
+\newcommand*{\greek}[1]{%
+  \expandafter\@greek\csname c@#1\endcsname
+}
+\newcommand*{\@greek}[1]{%
+  $\ifcase#1\or\alpha\or\beta\or\gamma\or\delta\or\varepsilon
+    \or\zeta\or\eta\or\theta\or\iota\or\kappa\or\lambda
+    \or\mu\or\nu\or\xi\or o\or\pi\or\varrho\or\sigma
+    \or\tau\or\upsilon\or\phi\or\chi\or\psi\or\omega
+    \else\@ctrerr\fi$
+}
+\makeatother
+
+
+
 \usepackage[inline]{enumitem}
 \newlist{tightenum}{enumerate}{3}
 \setlist[tightenum,1]{noitemsep,nosep,
@@ -193,11 +209,11 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 
 \begin{lem}\label{all_the_ys}
   Let $d,r,k$ be integers such that $0\leq d \leq r$ and $k\geq1$. Let $G$ be a graph and let $\mathcal{C}$ be a $2d$-packing of $d$-unicyclic cycles in $G$. Then either:
-  \begin{tightenum}%[\rm(a)]
+  \begin{tightenum}
     \item\label[p]{atys:packing} $G$ has a $d$-packing of $k$ cycles; or
 
     \item there exist $X,Y\subseteq V(G)$ such that
-    \begin{tightenum}%[\rm(i)]
+    \begin{tightenum}
       \item\label[p]{atys_unicycles} for each $C\in\mathcal{C}$ there exists a $C$-rooted BFS-spanning unicycle $U$ of $G[B_G(V(C),r)]$ such that $Y$ contains at least one endpoint of each edge in $G[B_G(V(C),r)]- E(U)$;
       \item\label[p]{atys_intersections} for each $\set{C,C'}\in\binom{\mathcal{C}}{2}$,  $B_{G}(V(C),r)\cap B_{G}(V(C'),r)\subseteq Y$ and $Y$ contains at least one endpoint of each edge of $G$ between $B_G(V(C),r)$ and $B_{G}(V(C'),r)$; and
       \item\label[p]{atys_balls} $|X|< 2k^2+(\binom{k}{2}+k)\cdot s(k)$ and $Y\subseteq B_G(X,2r+d)$.
@@ -211,7 +227,7 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 \begin{lem}\label{grow_unicycle}
   Let $d,r,k$ be integers such that $0\leq d \leq r$ and $k\geq1$. Let $G$ be a graph and let $C$ be a $d$-unicyclic cycle in $G$. Let $U$ be a $C$-rooted spanning BFS-unicycle of $G_r:=G[B_G(V(C),r)]$.
   Then either:
-  \begin{tightenum}%[\rm(a)]
+  \begin{tightenum}
     \item\label[p]{grow_unicycle:item:packing} $G$ has a $d$-packing of $k$ cycles; or
     \item\label[p]{grow_unicycle:item:hitting} there exists $Y\subseteq V(G)$ that contains at least one endpoint of each edge in $E(G_r)\setminus E(U)$ and  there exists $X\subseteq V(G)$ with $|X|<2k+s(k)$ such that      $B_G(X,2r+d)$ contains all $U$-descendants of vertices in $Y$.
   \end{tightenum}
@@ -233,7 +249,6 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 
   By \cref{thm:simonovits}, $G'$ contains a set $\mathcal{D}$ of $k$ pairwise vertex-disjoint cycles. We now show that $\mathcal{D}$ is a $d$-packing of cycles in $G$.  If $d=0$ then this is immediate, since the cycles in $\mathcal{D}$ are pairwise vertex-disjoint.  Now suppose $d\ge 1$. Let $D$ and $D'$ be two distinct cycles in $\mathcal{D}$. Let $v$ and $v'$ be vertices of $D$ and $D'$, respectively, such that $\dist_G(v,v')=\dist_G(V(D),V(D'))$.  We must show that $\dist_G(v,v')>d$.
 
-
   If $v\in V(P_e)$ and $v'\in V(P_{e'})$ for some  $e,e' \in I$ such that $P_e\subseteq D$ and $P_{e'}\subseteq D'$ then, since $D$ and $D'$ are vertex-disjoint, $e\neq e'$. Therefore $\dist_G(v,v')\geq  \dist_G(V(P_e),V(P_{e'}))>d$, as desired.  Thus, without loss of generality we may assume that $v\in V(C)$ and that $v\notin V(P_e)$ for any $e\in I\setminus J$ with $P_e\subseteq D$.
 
   Let $P$ be a shortest path in $G$ between $v$ and $v'$.  Then $P$ is a shortest path in $G$ from $V(D)$ to $V(D')$, so $E(P)\cap E(D)=\emptyset$ and $E(P)\cap E(D')=\emptyset$.  If the first edge of $P$ (incident to $v$) is an edge of $C$, then this edge and the two edges of $D$ incident to $v$ are contained in $G'$. Therefore $v$ is of degree $3$ in $G'$ and $v$ is the endpoint of $P_e$ for some $e\in I$ such that $P_e\subseteq D$.  This contradicts the definition of $v$. Thus, we assume that the first edge of $P$ is not an edge of $C$.
@@ -253,26 +268,17 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 
 
 \begin{lem}\label{double_unicycle}
-  Let $r,d,k$ be integers with $0\leq 2d\leq r$ and $k\geq1$.
-  Let $G$ be a graph,
-  let $C_1$ and $C_2$ be $d$-unicyclic cycles in $G$ such that
-  $\dist_G(V(C_1),V(C_2))>2d$.  For each $i\in[2]$ let $G_{i,r}:=G[B_G(V(C_i),r)]$, let $U_i$ be a $C_i$-rooted spanning BFS-unicycle of $G_{i,r}$ and let $Y_i\subseteq V(G)$ be such that each edge in $E(G_{i,r})\setminus E(U_i)$ has an endpoint in $Y_i$.   Then either:
-  \begin{tightenum}%[\rm(a)]
-    \item $G$ has a $d$-packing of $k$ cycles; or\label[p]{double_unicycle:packing}
-    \item  \label[p]{double_unicycle:hitting} there exist $Y\subseteq V(G)$ and $X\subseteq V(G)$ with $|X|< s(k)$ such that
-
-    \begin{tightenum}%[\rm(i)]
-    \item $Y$ contains every vertex in
-    $V(G_{1,r})\cap V(G_{2,r})$ and $Y$ contains at least one endpoint of every edge of $G$
-    between $V(G_{1,r})$ and $V(G_{2,r})$; and \label[p]{y_covers_everything}
-
-    % having an endpoint in $V(G_{1,r})$ and having an endpoint in $V(G_{2,r})$; and \label[p]{y_covers_everything} \pat{Defining $Z$ as ``the set of edges of $G$ with having an endpoint in $V(G_{1,r})$ and an endpoint in $V(G_{2,r})$'' in the statement of the lemma would make this sentence easier to parse.}
-    \item for each vertex $y\in Y$ either \label[p]{something_hits_y}
-    \begin{enumerate}[nosep,noitemsep]
-      \item\label[p]{du_yi_hits_y}  $y$ is a $U_i$-descendant of a vertex in $Y_i$ for some $i\in[2]$; or
-
-      \item \label[p]{du_ball_hits_y} $y\in B_G(X,2r+d)$.
-    \end{enumerate}
+  Let $r,d,k$ be integers with $0\leq 2d\leq r$ and $k\geq1$. Let $G$ be a graph, let $C_1$ and $C_2$ be $d$-unicyclic cycles in $G$ such that $\dist_G(V(C_1),V(C_2))>2d$.  For each $i\in[2]$ let $G_{i,r}:=G[B_G(V(C_i),r)]$, let $U_i$ be a $C_i$-rooted spanning BFS-unicycle of $G_{i,r}$ and let $Y_i\subseteq V(G)$ be such that each edge in $E(G_{i,r})\setminus E(U_i)$ has an endpoint in $Y_i$.   Then either:
+  \begin{tightenum}
+    \item\label[p]{double_unicycle:packing} $G$ has a $d$-packing of $k$ cycles; or
+    \item\label[p]{double_unicycle:hitting} there exist $Y\subseteq V(G)$ and $X\subseteq V(G)$ with $|X|< s(k)$ such that
+    \begin{tightenum}
+      \item\label[p]{y_covers_everything} $Y$ contains every vertex in $V(G_{1,r})\cap V(G_{2,r})$ and $Y$ contains at least one endpoint of every edge of $G$ between $V(G_{1,r})$ and $V(G_{2,r})$; and
+      \item for each vertex $y\in Y$ either \label[p]{something_hits_y}
+      \begin{enumerate}[nosep,noitemsep,label=\rm(\alph*),ref=\alph*,start=24]
+        \item\label[p]{du_yi_hits_y}  $y$ is a $U_i$-descendant of a vertex in $Y_i$ for some $i\in[2]$; or
+        \item\label[p]{du_ball_hits_y} $y\in B_G(X,2r+d)$.
+      \end{enumerate}
     \end{tightenum}
   \end{tightenum}
 \end{lem}
@@ -331,23 +337,9 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
 
     Consider the maximal subpath $Q'$ of $P_{x'}$ that contains $w'$ and whose vertices are contained in $B_G(V(C_1),r)$.  We distinguish between two cases, depending on whether $v'\in V(Q')$ or not.
 
-    First suppose that $v'\in V(Q')$.
-    Let $Q$ be the subpath of $Q'$ from $w'$ to $v'$. Since $Q\subseteq Q'\subseteq P_{x'}$ contains  no vertex in $Y_1$ and $V(Q')\subseteq B_G(V(C_1),r)$, we have that $Q\subseteq U_1$. Since $U_1$ is a $C_1$-rooted spanning BFS-unicycle of $G_{1,r}$, $\dist_G(w',v')=\dist_{U_1}(w',v')=|Q|$.
-    Observe that $Q$ is a shortest path in $G$ between $V(C_1)$ and $v'$, and thus $|Q| \leq \len(P) \leq d$.
-    It follows that $Q\subseteq G[B_G(V(C_1),d)]$.
-    %\gwen{I agree that $Q\subseteq G[B_G(V(C_1),r)]$ but why do we have $Q\subseteq G[B_G(V(C_1),d)]$?}
-    %\piotr{We were trying to argue that above. We already assumed at this point that $v'\in B_G(V(C_1),d)$. Since the whole $Q$ lies in a unicyclic graph this means that it just goes from $C_1$ to $v'$ and so it must be embedded in the $d$-ball.}
-    %\gwen{Ok, I added an extra sentence explaining this starting with "Observe that", you can delete this discussion if you are happy with it.}
-    %\piotr{Yes, it's good.}
-    Since $C_1$ is $d$-unicyclic, all paths from $V(C_1)$ to $v'$ in $G[B_G(V(C_1),d)]$ contain $w'$.
-    In particular, $P\subseteq G[B_G(V(C_1),d)]$ is a path from $v\in V(C_1)$ to $v'$, so $w'\in V(P)$.  Since $V(P)\cap V(C_1)=\{v\}$, this implies that $v=w'$.
-    However $v=w' \in V(P_{y'})\subseteq V(D')$. This implies that $v$ is a vertex of both $D$ and $D'$, which contradicts the fact that $D$ and $D'$ are vertex-disjoint.
+    First suppose that $v'\in V(Q')$. Let $Q$ be the subpath of $Q'$ from $w'$ to $v'$. Since $Q\subseteq Q'\subseteq P_{x'}$ contains  no vertex in $Y_1$ and $V(Q')\subseteq B_G(V(C_1),r)$, we have that $Q\subseteq U_1$. Since $U_1$ is a $C_1$-rooted spanning BFS-unicycle of $G_{1,r}$, $\dist_G(w',v')=\dist_{U_1}(w',v')=|Q|$. Observe that $Q$ is a shortest path in $G$ between $V(C_1)$ and $v'$, and thus $|Q| \leq \len(P) \leq d$. It follows that $Q\subseteq G[B_G(V(C_1),d)]$. Since $C_1$ is $d$-unicyclic, all paths from $V(C_1)$ to $v'$ in $G[B_G(V(C_1),d)]$ contain $w'$. In particular, $P\subseteq G[B_G(V(C_1),d)]$ is a path from $v\in V(C_1)$ to $v'$, so $w'\in V(P)$.  Since $V(P)\cap V(C_1)=\{v\}$, this implies that $v=w'$. However $v=w' \in V(P_{y'})\subseteq V(D')$. This implies that $v$ is a vertex of both $D$ and $D'$, which contradicts the fact that $D$ and $D'$ are vertex-disjoint.
 
-    Next we consider the case when $v'\notin V(Q')$.
-    %Suppose, for the sake of contradiction, that $\dist_G(v,v')=\len(P)\leq d$.
-    %\gwen{We already know that $\len(P)\leq d$ so I suggest deleting the previous sentence}
-    %\piotr{OK.}
-    Let $q$ be the last vertex of $Q'$ and let $q'$ be the neighbour of $q$ in $P_{y'}$ that is not in $Q'$.  Then
+    Next we consider the case when $v'\notin V(Q')$. Let $q$ be the last vertex of $Q'$ and let $q'$ be the neighbour of $q$ in $P_{y'}$ that is not in $Q'$.  Then
     \begin{align*}
     \len(P_{y'})
         & \ge \dist_G(w',q') + \dist_G(q',v') + \dist_G(v',V(C_2)) \\
@@ -355,13 +347,6 @@ The following definition, which is a unicyclic analogue to a breadth-first spann
         & \quad {} + (\dist_G(V(C_1),V(C_2))-\dist_G(v',V(C_1)) \\
         & = 2\dist_G(V(C_1),q') - 2\dist_G(V(C_1),v') + \dist_G(V(C_1),V(C_2)) \\
         & \geq 2(r+1) - 2d + (2d+1) \geq 2r+3 \enspace .
-        % & \geq 2(r+1) - \dist_G(C_1,v') + (\dist_G(V(C_1),V(C_2))-\dist_G(v',V(C_1))\\
-        % & = 2(r+1) - 2\dist_G(C_1,v') + \dist_G(V(C_1),V(C_2))\\
-        % & \geq 2(r+1) - \dist_G(C_1,v') + \dist_G(V(C_1),V(C_2)) \\
-        % & > 2(r+1) - 2d + 2d
-%        & \ge \dist_G(V(C_1),q') - \dist_G(V(C_1),v') + \dist_G(v',V(C_2)) \\
- %       & \ge \dist_G(V(C_1),q') - d + \dist_G(v',V(C_2)) \\
-  %      & \ge \dist_G(V(C_1),q') - d + \dist_G(V(C_1),V(C_2)-(\dist_G(V(C_1),v') + \dist_G(v',V(C_2)).\\
     \end{align*}
     (The second inequality follows from $\dist_G(V(C_1),q')\leq \dist_G(V(C_1),v')+\dist_G(v',q')$ and
     $\dist_G(V(C_1),V(C_2))\le \dist_G(V(C_1),v')+\dist_G(v',V(C_2))$.) This contradicts the fact that $\len(P_{x'})\le \len(P_{1,x'})+\len(P_{2,x'})+1\le 2r+1$.  This completes the proof (assuming $|I|\ge\tfrac{1}{2}s(k)$) that outcome \cref{double_unicycle:packing} holds.
@@ -470,7 +455,7 @@ Let
 % \gwen{Why use $X', Y'$ and not $X, Y$?} \pat{This comes from a desire for the final set of ball centers to be named $X$, like in the statement of the theorem.  Probably $X_0$, $X_1, \ldots$ would be better than $X'$, $\widehat{X}$.  There is also an inconsistent use of $M$ and $Y$. Each is describing a set of "marked" vertices that allow us to worry only about cycles in $G$ that uses edges of $F_0^-,F_1^-,\ldots,F_p^-$ and exit edges. Probably we should have $Y_0:=M$ (the result of the procedure for hitting remaining short cycles $D'_1,\ldots,D'_q$), $Y_1:=Y'$ (the output of \cref{all_the_ys}), and $Y_2:=\{y_1,\ldots,y_p\}$ (vertices used to turn unicycles into forests).  Then maybe $\widehat{Y}:=Y_0\cup Y_1\cup Y_2$.  Same for the $X_0,X_1,X_2,\widehat{X}$.}
 Apply \cref{all_the_ys} to $\mathcal{C}:=\{C_1,\ldots,C_p\}$ to obtain unicyclic graphs $U_1,\ldots,U_p$, a set
  $Y_1\subseteq V(G)$ and a set $X_1\subseteq V(G)$ such that
-    \begin{tightenum}%[\rm(i)]
+    \begin{tightenum}
       \item for each $i\in[p]$, $U_i$ is a  $C_i$-rooted BFS-spanning unicycle of $G[B_G(V(C_i),r)]$;
       \item for each $i\in[p]$, $Y_1$
       % \gwen{$Y'$ I guess?} \pat{Yep}
