@@ -45,10 +45,10 @@
 % \renewcommand{\geq}{\geqslant}
 % \renewcommand{\leq}{\leqslant}
 
-\newcommand{\vida}[1]{{\color{DarkGreen} Vida: #1}}
-\newcommand{\pat}[1]{\textcolor{Blue}{[Pat: #1]}}
-\newcommand{\gwen}[1]{\textcolor{Purple}{Gwen: #1}}
-\newcommand{\piotr}[1]{\textcolor{red}{Piotr: #1}}
+%\newcommand{\vida}[1]{{\color{DarkGreen} Vida: #1}}
+%\newcommand{\pat}[1]{\textcolor{Blue}{[Pat: #1]}}
+%\newcommand{\gwen}[1]{\textcolor{Purple}{Gwen: #1}}
+%\newcommand{\piotr}[1]{\textcolor{red}{Piotr: #1}}
 
 \newcommand{\mset}[1]{\{\!\{#1\}\!\}}
 % \numberwithin{equation}{lem}
@@ -149,16 +149,41 @@ For all positive integers $k$, define\footnote{Here and throughout, $\log x$ den
   Let $k$ be a positive integer and let $G$ be a graph with all vertices of degree $2$ or $3$. If $G$ contains at least $s(k)$ vertices of degree $3$, then $G$ contains $k$ vertex-disjoint cycles.
 \end{thm}
 
-If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \defin{non-null} graph. We call a forest with at most $c$ components a \defin{$c$-forest}. If $F$ is a forest and $F'\subseteq F$ is a $c$-forest, then we say that $F'$ is a $c$-forest \defin{hosted} in $F$.
+If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \defin{non-null} graph. 
+%We call a forest with at most $c$ components a \defin{$c$-forest}. 
+%If $F$ is a forest and $F'\subseteq F$ is a $c$-forest, then we say that $F'$ is a $c$-forest \defin{hosted} in $F$.
+
+%\gwen{"hosted" is used only 3 times, here and twice in the appendix. Let's drop it. }
+%\piotr{Agree. Done.}
+
+%\gwen{I find the null / non-null distinction confusing. In Erdos-Posa statements the objects are always implicitly assumed to be non-null. This something we only need to be careful about inside the proof in the appendix.}
+%\piotr{I am not sure. This is the only statement in the intro that requires non-null.}
+%\piotr{We decided to keep for now. We discuss it in Oberwolfach.}
+
+%\gwen{I suggest dropping "$c$-forest", this is only used once in the appendix. We can write "forest with at most $c$ components".}
+%\piotr{Agree. Done.}
 
 \begin{restatable}[\citet{gyarfas.lehel:helly}]{thm}{hungarians}\label{thm:gyarfas-lehel-general}
-   There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and every collection $\mathcal{A}$ of non-null $c$-forests hosted in $F$, either
+   There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and 
+   every collection $\mathcal{A}$ of 
+   non-null subgraphs of $F$, each having at most $c$ components, either
    \begin{tightenum}%[(a)]
      \item there are $k$ pairwise vertex-disjoint members of $\mathcal{A}$; or\label[p]{item:hungarians-pack}
      \item there exists $X \subseteq V(F)$ with $|X|\leq \ell^\star(k,c)$ and such that $X\cap V(A)\neq\emptyset$ for each $A\in\mathcal{A}$.\label[p]{item:hungarians-hit}
    \end{tightenum}
 \end{restatable}
-Let $\ell^\star$ be the function given by~\cref{thm:gyarfas-lehel-general}. \citet{gyarfas.lehel:helly} give a complete proof of \cref{thm:gyarfas-lehel-general} when $F$ is a path and sketch the proof for the general case in which $F$ is a forest. For completeness, we give a proof in the appendix. We show that we can take $\ell^\star$ so that $\ell^\star(k,3)=\Oh(k^{18})$.
+% \begin{comment}
+% \begin{restatable}[\citet{gyarfas.lehel:helly}]{thm}{hungarians}\label{thm:gyarfas-lehel-general}
+%    There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and 
+%    every collection $\mathcal{A}$ of 
+%    non-null subgraphs of $F$ such that each $A$ in $\mathcal{A}$ has at most $c$ components, either
+%    \begin{tightenum}%[(a)]
+%      \item there are $k$ pairwise vertex-disjoint members of $\mathcal{A}$; or\label[p]{item:hungarians-pack}
+%      \item there exists $X \subseteq V(F)$ with $|X|\leq \ell^\star(k,c)$ and such that $X\cap V(A)\neq\emptyset$ for each $A\in\mathcal{A}$.\label[p]{item:hungarians-hit}
+%    \end{tightenum}
+% \end{restatable}
+% \end{comment}
+Let $\ell^\star$ be the function given by~\cref{thm:gyarfas-lehel-general}. \citet{gyarfas.lehel:helly} give a complete proof of \cref{thm:gyarfas-lehel-general} when $F$ is a path and sketch the proof for the general case in which $F$ is a forest. For completeness, we give a proof in the appendix. We show that we can take $\ell^\star$ so that $\ell^\star(k,3)=\Oh(k^{18})$, which gives a bound of $f(k)\in\Oh(k^{18}\polylog k)$ in \cref{thm:main-in-intro}.
 
 \section{The Proof}
 \label{proof}
@@ -576,7 +601,15 @@ We are now ready to prove (the following quantitative version of) \cref{thm:main
 
 \section{Discussion}
 
-The main open problem is determining the order of the smallest function $f(k)$ such that \cref{thm:main-in-intro} holds (irrespective of the value of $g(d)$). Our proof gives $f(k)\in\Oh(k^{18}\polylog k)$, which is polynomial at least, but surely not optimal. We conjecture that the theorem remains true with $f(k)\in\Oh(k \log k)$, as in the original Erd\H{o}s-P\'osa theorem. This would be optimal.
+%The main open problem is determining the order of the smallest function $f(k)$ such that \cref{thm:main-in-intro} holds (irrespective of the value of $g(d)$). 
+We conjecture that \cref{thm:main-in-intro} remains true with $f(k)\in\Oh(k \log k)$ as in the original Erd\H{o}s-P\'osa theorem, which would be optimal. Our proof gives $f(k)\in\Oh(k^{18}\polylog k)$. By applying the techniques in the appendix directly to the tuples $\{(\Psi_\ell(t))_{\ell\in\{0,\ldots,p\}}:\text{$t$ is an admissible tuple}\}$ that appear in the proof of \cref{thm:the-big-ball-of-wax}, the exponent $18$ could be reduced with some additional work but would still be much greater than $1$.
+% We can do $13$. 
+
+
+
+% would still be at least $9$.
+% \gwen{I vote for adding this, perhaps changing "could be reduced somewhat" with "can be reduced somewhat with some extra work" (let's not hide the fact that there are details to figure out).}
+
 
 Turning to the function $g(d)$ in  \cref{thm:main-in-intro}, we remark that we made no attempt to minimize the leading constant in our proof, which shows $g(d)=19d$. We believe that we can decrease the constant $19$ somewhat, at the price of a more complicated proof, but it would still be above $10$. It would be interesting to determine the smallest function $g(d)$ for which \cref{thm:main-in-intro} is true (with no constraint on $f(k)$).
 
@@ -606,15 +639,16 @@ The authors would like to thank Ugo Giocanti, Jędrzej Hodor, Freddie Illingwort
 
 In this appendix, we present a complete proof \cref{thm:gyarfas-lehel-general} and show that, for any fixed $c$, the bounding function $\ell^\star(k,c)$ is polynomial in $k$.  All of the ideas from this proof come from \citet{gyarfas.lehel:helly}, who proved it when the host forest $F$ is a path and sketched changes needed for the general case.
 
-Let $F$ be a forest. For each component of $F$, fix an arbitrary vertex of $F$. This makes $F$ a \defin{rooted forest}. An arbitrary connected subgraph $H$ of $F$ has a unique vertex that is closest to a root of $F$. We call this vertex the \defin{root} of $H$ in $F$. For two vertices $u$ and $v$ in $F$, if $v$ is contained in the unique path from $u$ to a root of $F$, then we say that $u$ is a \defin{descendant} of $v$ in $F$, and when additionally $u\neq v$  then $u$ is a \defin{strict descendant} of $v$ in $F$.  If $u$ is a strict descendant of $v$ and $uv\in E(F)$ then $u$ is a \defin{child} of $v$. For a vertex $v$ in $F$ the \defin{subtree}, $\mathdefin{F(v)}$, of $v$ is the subgraph of $F$ induced by all the descendants of $v$ in $F$. Let $\sigma=(v_1,\ldots,v_n)$ be an ordering of the vertices of $F$. We say that $u$ \defin{precedes} $v$ in $\sigma$ if $u=v_i$, $v=v_j$ and $i\leq j$. We say that $\sigma$ is a \defin{topological ordering} of $F$ if for each $v\in V(F)$, every vertex of $F(v)$ precedes $v$ in $\sigma$.
+Let $F$ be a forest. For each component of $F$, fix an arbitrary vertex of $F$. This makes $F$ a \defin{rooted forest}. For each component $C$ in an arbitrary subgraph $H$ of $F$, there is a unique vertex $v_C$ that is closest to a root of $F$. We call $v_C$ the \defin{root} of $C$ in $F$.  We treat $H$ as a rooted forest, where each component $C$ of $H$ is rooted at $v_C$. For two vertices $u$ and $v$ in $F$, if $v$ is contained in the unique path from $u$ to a root of $F$, then we say that $u$ is a \defin{descendant} of $v$ in $F$, and when additionally $u\neq v$  then $u$ is a \defin{strict descendant} of $v$ in $F$.  If $u$ is a strict descendant of $v$ and $uv\in E(F)$ then $u$ is a \defin{child} of $v$. For a vertex $v$ in $F$ the \defin{subtree}, $\mathdefin{F(v)}$, of $v$ is the subgraph of $F$ induced by all the descendants of $v$ in $F$ that is rooted at $v$. Let $\sigma=(v_1,\ldots,v_n)$ be an ordering of the vertices of $F$. We say that $u$ \defin{precedes} $v$ in $\sigma$ if $u=v_i$, $v=v_j$ and $i\leq j$. We say that $\sigma$ is a \defin{topological ordering} of $F$ if for each $v\in V(F)$, every vertex of $F(v)$ precedes $v$ in $\sigma$.
 
 For an indexed family $A:=(A_i)_{i\in I}$ with index set $I$, we use $\mathdefin{\pi_i(A)}$ to denote the element $A_i$ of $A$ indexed by $i$.
 Let $I$ be a set
-and let $F_i$ be a forest for each $i\in I$.
+and let $F_i$ be a forest for each $i\in I$.\footnote{In our application, the forests in $(F_i)_{i\in I}$ are pairwise vertex-disjoint, but this is not required in the following results.}
 % \pat{I don't think we'll ever use this when $F_1,\ldots,F_c$ are not pairwise vertex-disjoint.  Revisit this later.}
-\gwen{Here the reader will wonder (as I do :)) if the $F_i$s are assumed to be pairwise vertex disjoint.
-If not, we should emphasize it because then the definition of `independent' below is more subtle: We don't care if $V(A_i)\cap V(B_j) \neq \emptyset$ when $i\neq j$}
-\pat{I agree. We don't ever apply the results in this section when the forests are not pairwise vertex-disjoint, and this creates an extra burden on the reader. The closest we come is our forests $F_0,\ldots,F_p$ and sets $\Psi_0(t),\ldots,\Psi_p(t)$, which are not pairwise vertex-disjoint.  But we don't use those directly. Instead, we make a forest $F^\star$ that copies vertices that appear in more than one forest and pass that into \cref{thm:gyarfas-lehel-general}.}
+% %\gwen{Here the reader will wonder (as I do :)) if the $F_i$s are assumed to be pairwise vertex disjoint.
+%% If not, we should emphasize it because then the definition of `independent' below is more subtle: We don't care if $V(A_i)\cap V(B_j) \neq \emptyset$ when $i\neq j$}
+% \pat{I agree. We don't ever apply the results in this section when the forests are not pairwise vertex-disjoint, and this creates an extra burden on the reader. The closest we come is our forests $F_0,\ldots,F_p$ and sets $\Psi_0(t),\ldots,\Psi_p(t)$, which are not pairwise vertex-disjoint.  But we don't use those directly. Instead, we make a forest $F^\star$ that copies vertices that appear in more than one forest and pass that into \cref{thm:gyarfas-lehel-general}.}
+% \gwen{Good, then let's assume vertex-disjointness.}
 A sequence $(A_i)_{i\in I}$ is a \mathdefin{$(F_i)_{i\in I}$-tuple} if, for each $i\in I$, $A_i$ is a null graph or $A_i$ is a connected subgraph of $F_i$.  An $(F_i)_{i\in I}$-tuple $(A_i)_{i\in I}$ is \defin{trivial} if $A_i$ is a null graph for each $i\in I$ and is \defin{non-trivial} otherwise. Let $A=(A_i)_{i\in I}$ and $B=(B_i)_{i\in I}$ be two $(F_i)_{i\in I}$-tuples. We say that $A$ and $B$ are \defin{independent} if $V(A_i)\cap V(B_i)=\emptyset$ for each $i\in I$. A collection $\mathcal{A}$ of $(F_i)_{i\in I}$-tuples is \defin{independent} if the elements of $\mathcal{A}$ are pairwise independent.
 
 We make use of the following corollary, which is obtained immediately from \cref{cor:general-systems-lemma}, below, by  taking $m=k$ and $x_1=x_2=\cdots=x_k=1$.
@@ -685,6 +719,8 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
 
 
 \begin{proof}
+%\gwen{There is a notation clash in the proof: $\ell$ is used both for the bounding function and for indices}
+%\piotr{$\ell\to z$}
   We begin with several assumptions, each without loss of generality, about $(F_i)_{i\in[c]}$ and $\mathcal{A}$.
 
   We may assume that $\pi_i(A)$ contains at least one vertex, for each $A\in\mathcal{A}$ and each $i\in[c]$. Indeed, otherwise we introduce a new vertex in $F_i$ and make $\pi_i(A)$ be the graph that contains only this new vertex. Since this vertex appears only in $\pi_i(A)$, this does not affect outcome \cref{item:hungarian-support:independent-set}. If this new vertex appears in the set $X_i$ promised by outcome \cref{item:hungarian-support:hitting-set}, then we can remove it from $X_i$ and replace it with any other vertex in $\bigcup_{j\in[c]\setminus\{i\}}V(\pi_j(A))$.  (The fact that $A$ is non-trivial for each $A\in\mathcal{A}$ ensures that $\bigcup_{j\in[c]\setminus\{i\}}V(\pi_j(A))$ contains at least one vertex.)  This assumption ensures that for any non-empty $I\subseteq[c]$, and any $A\in\mathcal{A}$, $(\pi_i(A))_{i\in I}$ is non-trivial.
@@ -703,17 +739,23 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
 
   We now proceed by induction on $c$.  In order to avoid presenting an argument for $c=1$ that is a special case of the argument for $c>1$, we treat $c=0$ as the base case of the induction.  In this case, the conclusion of the lemma is trivial since the empty sequence satisfies the conditions of outcome \cref{item:hungarian-support:hitting-set}.
 
-  Now suppose that $c\ge 1$. Let $n=|V(F_1)|$, let $\sigma$ be a topological ordering of the vertices of $F_1$ and, for $v,w\in V(F_1)$ use the notation $v<w$ if and only if $v\neq w$ and $v$ precedes $w$ in $\sigma$. For convenience, we define an artificial vertex $v_0$ such that $v_0<v$ for all $v\in V(F_1)$. Consider the following iterative process, that constructs a sequence $v_1<\cdots<v_m$ of vertices in $V(F_1)$ and a sequence $\mathcal{D}_1,\ldots,\mathcal{D}_m$ of $(F_i)_{i\in\{2,\ldots,c\}}$-tuples. Suppose that $v_1,\ldots,v_{\ell-1}$ and $\mathcal{D}_1,\ldots,\mathcal{D}_{\ell-1}$ have already been defined, for some $\ell\ge 1$  and define
+  Now suppose that $c\ge 1$. Let $n=|V(F_1)|$, let $\sigma$ be a topological ordering of the vertices of $F_1$ and, for $v,w\in V(F_1)$ use the notation $v<w$ if and only if $v\neq w$ and $v$ precedes $w$ in $\sigma$. For convenience, we define an artificial vertex $v_0$ such that $v_0<v$ for all $v\in V(F_1)$. Consider the following iterative process, that constructs a sequence $v_1<\cdots<v_m$ of vertices in $V(F_1)$ and a sequence $\mathcal{D}_1,\ldots,\mathcal{D}_m$ of $(F_i)_{i\in\{2,\ldots,c\}}$-tuples. Suppose that $v_1,\ldots,v_{z-1}$ and $\mathcal{D}_1,\ldots,\mathcal{D}_{z-1}$ have already been defined, for some $z\ge 1$  and define
   \begin{align}
-      F_{(\ell)}&=F_1-\set{v_1,\ldots,v_{\ell-1}},\notag
-      \intertext{and for each $v\in V(F_1)$ with $v>v_{\ell-1}$, we let}
-      \mathcal{B}_{\ell}(v)&=\set{A\in \mathcal{A}\mid \pi_1(A)\subseteq F_{(\ell)}(v)},\label{eq:Bv}\\
-      \mathcal{C}_{\ell}(v)&=\set{(\pi_2(A),\ldots,\pi_c(A))\mid A\in\mathcal{B}_{\ell}(v)}.\notag
+      F_{(z)}&=F_1-\set{v_1,\ldots,v_{z-1}}.\notag
+      \intertext{Recall that $F_{(z)}$ is a rooted forest. Now for each $v\in V(F_1)$ with $v>v_{z-1}$, we let}
+      \mathcal{B}_{z}(v)&=\set{A\in \mathcal{A}\mid \pi_1(A)\subseteq F_{(z)}(v)},\label{eq:Bv}\\
+      \mathcal{C}_{z}(v)&=\set{(\pi_2(A),\ldots,\pi_c(A))\mid A\in\mathcal{B}_{z}(v)}.\notag
   \end{align}
-  If there exists $v\in V(F_1)$ such that $v>v_{\ell-1}$ and $\mathcal{C}_{\ell}(v)$ contains an independent set of size $k^{c-1}$, then we define $v_\ell$ to be the minimum such $v$ (with respect to the ordering $\sigma$).\footnote{Note that if $c=1$, then $(\pi_2(A),\ldots,\pi_c(A))=()$ for each $A\in \mathcal{B}_\ell(v)$. If $\mathcal{B}_\ell(v)$ is non-empty, then $\mathcal{D}_\ell=\{()\}$ is an independent set of size $1=k^{c-1}$.}
-  \gwen{About footnote: I agree it works but isn't it a stretch to consider $\{()\}$ to be an independent set of size $1$? The definition of independent sets is for non-empty sequences as far I understand}
-  \pat{I agree that it's awkward. It's only to deal with the case $c=1$, so that the condition on ``$\mathcal{C}_\ell(v)$ has an independent subset of size $k^{c-1}$'' is satisfied as long as $\mathcal{B}_\ell(v)$ is non-empty. Is there a better way to write this?}
-  At the same time, we define the set $\mathcal{D}_\ell$ to be an independent set of size $k^{c-1}$ contained in $\mathcal{C}_{\ell}(v_\ell)$. If no such vertex $v$ exists, then we set $m=\ell-1$ and stop the process.
+%  \gwen{I think the definition of $F_{(z)}(v)$ is not clear given how we defined the notation $F(v)$, since the roots of $F_{(z)}$ are not specified}
+%\piotr{We tried to improve the writing around it.}
+  If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and either $c=1$, or $c\geq 2$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$ then
+  % If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$, then 
+  we define $v_z$ to be the minimum such $v$ (with respect to the ordering $\sigma$).
+  % \footnote{Note that if $c=1$, then $(\pi_2(A),\ldots,\pi_c(A))=()$ for each $A\in \mathcal{B}_z(v)$. If $\mathcal{B}_z(v)$ is non-empty, then $\mathcal{D}_z=\{()\}$ is an independent set of size $1=k^{c-1}$.}
+  % \gwen{About footnote: I agree it works but isn't it a stretch to consider $\{()\}$ to be an independent set of size $1$? The definition of independent sets is for non-empty sequences as far I understand}
+  % \pat{I agree that it's awkward. It's only to deal with the case $c=1$, so that the condition on ``$\mathcal{C}_z(v)$ has an independent subset of size $k^{c-1}$'' is satisfied as long as $\mathcal{B}_z(v)$ is non-empty. Is there a better way to write this?}
+  % \gwen{I would write "If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and either $c=1$, or $c\geq 2$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$" but this is not great writing}
+  If $c\ge 2$, we define the set $\mathcal{D}_z$ to be an independent set of size $k^{c-1}$ contained in $\mathcal{C}_{z}(v_z)$. If no such vertex $v$ exists, then we set $m=z-1$ and stop the process.
 
   We consider two separate cases:
   \begin{enumerate*}[label=(\arabic*)]
@@ -721,7 +763,7 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
     \item $m<k$, in which case we show that there exist $X_1,\ldots,X_c$ that satisfy \eqref{item:hungarian-support:hitting-set}.
   \end{enumerate*}
 
-  Suppose first that $m\geq k$ so that $v_1,\ldots,v_k$ and $\mathcal{D}_1,\ldots,\mathcal{D}_k$ are well-defined.  For each $\ell\in[k]$, define $\mathcal{B}_{\ell}:=\mathcal{B}_{\ell}(v_\ell)$. Consider $\alpha,\beta\in[k]$ with $\alpha<\beta$. Since $v_{\alpha} < v_{\beta}$, we conclude that $v_{\beta} \not\in F_1(v_{\alpha})$. In particular, $v_{\beta} \not\in F_{(\alpha)}(v_{\alpha})$. Since $\alpha<\beta$ we have $v_{\alpha}\not\in V(F_{(\beta)})$. We conclude that
+  Suppose first that $m\geq k$ so that $v_1,\ldots,v_k$ is well-defined.  For each $z\in[k]$, define $\mathcal{B}_{z}:=\mathcal{B}_{z}(v_z)$. Consider $\alpha,\beta\in[k]$ with $\alpha<\beta$. Since $v_{\alpha} < v_{\beta}$, we conclude that $v_{\beta} \not\in V(F_1(v_{\alpha}))$. In particular, $v_{\beta} \not\in V(F_{(\alpha)}(v_{\alpha}))$. Since $\alpha<\beta$ we have $v_{\alpha}\not\in V(F_{(\beta)})$. We conclude that
   \begin{equation}
     V(F_{(\alpha)}(v_{\alpha})) \cap V(F_{(\beta)}(v_{\beta})) = \emptyset.
     \label{eq:F-i-1-disjoint-from-F-j-1}
@@ -731,18 +773,27 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
     V(\pi_1(A)) \cap V(\pi_1(B))=\emptyset, \textrm{ for all $A\in\mathcal{B}_\alpha$, $B\in\mathcal{B}_\beta$.}
     \label{eq:B-disjoin-from-B'}
   \end{equation}
-  If $c=1$, then taking one element in $\mathcal{B}_\ell$ for each $\ell\in[k]$ yields an independent set of size $k$, which establishes \cref{item:hungarian-support:independent-set}.  Now suppose $c>1$. Recall that for each $\ell\in[k]$, we have that $\mathcal{D}_\ell$ is an independent family of $(F_i)_{i\in\set{2,\ldots,c}}$-tuples and that $|\mathcal{D}_{\ell}|\geq k^{c-1}$. By \cref{cor:interface-for-systems-lemma}, for each $\ell\in[k]$ there exists $D_\ell\in\mathcal{D}_\ell$ such that $\set{D_1,\ldots,D_k}$ is independent.
+  If $c=1$, then taking one element in $\mathcal{B}_z$ for each $z\in[k]$ yields an independent set of size $k$, which establishes \cref{item:hungarian-support:independent-set}.  Now suppose $c\ge 2$ so, for each $z\in[k]$, we have that $\mathcal{D}_z$ is an independent family of $(F_i)_{i\in\set{2,\ldots,c}}$-tuples and that $|\mathcal{D}_{z}|\geq k^{c-1}$. By \cref{cor:interface-for-systems-lemma}, for each $z\in[k]$ there exists $D_z\in\mathcal{D}_z$ such that $\set{D_1,\ldots,D_k}$ is independent.
 
-  For each $\ell\in[k]$, select some $A_\ell\in\mathcal{B}_\ell$ such that $(\pi_2(A_\ell),\ldots,\pi_c(A_\ell))=D_\ell$.   We now show that $\set{A_1,\ldots,A_k}$ is an independent set of $(F_i)_{i\in[c]}$-tuples. To this end, let $A:=A_\alpha$ and $B:=A_\beta$ for some $\alpha,\beta\in[k]$ with $\alpha < \beta$.  We must show that $V(\pi_i(A))\cap V(\pi_i(B))=\emptyset$, for each $i\in[c]$. Since $A\in\mathcal{B}_{\alpha}$ and $B\in\mathcal{B}_{\beta}$, by~\eqref{eq:B-disjoin-from-B'} we have that $V(\pi_1(A))\cap V(\pi_1(B))=\emptyset$. Since $(\pi_2(A),\ldots,\pi_c(A))=D_{\alpha}$ and $(\pi_2(B),\ldots,\pi_2(B)))=D_{\beta}$, and since $D_\alpha$ and $D_\beta$ are independent, we conclude that $V(\pi_i(A)) \cap V(\pi_i(B))=\emptyset$, for each $i\in\{2,\ldots,c\}$. This proves that $\set{A_1,\ldots,A_k}\subseteq\mathcal{A}$ is an independent set, so~\eqref{item:hungarian-support:independent-set} holds.
+  For each $z\in[k]$, select some $A_z\in\mathcal{B}_z$ such that $(\pi_2(A_z),\ldots,\pi_c(A_z))=D_z$.   We now show that $\set{A_1,\ldots,A_k}$ is an independent set of $(F_i)_{i\in[c]}$-tuples. To this end, let $A:=A_\alpha$ and $B:=A_\beta$ for some $\alpha,\beta\in[k]$ with $\alpha < \beta$.  We must show that $V(\pi_i(A))\cap V(\pi_i(B))=\emptyset$, for each $i\in[c]$. Since $A\in\mathcal{B}_{\alpha}$ and $B\in\mathcal{B}_{\beta}$, by~\eqref{eq:B-disjoin-from-B'} we have that $V(\pi_1(A))\cap V(\pi_1(B))=\emptyset$. Since $(\pi_2(A),\ldots,\pi_c(A))=D_{\alpha}$ and $(\pi_2(B),\ldots,\pi_2(B))=D_{\beta}$, and since $D_\alpha$ and $D_\beta$ are independent, we conclude that $V(\pi_i(A)) \cap V(\pi_i(B))=\emptyset$, for each $i\in\{2,\ldots,c\}$. This proves that $\set{A_1,\ldots,A_k}\subseteq\mathcal{A}$ is an independent set, so~\eqref{item:hungarian-support:independent-set} holds.
 
-  Now we consider the case in which $m<k$.
-  For each $\ell\in[m]$, let $U_{\ell}$ be the set of (at most two) children of $v_\ell$ in $F_{(\ell)}$ and define $\mathcal{E}_{\ell}:=\bigcup_{u\in U_\ell}\mathcal{C}_{\ell}(u)$.  By the minimality of $v_\ell$, $\mathcal{C}_{\ell}(u)$ does not contain an independent set of size $k^{c-1}$ for each $\ell\in[m]$ and $u\in U_{\ell}$. Therefore $\mathcal{E}_{\ell}$ does not contain an independent set of size $2k^{c-1}$ for each $\ell\in[m]$.  Next, recall that $F_1$ is a tree with root $r_1$.  If $r_1 = v_m$, then define $\mathcal{E}_{m+1}:=\emptyset$. Otherwise, define $\mathcal{E}_{m+1}:=\mathcal{C}_{m+1}(r_1)$.  In the latter case, since the process for constructing $v_1,\ldots,v_m$ stopped at iteration $m$, $\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$ does not contain an independent set of size $k^{c-1}$. Therefore $\mathcal{A'}:=\bigcup_{\ell\in[m+1]}\mathcal{E}_\ell$ does not contain an independent set of size $(m+1)2k^{c-1} \le 2k^{c}$.
+  Now we consider the case in which $m<k$.  If $c=1$ then taking $X_1:=\{v_1,\ldots,v_m\}$ satisfies \cref{item:hungarian-support:hitting-set} with $\ell(k,1)=m\le k-1$ and we are done. Now assume $c\ge 2$.
+  % \gwen{I think we should explain that this implies $c\geq 2$, which is used implicitly later.}
+  % \pat{Done.}
+  For each $z\in[m]$, let $U_{z}$ be the set of (at most two) children of $v_z$ in $F_{(z)}$ and define $\mathcal{E}_{z}:=\bigcup_{u\in U_z}\mathcal{C}_{z}(u)$.  By the minimality of $v_z$, $\mathcal{C}_{z}(u)$ does not contain an independent set of size $k^{c-1}$ for each $z\in[m]$ and $u\in U_{z}$. Therefore $\mathcal{E}_{z}$ does not contain an independent set of size $2k^{c-1}$ for each $z\in[m]$.  Next, recall that $F_1$ is a tree with root $r_1$.  If $r_1 = v_m$, then define $\mathcal{E}_{m+1}:=\emptyset$. Otherwise, define $\mathcal{E}_{m+1}:=\mathcal{C}_{m+1}(r_1)$.  In the latter case, since the process for constructing $v_1,\ldots,v_m$ stopped at iteration $m$, $\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$ does not contain an independent set of size $k^{c-1}$. Therefore $\mathcal{A'}:=\bigcup_{z\in[m+1]}\mathcal{E}_z$ does not contain an independent set of size $(m+1)2k^{c-1} \le 2k^{c}$.
 
   Observe that $\mathcal{A}'$ is a collection of non-trivial $(F_i)_{i\in\{2,\ldots,c\}}$-tuples.  Apply the inductive hypothesis with $c':=c-1$ and $k':=2k^{c}$ to the collection $\mathcal{A}'$ of non-trivial $(F_i)_{i\in\{2,\ldots,c\}}$-tuples.  Since $\mathcal{A}'$ does not contain an independent set of size $k'$, this results in outcome \cref{item:hungarian-support:hitting-set}.  That is, we obtain a sequence of sets $X_2,\ldots,X_c$ with $X_i\subseteq V(F_i)$ for each $i\in\{2,\ldots,c\}$ such that $\sum_{i=2}^c|X_i|\le\ell(2k^{c},c-1)$,  and, for each $(A_2,\ldots,A_c)\in\mathcal{A}'$, there exists some $i\in\{2,\ldots,c\}$ such that $V(A_i)\cap X_i\neq\emptyset$.
 
-  Let $X_1:=\{v_1,\ldots,v_m\}$.  We claim that $X_1,\ldots,X_c$ satisfies the conditions of outcome \cref{item:hungarian-support:hitting-set}.
+  Let $X_1:=\{v_1,\ldots,v_m\}$.  We claim that $X_1,\ldots,X_c$ satisfy the conditions of outcome \cref{item:hungarian-support:hitting-set}.
 
-  First we show that, for each $(A_1,\ldots,A_c)\in\mathcal{A}$, there exists $i\in[c]$ such that $V(A_i)\cap X_i\neq\emptyset$.  If $(A_2,\ldots,A_c)\in \mathcal{A}'$ then, by the inductive hypothesis, $V(A_i)\cap X_i\neq\emptyset$ for some $i\in\{2,\ldots,c\}$.  If $(A_2,\ldots,A_c)\notin\mathcal{A}'$, then this is because there is no $\ell\in[m+1]$ such that $(A_2,\ldots,A_c)\in\mathcal{E}_{\ell}$. Let $v$ be the root of $A_1$.  If $v$ has no $F_1$-ancestor in $X_1$, then $A_1\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$ because $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$.  Since $v$ has no $F_1$-ancestor in $X_1$, $v$ is in $F_{(m+1)}(r_1)$. Since $A_1\not\subseteq F_{(m+1)}(r_1)$, it must be that $A_1$ contains a vertex in $X_1$, so $V(A_1)\cap X_1\neq\emptyset$, as required.  Otherwise, let $v_\ell$ be the ancestor of $v$ in $X_1$ that is closest to $v$.  If $v=v_\ell$ then $V(A_1)\cap X_1\supseteq\{v\}\supsetneq\emptyset$, as required.  Otherwise $A_1$ is contained in $T_1(u)$ for some child $u$ of $v_\ell$.  Since $A_1\notin\mathcal{E}_{\ell}\supseteq C_{\ell}(u)$, we have that $A_1\not\subseteq T_{(\ell)}(u)=T_1(u)-\{v_1,\ldots,v_{\ell-1}\}$.  Thus $V(A_1)$ contains $v_i$ for some $i\in[\ell-1]$ so $V(A_1)\cap X_1\supseteq\{v_i\}\supsetneq\emptyset$.
+  First we show that, for each $(A_1,\ldots,A_c)\in\mathcal{A}$, there exists $i\in[c]$ such that $V(A_i)\cap X_i\neq\emptyset$.  If $(A_2,\ldots,A_c)\in \mathcal{A}'$ then, by the inductive hypothesis, $V(A_i)\cap X_i\neq\emptyset$ for some $i\in\{2,\ldots,c\}$.  If $(A_2,\ldots,A_c)\notin\mathcal{A}'$, then this is because there is no $z\in[m+1]$ such that $(A_2,\ldots,A_c)\in\mathcal{E}_{z}$. Let $v$ be the root of $A_1$.    If $v$ has no $F_1$-ancestor in $X_1$, then 
+  $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$, because $(A_2, \dots, A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$.  
+  % If $v$ has no $F_1$-ancestor in $X_1$, then $A_1\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$ 
+  % % \gwen{Shouldn't it be $(A_2, \dots,  A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$?}
+  % because $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$.  
+  % \gwen{Shouldn't this sentence be the other way round? I.e. "If $v$ has no $F_1$-ancestor in $X_1$, then 
+  % $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$, because $(A_2, \dots, A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$."}
+  Since $v$ has no $F_1$-ancestor in $X_1$, $v$ is in $F_{(m+1)}(r_1)$. Since $A_1\not\subseteq F_{(m+1)}(r_1)$, it must be that $A_1$ contains a vertex in $X_1$, so $V(A_1)\cap X_1\neq\emptyset$, as required.  Otherwise, let $v_z$ be the ancestor of $v$ in $X_1$ that is closest to $v$.  If $v=v_z$ then $V(A_1)\cap X_1\supseteq\{v\}\supsetneq\emptyset$, as required.  Otherwise $A_1$ is contained in $F_1(u)$ for some child $u$ of $v_z$.  Since $A_1\notin\mathcal{E}_{z}\supseteq C_{z}(u)$, we have that $A_1\not\subseteq F_{(z)}(u)=F_1(u)-\{v_1,\ldots,v_{z-1}\}$.  Thus $V(A_1)$ contains $v_i$ for some $i\in[z-1]$ so $V(A_1)\cap X_1\supseteq\{v_i\}\supsetneq\emptyset$.
 
   All that remains is to show that $\sum_{i\in[c]}|X_i|\le\ell(k,c)$ for some $\ell:\N^2\to\N$.  To do this, we see that
   \[
@@ -751,7 +802,7 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
       \le m + \ell(2k^c,c-1)
       < k + \ell(2k^c,c-1) \enspace .
   \]
-  Thus, $\ell(k,c)$ obeys the recurrence $\ell(k,c)\le k + \ell(2k^c,c-1)$ for $c\ge 1$ and $\ell(k,0)=0$.  Clearly $\ell(k,c)$ depends only one $k$ and $c$, which is sufficient to establish the lemma.  For a more precise estimate, we can show by induction on $c$ that $|X_i|\le (\prod_{j=1}^{c-1}2^{j!})\, k^{c!}$ for each $i\in[c]$. By definition, $|X_1|=m\le k$, which satisfies our requirement since $c\ge 1$.  By the inductive hypothesis,
+  Thus, $\ell(k,c)$ obeys the recurrence $\ell(k,c)\le k + \ell(2k^c,c-1)$ for $c\ge 1$ and $\ell(k,0)=0$.  Clearly $\ell(k,c)$ depends only on $k$ and $c$, which is sufficient to establish the lemma.  For a more precise estimate, we can show by induction on $c$ that $|X_i|\le (\prod_{j=1}^{c-1}2^{j!})\, k^{c!}$ for each $i\in[c]$. By definition, $|X_1|=m\le k$, which satisfies our requirement since $c\ge 1$.  By the inductive hypothesis,
   \[\textstyle
     |X_i|
      \le \left(\prod_{j=1}^{c-2}2^{j!}\right)(k')^{(c-1)!}
@@ -775,7 +826,7 @@ Finally, we can complete the proof of \cref{thm:gyarfas-lehel-general} (restated
 
   For each $\{i,j\}\in\binom{[c]}{2}$ and each $A\in\mathcal{A}$, define $A_{\{i,j\}}$ as the graph obtained from $A$ as follows.  If one or both of $\pi_i(\Pi(A))$ or $\pi_j(\Pi(A))$ is the null graph then $A_{\{i,j\}}:=A$. Otherwise $A_{\{i,j\}}$ is the graph obtained from $A$ by adding the shortest path in $F$ that has one endpoint in $\pi_i(\Pi(A))$ and the other endpoint in $\pi_j(\Pi(A))$.  In either case, $A_{\{i,j\}}$ has at most $c-1$ connected components.
 
-  For each $\{i,j\}\in\binom{[c]}{2}$, let $\mathcal{A}_{i,j}:=\{A_{\{i,j\}}\mid A\in \mathcal{A}\}$.  Then $\mathcal{A}_{\{i,j\}}$ is a collection of non-null $(c-1)$-forests hosted in $F$.  Now apply the inductive hypothesis to $\mathcal{A}_{\{i,j\}}$.  If outcome \cref{item:hungarians-pack} holds, then the $k$ pairwise vertex-disjoint members of $\mathcal{A}_{\{i,j\}}$ correspond to $k$ pairwise vertex-disjoint members of $\mathcal{A}$ and there is nothing more to do. Otherwise, outcome \cref{item:hungarians-hit} holds and we obtain a set $X_{\{i,j\}}$ with $|X_{\set{i,j}}|\leq \ell^\star(k,c-1)$ such that $X_{\{i,j\}}\cap V(A_{\{i,j\}})\neq\emptyset$ for each $A\in\mathcal{A}$.
+  For each $\{i,j\}\in\binom{[c]}{2}$, let $\mathcal{A}_{i,j}:=\{A_{\{i,j\}}\mid A\in \mathcal{A}\}$.  Then $\mathcal{A}_{\{i,j\}}$ is a collection of non-null subgraphs of $F$ each having at most $c-1$ components.  Now apply the inductive hypothesis to $\mathcal{A}_{\{i,j\}}$.  If outcome \cref{item:hungarians-pack} holds, then the $k$ pairwise vertex-disjoint members of $\mathcal{A}_{\{i,j\}}$ correspond to $k$ pairwise vertex-disjoint members of $\mathcal{A}$ and there is nothing more to do. Otherwise, outcome \cref{item:hungarians-hit} holds and we obtain a set $X_{\{i,j\}}$ with $|X_{\set{i,j}}|\leq \ell^\star(k,c-1)$ such that $X_{\{i,j\}}\cap V(A_{\{i,j\}})\neq\emptyset$ for each $A\in\mathcal{A}$.
 
 
   Let $X_0:=\bigcup_{\{i,j\}\in\binom{[c]}{2}} X_{\{i,j\}}$, let $F_0:=F-X_0$ and let $\mathcal{A}_0:=\{A\in\mathcal{A}\mid V(A)\cap X_0=\emptyset\}$.  Since $F$ is a binary tree, the number $m$ of components of $F_0$ is
@@ -784,14 +835,17 @@ Finally, we can complete the proof of \cref{thm:gyarfas-lehel-general} (restated
   \end{equation}
   Let $F_1,\ldots,F_m$ denote the components of $F_0$. Consider some $A\in\mathcal{A}_0$ having two distinct connected components $A_i:=\pi_i(\Pi(A))$ and $A_j:=\pi_j(\Pi(A))$.  Since $V(A_{\{i,j\}})\cap X_{\{i,j\}}\neq\emptyset$ and $V(A)\cap X_{\{i,j\}}=\emptyset$, we conclude that $X_{\set{i,j}}$ contains a vertex in $V(A_{\set{i,j}})\setminus V(A)$. Therefore, $A_i$ and $A_j$ are in different components of $F_0$.  Thus, each component of $F_0$ contains at most one component of $A$ for each $A\in\mathcal{A}_0$.
 
-  For each $A\in\mathcal{A}_0$, define $\Pi_0(A)$ as the $(F_i)_{i\in[m]}$-tuple in which $\pi_i(\Pi_0(A))$ is the component of $A$ contained in $F_i$ or the null graph if $V(A)\cap V(F_i)=\emptyset$, for each $i\in[m]$.  Since $A$ is non-null, $\Pi_0(A)$ is non-trivial. At this point, we can immediately apply \cref{lem:hungarians-Fi-tuples} with $c':=m$ to the collection $\{\Pi_0(A):A\in \mathcal{A}_0\}$ of non-trivial $(F_i)_{i\in[m]}$-tuples.  If outcome \cref{item:hungarian-support:independent-set} occurs then resulting set of $k$ independent $(F_i)_{i\in[m]}$-tuples corresponds to a set of pairwise vertex-disjoint elements of $\mathcal{A}_0\subseteq \mathcal{A}$, which satisfies the conditions of \cref{item:hungarians-pack}.  If outcome \cref{item:hungarian-support:hitting-set} occurs, then we obtain sets $X_1,\ldots,X_m$ with $X_i\subseteq V(F_i)$, for each $i\in[m]$, of total size at most $\ell(k,m)$ such that for each $A\in\mathcal{A}_0$, there exists $i\in[m]$ such that $V(A)\cap X_i\neq\emptyset$.  Then $X:=X_0\cup \bigcup_{i\in[m]}X_i$ satisfies the conditions of \cref{item:hungarians-hit} with
+  For each $A\in\mathcal{A}_0$, define $\Pi_0(A)$ as the $(F_i)_{i\in[m]}$-tuple in which $\pi_i(\Pi_0(A))$ is the component of $A$ contained in $F_i$ or the null graph if $V(A)\cap V(F_i)=\emptyset$, for each $i\in[m]$.  Since $A$ is non-null, $\Pi_0(A)$ is non-trivial. At this point, we can immediately apply \cref{lem:hungarians-Fi-tuples} with $c':=m$ to the collection $\{\Pi_0(A):A\in \mathcal{A}_0\}$ of non-trivial $(F_i)_{i\in[m]}$-tuples.  If outcome \cref{item:hungarian-support:independent-set} occurs then the resulting set of $k$ independent $(F_i)_{i\in[m]}$-tuples corresponds to a set of pairwise vertex-disjoint elements of $\mathcal{A}_0\subseteq \mathcal{A}$, which satisfies the conditions of \cref{item:hungarians-pack}.  If outcome \cref{item:hungarian-support:hitting-set} occurs, then we obtain sets $X_1,\ldots,X_m$ with $X_i\subseteq V(F_i)$, for each $i\in[m]$, of total size at most $\ell(k,m)$ such that for each $A\in\mathcal{A}_0$, there exists $i\in[m]$ such that $V(A)\cap X_i\neq\emptyset$.  Then $X:=X_0\cup \bigcup_{i\in[m]}X_i$ satisfies the conditions of \cref{item:hungarians-hit} with
   \[
-     \textstyle |X|\le |X_0|+|X_1|\le \binom{c}{2}\,\ell^*(k,c-1) + \ell(k,m)
-     \le \binom{c}{2}\,\ell^*(k,c-1) + \ell(k,2\binom{c}{2}\,\ell^\star(k,c-1)) \enspace .
+     \textstyle |X|\le |X_0|+|X_1|\le \binom{c}{2}\,\ell^\star(k,c-1) + \ell(k,m)
+     \le \binom{c}{2}\,\ell^\star(k,c-1) + \ell(k,2\binom{c}{2}\,\ell^\star(k,c-1)) \enspace .
   \]
-  Since this upper bound on $|X|$ clearly depends only on $k$ and $c$, this is sufficient to establish \cref{thm:gyarfas-lehel-general}.  However, with a bit more work, one can obtain a bound of the form $|X|\in O(k^{\ell^\star(c)})$ for some $\ell^\star:\N\to\N$, which is polynomial in $k$ for any fixed $c$.
+  This proves that
+  \[  \textstyle \ell^\star(k,c) \le \binom{c}{2}\,\ell^\star(k,c-1) + \ell(k,2\binom{c}{2}\,\ell^\star(k,c-1)) \]
+  which is sufficient to establish \cref{thm:gyarfas-lehel-general}.  However, with a bit more work, one can prove a bound of the form $\ell^\star(k,c)\in O(k^{h(c)})$ for some $h:\N\to\N$, which is polynomial in $k$ for any fixed $c$. 
+  % \gwen{Notation clash: $\ell^\star$ is already used}
 
-  For each $I\in\binom{[m]}{c}$, define the set $\mathcal{A}_I:=\{A\in\mathcal{A}_0:A\subseteq \bigcup_{i\in I}F_i\}$.  Since each element in $A$ has at most $c$ components and $V(A)\subseteq V(F_0)$ for each $A\in \mathcal{A}_0$, each such $A$ appears in $\mathcal{A}_I$ for at least one $I\in\binom{[m]}{c}$.  For each $I\in\binom{[m]}{c}$ and each $A\in\mathcal{A}_I$, define $\Pi_I(A):=(\pi_i(\Pi_0(A))_{i\in I}$ as the $(F_i)_{i\in I}$-tuple obtained by restricting $\Pi_0(A)$ to the indices in $I$.  For each $I\in\binom{[m]}{c}$,  Apply \cref{lem:hungarians-Fi-tuples} to the collection $\{\Pi_i(A):A\in \mathcal{A}_I\}$ of $(F_i)_{i\in I}$-tuples.  If outcome \cref{item:hungarian-support:independent-set} occurs for some $I\in\binom{[m]}{c}$ then resulting set of $k$ independent $(F_i)_{i\in I}$-tuples corresponds to a set of pairwise vertex-disjoint elements of $\mathcal{A}_I\subseteq \mathcal{A}$, which satisfies the conditions of \cref{item:hungarians-pack}.  If outcome \cref{item:hungarian-support:hitting-set} occurs for all $I\in\binom{[m]}{c}$, then we obtain a set $X_I\subseteq V(F_0)\subseteq V(F)$ with $|X_I|\le \ell(k,c)$ such that $V(A)\cap X_I\neq\emptyset$ for each $A\in\mathcal{A}_I$.
+  For each $I\in\binom{[m]}{c}$, define the set $\mathcal{A}_I:=\{A\in\mathcal{A}_0:A\subseteq \bigcup_{i\in I}F_i\}$.  Since each element in $A$ has at most $c$ components and $V(A)\subseteq V(F_0)$ for each $A\in \mathcal{A}_0$, each such $A$ appears in $\mathcal{A}_I$ for at least one $I\in\binom{[m]}{c}$.  For each $I\in\binom{[m]}{c}$ and each $A\in\mathcal{A}_I$, define $\Pi_I(A):=(\pi_i(\Pi_0(A))_{i\in I}$ as the $(F_i)_{i\in I}$-tuple obtained by restricting $\Pi_0(A)$ to the indices in $I$.  For each $I\in\binom{[m]}{c}$, apply \cref{lem:hungarians-Fi-tuples} to the collection $\{\Pi_i(A):A\in \mathcal{A}_I\}$ of $(F_i)_{i\in I}$-tuples.  If outcome \cref{item:hungarian-support:independent-set} occurs for some $I\in\binom{[m]}{c}$ then the resulting set of $k$ independent $(F_i)_{i\in I}$-tuples corresponds to a set of pairwise vertex-disjoint elements of $\mathcal{A}_I\subseteq \mathcal{A}$, which satisfies the conditions of \cref{item:hungarians-pack}.  If outcome \cref{item:hungarian-support:hitting-set} occurs for all $I\in\binom{[m]}{c}$, then we obtain a set $X_I\subseteq V(F_0)\subseteq V(F)$ with $|X_I|\le \ell(k,c)$ such that $V(A)\cap X_I\neq\emptyset$ for each $A\in\mathcal{A}_I$.
 
   Define the set $X:= X_0 \cup \bigcup_{I\in\binom{[m]}{c}} X_I$. As discussed above, each $A\in \mathcal{A}\setminus \mathcal{A}_0$ contains a vertex of $X_0$ while each $A\in\mathcal{A}_0$ contains a vertex of $\bigcup_{I\in\binom{[m]}{c}} X_I$. Finally,
   \[
