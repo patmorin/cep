@@ -149,8 +149,8 @@ For all positive integers $k$, define\footnote{Here and throughout, $\log x$ den
   Let $k$ be a positive integer and let $G$ be a graph with all vertices of degree $2$ or $3$. If $G$ contains at least $s(k)$ vertices of degree $3$, then $G$ contains $k$ vertex-disjoint cycles.
 \end{thm}
 
-If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \defin{non-null} graph. 
-%We call a forest with at most $c$ components a \defin{$c$-forest}. 
+If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \defin{non-null} graph.
+%We call a forest with at most $c$ components a \defin{$c$-forest}.
 %If $F$ is a forest and $F'\subseteq F$ is a $c$-forest, then we say that $F'$ is a $c$-forest \defin{hosted} in $F$.
 
 %\gwen{"hosted" is used only 3 times, here and twice in the appendix. Let's drop it. }
@@ -164,8 +164,8 @@ If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \d
 %\piotr{Agree. Done.}
 
 \begin{restatable}[\citet{gyarfas.lehel:helly}]{thm}{hungarians}\label{thm:gyarfas-lehel-general}
-   There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and 
-   every collection $\mathcal{A}$ of 
+   There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and
+   every collection $\mathcal{A}$ of
    non-null subgraphs of $F$, each having at most $c$ components, either
    \begin{tightenum}%[(a)]
      \item there are $k$ pairwise vertex-disjoint members of $\mathcal{A}$; or\label[p]{item:hungarians-pack}
@@ -174,8 +174,8 @@ If a graph has no vertices then it is a \defin{null} graph, otherwise it is a \d
 \end{restatable}
 % \begin{comment}
 % \begin{restatable}[\citet{gyarfas.lehel:helly}]{thm}{hungarians}\label{thm:gyarfas-lehel-general}
-%    There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and 
-%    every collection $\mathcal{A}$ of 
+%    There exists a function $\ell^\star:\N\times\N\to\N$ such that the following is true. For every $k,c\in\N$ with $k,c\geq1$, for every forest $F$ and
+%    every collection $\mathcal{A}$ of
 %    non-null subgraphs of $F$ such that each $A$ in $\mathcal{A}$ has at most $c$ components, either
 %    \begin{tightenum}%[(a)]
 %      \item there are $k$ pairwise vertex-disjoint members of $\mathcal{A}$; or\label[p]{item:hungarians-pack}
@@ -601,9 +601,9 @@ We are now ready to prove (the following quantitative version of) \cref{thm:main
 
 \section{Discussion}
 
-%The main open problem is determining the order of the smallest function $f(k)$ such that \cref{thm:main-in-intro} holds (irrespective of the value of $g(d)$). 
+%The main open problem is determining the order of the smallest function $f(k)$ such that \cref{thm:main-in-intro} holds (irrespective of the value of $g(d)$).
 We conjecture that \cref{thm:main-in-intro} remains true with $f(k)\in\Oh(k \log k)$ as in the original Erd\H{o}s-P\'osa theorem, which would be optimal. Our proof gives $f(k)\in\Oh(k^{18}\polylog k)$. By applying the techniques in the appendix directly to the tuples $\{(\Psi_\ell(t))_{\ell\in\{0,\ldots,p\}}:\text{$t$ is an admissible tuple}\}$ that appear in the proof of \cref{thm:the-big-ball-of-wax}, the exponent $18$ could be reduced with some additional work but would still be much greater than $1$.
-% We can do $13$. 
+% We can do $13$.
 
 
 
@@ -749,7 +749,7 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
 %  \gwen{I think the definition of $F_{(z)}(v)$ is not clear given how we defined the notation $F(v)$, since the roots of $F_{(z)}$ are not specified}
 %\piotr{We tried to improve the writing around it.}
   If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and either $c=1$, or $c\geq 2$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$ then
-  % If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$, then 
+  % If there exists $v\in V(F_1)$ such that $v>v_{z-1}$ and $\mathcal{C}_{z}(v)$ contains an independent set of size $k^{c-1}$, then
   we define $v_z$ to be the minimum such $v$ (with respect to the ordering $\sigma$).
   % \footnote{Note that if $c=1$, then $(\pi_2(A),\ldots,\pi_c(A))=()$ for each $A\in \mathcal{B}_z(v)$. If $\mathcal{B}_z(v)$ is non-empty, then $\mathcal{D}_z=\{()\}$ is an independent set of size $1=k^{c-1}$.}
   % \gwen{About footnote: I agree it works but isn't it a stretch to consider $\{()\}$ to be an independent set of size $1$? The definition of independent sets is for non-empty sequences as far I understand}
@@ -786,12 +786,12 @@ There exists a function $\ell:\mathbb{N}^2\to\mathbb{N}$ such that, for all $k,c
 
   Let $X_1:=\{v_1,\ldots,v_m\}$.  We claim that $X_1,\ldots,X_c$ satisfy the conditions of outcome \cref{item:hungarian-support:hitting-set}.
 
-  First we show that, for each $(A_1,\ldots,A_c)\in\mathcal{A}$, there exists $i\in[c]$ such that $V(A_i)\cap X_i\neq\emptyset$.  If $(A_2,\ldots,A_c)\in \mathcal{A}'$ then, by the inductive hypothesis, $V(A_i)\cap X_i\neq\emptyset$ for some $i\in\{2,\ldots,c\}$.  If $(A_2,\ldots,A_c)\notin\mathcal{A}'$, then this is because there is no $z\in[m+1]$ such that $(A_2,\ldots,A_c)\in\mathcal{E}_{z}$. Let $v$ be the root of $A_1$.    If $v$ has no $F_1$-ancestor in $X_1$, then 
-  $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$, because $(A_2, \dots, A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$.  
-  % If $v$ has no $F_1$-ancestor in $X_1$, then $A_1\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$ 
+  First we show that, for each $(A_1,\ldots,A_c)\in\mathcal{A}$, there exists $i\in[c]$ such that $V(A_i)\cap X_i\neq\emptyset$.  If $(A_2,\ldots,A_c)\in \mathcal{A}'$ then, by the inductive hypothesis, $V(A_i)\cap X_i\neq\emptyset$ for some $i\in\{2,\ldots,c\}$.  If $(A_2,\ldots,A_c)\notin\mathcal{A}'$, then this is because there is no $z\in[m+1]$ such that $(A_2,\ldots,A_c)\in\mathcal{E}_{z}$. Let $v$ be the root of $A_1$.    If $v$ has no $F_1$-ancestor in $X_1$, then
+  $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$, because $(A_2, \dots, A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$.
+  % If $v$ has no $F_1$-ancestor in $X_1$, then $A_1\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$
   % % \gwen{Shouldn't it be $(A_2, \dots,  A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$?}
-  % because $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$.  
-  % \gwen{Shouldn't this sentence be the other way round? I.e. "If $v$ has no $F_1$-ancestor in $X_1$, then 
+  % because $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$.
+  % \gwen{Shouldn't this sentence be the other way round? I.e. "If $v$ has no $F_1$-ancestor in $X_1$, then
   % $A_1\not\subseteq F_{(m+1)}(r_1)$, which is the component of $F_{(m+1)}=F_1-X_1$ that contains $r_1$, because $(A_2, \dots, A_c)\notin\mathcal{E}_{m+1}=\mathcal{C}_{m+1}(r_1)$."}
   Since $v$ has no $F_1$-ancestor in $X_1$, $v$ is in $F_{(m+1)}(r_1)$. Since $A_1\not\subseteq F_{(m+1)}(r_1)$, it must be that $A_1$ contains a vertex in $X_1$, so $V(A_1)\cap X_1\neq\emptyset$, as required.  Otherwise, let $v_z$ be the ancestor of $v$ in $X_1$ that is closest to $v$.  If $v=v_z$ then $V(A_1)\cap X_1\supseteq\{v\}\supsetneq\emptyset$, as required.  Otherwise $A_1$ is contained in $F_1(u)$ for some child $u$ of $v_z$.  Since $A_1\notin\mathcal{E}_{z}\supseteq C_{z}(u)$, we have that $A_1\not\subseteq F_{(z)}(u)=F_1(u)-\{v_1,\ldots,v_{z-1}\}$.  Thus $V(A_1)$ contains $v_i$ for some $i\in[z-1]$ so $V(A_1)\cap X_1\supseteq\{v_i\}\supsetneq\emptyset$.
 
@@ -842,7 +842,7 @@ Finally, we can complete the proof of \cref{thm:gyarfas-lehel-general} (restated
   \]
   This proves that
   \[  \textstyle \ell^\star(k,c) \le \binom{c}{2}\,\ell^\star(k,c-1) + \ell(k,2\binom{c}{2}\,\ell^\star(k,c-1)) \]
-  which is sufficient to establish \cref{thm:gyarfas-lehel-general}.  However, with a bit more work, one can prove a bound of the form $\ell^\star(k,c)\in O(k^{h(c)})$ for some $h:\N\to\N$, which is polynomial in $k$ for any fixed $c$. 
+  which is sufficient to establish \cref{thm:gyarfas-lehel-general}.  However, with a bit more work, one can prove a bound of the form $\ell^\star(k,c)\in O(k^{h(c)})$ for some $h:\N\to\N$, which is polynomial in $k$ for any fixed $c$.
   % \gwen{Notation clash: $\ell^\star$ is already used}
 
   For each $I\in\binom{[m]}{c}$, define the set $\mathcal{A}_I:=\{A\in\mathcal{A}_0:A\subseteq \bigcup_{i\in I}F_i\}$.  Since each element in $A$ has at most $c$ components and $V(A)\subseteq V(F_0)$ for each $A\in \mathcal{A}_0$, each such $A$ appears in $\mathcal{A}_I$ for at least one $I\in\binom{[m]}{c}$.  For each $I\in\binom{[m]}{c}$ and each $A\in\mathcal{A}_I$, define $\Pi_I(A):=(\pi_i(\Pi_0(A))_{i\in I}$ as the $(F_i)_{i\in I}$-tuple obtained by restricting $\Pi_0(A)$ to the indices in $I$.  For each $I\in\binom{[m]}{c}$, apply \cref{lem:hungarians-Fi-tuples} to the collection $\{\Pi_i(A):A\in \mathcal{A}_I\}$ of $(F_i)_{i\in I}$-tuples.  If outcome \cref{item:hungarian-support:independent-set} occurs for some $I\in\binom{[m]}{c}$ then the resulting set of $k$ independent $(F_i)_{i\in I}$-tuples corresponds to a set of pairwise vertex-disjoint elements of $\mathcal{A}_I\subseteq \mathcal{A}$, which satisfies the conditions of \cref{item:hungarians-pack}.  If outcome \cref{item:hungarian-support:hitting-set} occurs for all $I\in\binom{[m]}{c}$, then we obtain a set $X_I\subseteq V(F_0)\subseteq V(F)$ with $|X_I|\le \ell(k,c)$ such that $V(A)\cap X_I\neq\emptyset$ for each $A\in\mathcal{A}_I$.
