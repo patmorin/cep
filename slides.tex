@@ -10,7 +10,7 @@
 
 \newcommand{\emphh}[1]{\textcolor{blue}{\emph{#1}}}
 \newcommand{\hilite}[1]{\emphh{#1}}
-\title{Erdős-Pósa for pairwise distant cycles}
+\title{Erdős-Pósa for Pairwise Distant Cycles}
 
 \newcommand{\verteq}{\rotatebox{90}{$\equiv$}}
 
@@ -47,15 +47,15 @@
   \frametitle{Outline}
 
   \begin{itemize}
-    \item Theorem Statement
-    \item History
-    \item Proof Sketch
+    \item Theorem statement
+    \item Some related work
+    \item Proof sketch
   \end{itemize}
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{An Erdős-Pósa-Type Theorem for Pairwise-Distant Cycles}
+  \frametitle{Main Theorem}
 
   \noindent\textbf{Theorem (Dujmović-Joret-Micek-M 2024):} For every graph $G$, every integer $k\ge 1$ and $d\ge 0$,
   \begin{enumerate}%[nosep,nolistsep]
@@ -153,11 +153,16 @@
 \begin{frame}
   \frametitle{Proof Outline}
 
+  \only<1>{\includegraphics[page=1]{figs/animation}}%
+  \only<2>{\includegraphics[page=2]{figs/animation}}%
+  \only<3>{\includegraphics[page=3]{figs/animation}}%
+  \only<4>{\includegraphics[page=4]{figs/animation}}%
+
+
   \only<+>{Start with maximal $2d$-packing $\mathcal{C}:=\{C_1,\ldots,C_p\}$ of $d$-unicyclic cycles}%
-  \only<+>{\textbf{Lemma:} Any cycle in $G$ is \textcolor{blue}{short} or \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
-  \only<+>{Iteratively hit each short cycle with a single ball}%
-  \only<+>{Iteratively hit each short cycle with a single ball}%
-  \only<+>{Every (unhit) cycle in $G$ is close to a cycle in $\mathcal{C}$}%
+  \only<+>{\textbf{Lemma:} $^\star$Any cycle in $G$ is \textcolor{blue}{short} or \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
+  \only<+>{Iteratively hit each short cycle with a single ball of radius $7d+1$}%
+  \only<+>{Every (unhit) cycle in $G$ is \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
   \only<+>{\textbf{Lemma:} For each $i\in\{1,\ldots,p\}$, the cycles in $B_G(C_i,6d)-B_G(X_i,13d)$ for some $X_i$ with $|X_i|\le f'(k)$}%
   \only<+>{\textbf{Lemma:} For each distinct $i,j\in\{1,\ldots,p\}$, the cycles in $B_G(C_i,6d)\cup B_G(C_j,6d)-B_G(X_{\{i,j\}},13d)$ is a forest, for some $X_{\{i,j\}}$ with $|X_{\{i,j\}}|\le f'(k)$}
   \only<+>{$F_i:=B_G(C_i,4d)-B_G(X,13d)$ is a forest, for each $i\in\{1,\ldots,p\}$}
