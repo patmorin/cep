@@ -116,9 +116,9 @@
 \begin{frame}
   \frametitle{An Erdős-Pósa-Type Theorem for $c$-Subtrees}
 
-  \noindent{\textbf{Definition:} A $c$-forest in a tree $T$ is a subgraph of $T$ with at most $c$ components.\\[3ex]}
+  \noindent{\textbf{Definition:} A $c$-forest in a forest $F$ is a subgraph of $F$ with at most $c$ components.\\[3ex]}
 
-  \noindent\textbf{Theorem (Gyárfás-Lehel 1970):} For every tree $T$, every integer $k\ge 1$, and every collection $\mathcal{C}$ of $c$-subtrees of $T$,
+  \noindent\textbf{Theorem (Gyárfás-Lehel 1970):} For every forest $F$, every integer $k\ge 1$, and every collection $\mathcal{C}$ of $c$-subtrees of $F$,
   \begin{enumerate}%[nosep,nolistsep]
     \item $\mathcal{C}$ contains $k$ pairwise vertex-disjoint $c$-subtrees \textbf{or}
     \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $\ell^\star(k,c)$ such that every $c$-subtree in $\mathcal{C}$ contains a vertex in $X$.
@@ -160,23 +160,63 @@
   \only<5>{\includegraphics[page=5]{figs/animation}}%
   \only<6>{\includegraphics[page=6]{figs/animation}}%
   \only<7>{\includegraphics[page=7]{figs/animation}}%
-  \only<8>{\includegraphics[page=8]{figs/animation}}%
-  \only<9>{\includegraphics[page=9]{figs/animation}}%
-  \only<10>{\includegraphics[page=10]{figs/animation}}%
-  \only<11>{\includegraphics[page=11]{figs/animation}}%
+  \only<8-9>{\includegraphics[page=8]{figs/animation}}%
+  \only<10>{\includegraphics[page=9]{figs/animation}}%
+  \only<11>{\includegraphics[page=10]{figs/animation}}%
+  \only<12>{\includegraphics[page=11]{figs/animation}}%
+  \only<13>{\includegraphics[page=12]{figs/animation}}%
+  \only<14>{\includegraphics[page=13]{figs/animation}}%
+  \only<15>{\includegraphics[page=14]{figs/animation}}%
+  \only<16>{\includegraphics[page=15]{figs/animation}}%
+  \only<17>{\includegraphics[page=16]{figs/animation}}%
+  \only<18>{\includegraphics[page=17]{figs/animation}}%
+  \only<19>{\includegraphics[page=18]{figs/animation}}%
+  \only<20-21>{\includegraphics[page=19]{figs/animation}}%
 
-  \only<+>{Start with maximal $2d$-packing $\mathcal{C}:=\{C_1,\ldots,C_p\}$ of $d$-unicyclic cycles}%
-  \only<+>{\textbf{Lemma:} $^\star$Any cycle in $G$ is \textcolor{blue}{short} or \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
-  \only<+>{Iteratively hit each short cycle with a single ball of radius $7d+1$}%
-  \only<+>{Every (unhit) cycle in $G$ is \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
-  \only<+>{\textbf{Lemma:} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
-  \only<+>{\textbf{Lemma:} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
-  \only<+>{\textbf{Lemma:} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
-  \only<+>{\textbf{Lemma:} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
-  \only<+>{$F_0:=G-X-(\bigcup_{i=1}^p B_G(C_i,4d))$ is a forest}%
-  \only<+>{\textbf{Lemma:} For each distinct $i,j\in\{1,\ldots,p\}$, the cycles in $B_G(C_i,6d)\cup B_G(C_j,6d)-B_G(X_{\{i,j\}},13d)$ is a forest, for some $X_{\{i,j\}}$ with $|X_{\{i,j\}}|\le f'(k)$}
-  \only<+>{$F_i:=B_G(C_i,4d)-B_G(X,13d)$ is a forest, for each $i\in\{1,\ldots,p\}$}
+  \only<1>{Start with maximal $2d$-packing $\mathcal{C}:=\{C_1,\ldots,C_p\}$ of $d$-unicyclic cycles}%
+  \only<2>{\textbf{Lemma$^\star\colon$} Any cycle in $G$ is \textcolor{blue}{short} or \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
+  \only<3>{Iteratively hit each short cycle with a single ball of radius $7d+1$}%
+  \only<4>{Every (unhit) cycle in $G$ is \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
+  \only<5-8>{\textbf{Lemma$^\star\colon$} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
+  \only<9>{$F_i:=B_G(C_i,6d)-B_G(X_i,13d)$ is a forest, for each $i\in\{1,\ldots,p\}$}
+  \only<10-12>{$F_0:=G-(\mathcolor{red}{B_G(X,7d+1)}\cup \mathcolor{blue}{\bigcup_{i=1}^p B_G(C_i,4d)})$ is a forest}%
+  \only<13-14>{\textbf{Lemma$^\star\colon$} For each distinct $i,j\in\{1,\ldots,p\}$, $B_G(C_i,6d)\cap B_G(C_j,6d)\subseteq B_G(X_{\{i,j\}},13d)$, for some $X_{\{i,j\}}$ with $|X_{\{i,j\}}|\le f'(k)$}
+  \only<15>{$(\bigcup_{i=1}^p B_G(C_i,6d))-(\bigcup_i B_G(X_i,13d)\cup \bigcup_{i,j}(B_G(X_{\{i,j\}},13d))$ is a forest}
+  \only<16-17>{Any remaining cycle contain a \textcolor{blue}{segment} $s$ with parts in $F_0$, $F_i$, and $F_j$}%
+  \only<18>{Segment $s$ has three parts $s_0$, $s_i$, $s_j$}%
+  \only<19>{Extend $s_0$, $s_i$, and $s_j$}%
+  \only<20>{$B_G(s_0,d)\subseteq F_0$, $B_G(s_i,d)\subseteq F_i$, and $B_G(s_j,d)\subseteq F_j$}%
+  \only<21>{Map each segment to a $3$-subtree in a forest}
 
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{An Erdős-Pósa-Type Theorem for $c$-Subtrees}
+
+  Recall:
+
+  \noindent\textbf{Theorem (Gyárfás-Lehel 1970):} For every forest $F$, every integer $k'\ge 1$, and every collection $\mathcal{C}$ of $c$-subtrees of $F$,
+  \begin{enumerate}%[nosep,nolistsep]
+    \item $\mathcal{C}$ contains $k'$ pairwise vertex-disjoint $c$-subtrees \textbf{or}
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $\ell^\star(k',c)$ such that every $c$-subtree in $\mathcal{C}$ contains a vertex in $X$.
+  \end{enumerate}
+  \vspace{3ex}
+  \uncover<2->{In Case~2, $B_G(X,4d)$ hits every remaining cycle in $G$}
+  \vspace{2ex}
+\end{frame}
+
+\begin{frame}
+  \frametitle{An Erdős-Pósa-Type Theorem for $c$-Subtrees}
+
+  In Case 1:\\
+  PUT FIGURE HERE \\
+  \uncover<+>{Recall:
+
+
+  }
+\end{frame}
+
+
 
 \end{document}
