@@ -57,10 +57,10 @@
 \begin{frame}
   \frametitle{Main Theorem}
 
-  \noindent\textbf{Theorem (Dujmović-Joret-Micek-M 2024):} For every graph $G$, every integer $k\ge 1$ and $d\ge 0$,
+  \noindent\textbf{Theorem (Dujmović-Joret-Micek-M 2024):} For every graph $G$, all integers $k\ge 1$ and $d\ge 0$,
   \begin{enumerate}%[nosep,nolistsep]
     \item $G$ contains \textcolor{blue}{$d$-packing} of $k$ cycles \textbf{or}
-    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(k)$ such that $G-B_G(X,g(d))$ is a forest.  \newline \uncover<2->{(Every cycle in $G$ contains a vertex in $\mathcolor{blue}{B_G(X, g(d))}$.)}
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(k)$ such that $G-B(X,g(d))$ is a forest.  \newline \uncover<2->{(Every cycle in $G$ contains a vertex in $\mathcolor{blue}{B(X, g(d))}$.)}
   \end{enumerate}
 
   \begin{center}
@@ -73,7 +73,7 @@
 
 
 \begin{frame}
-  \frametitle{The Erdős-Pósa Theorem}
+  \frametitle{$d=0$: The Erdős-Pósa Theorem}
 
     \noindent\textbf{Theorem (Erdős-Pósa 1965):}
     For every graph $G$ and every integer $k\ge 1$,
@@ -90,6 +90,23 @@
     \end{center}
 \end{frame}
 
+\begin{frame}
+  \frametitle{$d=1$ and $k=2$}
+
+
+  \noindent\textbf{Theorem (Ahn-Gollin-Huynh-Kwon 2024):} For every graph $G$ and every integer $k\ge 1$,
+  \begin{enumerate}%[nosep,nolistsep]
+    \item $G$ contains an \textcolor{blue}{induced packing} of $k$ cycles \textbf{or}
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size $f(k)$ such that $G-B(X,1)$ is a forest.
+  \end{enumerate}
+  \\[2ex]
+  \noindent\textbf{Theorem (Ahn-Gollin-Huynh-Kwon 2024):} For every graph $G$ and every integer $d\ge 0$,
+  \begin{enumerate}%[nosep,nolistsep]
+    \item $G$ contains a pair of cycles at distance greater than $d$ \textbf{or}
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size $f(k)$ such that $G-B(X,g(d))$ is a forest.
+  \end{enumerate}
+\end{frame}
+
 
 \begin{frame}
   \frametitle{A Robertson-Seymour Erdős-Pósa-Type Theorem}
@@ -97,13 +114,15 @@
   \noindent\textbf{Theorem (Robertson-Seymour 1986):} For every graph $G$, every integer $k\ge 1$,  and every planar graph $H$,
   \begin{enumerate}%[nosep,nolistsep]
     \item $G$ contains $k$ pairwise vertex-disjoint $H$ minors \textbf{or}
-    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(H)$ such that $G-X$ is $H$-minor-free. \textcolor{blue}{(Every model of $H$-minor of $G$ has a vertex in $X$.)}
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(H)$ such that $G-X$ is $H$-minor-free. \textcolor{blue}{(Every model of $H$ in $G$ has a vertex in $X$.)}
   \end{enumerate}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{An Erdős-Pósa-Type Theorem for Subtrees}
+
+  \noindent{\textbf{Definition:} A \textcolor{blue}{subtree} in a tree $T$ is a subgraph of $T$ with $1$ component.\\[3ex]}
 
   \noindent\textbf{Theorem:} For every tree $T$, every integer $k\ge 1$,  and every collection $\mathcal{C}$ of subtrees of $T$,
   \begin{enumerate}%[nosep,nolistsep]
@@ -116,7 +135,7 @@
 \begin{frame}
   \frametitle{An Erdős-Pósa-Type Theorem for $c$-Subtrees}
 
-  \noindent{\textbf{Definition:} A $c$-forest in a forest $F$ is a subgraph of $F$ with at most $c$ components.\\[3ex]}
+  \noindent{\textbf{Definition:} A \textcolor{blue}{$c$-subtree} in a forest $F$ is a non-empty subgraph of $F$ with at most $c$ components.\\[3ex]}
 
   \noindent\textbf{Theorem (Gyárfás-Lehel 1970):} For every forest $F$, every integer $k\ge 1$, and every collection $\mathcal{C}$ of $c$-subtrees of $F$,
   \begin{enumerate}%[nosep,nolistsep]
@@ -129,8 +148,10 @@
 \begin{frame}
   \frametitle{Simonovits' Theorem}
 
-
   \noindent\textbf{Theorem (Simonovits 1967):} Every cubic graph $G$ with at least $C k\log k$ vertices contains $k$ pairwise vertex-disjoint cycles.
+
+  \only<1>{\includegraphics[scale=1.2,page=22]{figs/animation}}%
+  \only<2>{\includegraphics[scale=1.2,page=21]{figs/animation}}
 \end{frame}
 
 
@@ -140,7 +161,7 @@
   \noindent\textbf{Theorem (Dujmović-Joret-Micek-M 2024):} For every graph $G$, every integer $k\ge 1$ and $d\ge 0$,
   \begin{enumerate}%[nosep,nolistsep]
     \item $G$ contains \textcolor{blue}{$d$-packing} of $k$ cycles \textbf{or}
-    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(k)$ such that every cycle in $G$ contains a vertex in $\mathcolor{blue}{B_G(X, g(d))}$.
+    \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $f(k)$ such that every cycle in $G$ contains a vertex in $\mathcolor{blue}{B(X, g(d))}$.
   \end{enumerate}
 
   \begin{center}
@@ -148,6 +169,13 @@
     \raisebox{2cm}{ OR }
     \includegraphics[page=2]{figs/cep}
   \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Proof Outline}
+
+  Assume $G$ has no $d$-packing of $k$ cycles.\\[3ex]
+  We build $X\subseteq V(G)$, with $|X|\le f(k)$ such that every cycle in $G$ contains a vertex in $B(X,g(d))$
 \end{frame}
 
 \begin{frame}
@@ -173,21 +201,22 @@
   \only<19>{\includegraphics[page=18]{figs/animation}}%
   \only<20-21>{\includegraphics[page=19]{figs/animation}}%
 
+  \only<0>{Pffft}%
   \only<1>{Start with maximal $2d$-packing $\mathcal{C}:=\{C_1,\ldots,C_p\}$ of $d$-unicyclic cycles}%
   \only<2>{\textbf{Lemma$^\star\colon$} Any cycle in $G$ is \textcolor{blue}{short} or \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
   \only<3>{Iteratively hit each short cycle with a single ball of radius $7d+1$}%
   \only<4>{Every (unhit) cycle in $G$ is \textcolor{blue}{close to} a cycle in $\mathcal{C}$}%
-  \only<5-8>{\textbf{Lemma$^\star\colon$} For each $i\in\{1,\ldots,p\}$,  $B_G(C_i,6d)-B_G(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
-  \only<9>{$F_i:=B_G(C_i,6d)-B_G(X_i,13d)$ is a forest, for each $i\in\{1,\ldots,p\}$}
-  \only<10-12>{$F_0:=G-(\mathcolor{red}{B_G(X,7d+1)}\cup \mathcolor{blue}{\bigcup_{i=1}^p B_G(C_i,4d)})$ is a forest}%
-  \only<13-14>{\textbf{Lemma$^\star\colon$} For each distinct $i,j\in\{1,\ldots,p\}$, $B_G(C_i,6d)\cap B_G(C_j,6d)\subseteq B_G(X_{\{i,j\}},13d)$, for some $X_{\{i,j\}}$ with $|X_{\{i,j\}}|\le f'(k)$}
-  \only<15>{$(\bigcup_{i=1}^p B_G(C_i,6d))-(\bigcup_i B_G(X_i,13d)\cup \bigcup_{i,j}(B_G(X_{\{i,j\}},13d))$ is a forest}
-  \only<16-17>{Any remaining cycle contain a \textcolor{blue}{segment} $s$ with parts in $F_0$, $F_i$, and $F_j$}%
-  \only<18>{Segment $s$ has three parts $s_0$, $s_i$, $s_j$}%
+  \only<5-8>{\textbf{Lemma$^\star\colon$} For each $i\in\{1,\ldots,p\}$,  $B(C_i,6d)-B(X_i,13d)$ is acyclic, for some $X_i$ with $|X_i|\le f'(k)$}%
+  \only<9>{$F_i:=B(C_i,6d)-B(X_i,13d)$ is a forest, for each $i\in\{1,\ldots,p\}$}
+  \only<10-12>{$F_0:=G-(\mathcolor{red}{B(X,7d+1)}\cup \mathcolor{blue}{\bigcup_{i=1}^p B(C_i,4d)})$ is a forest}%
+  \only<13-14>{\textbf{Lemma$^\star\colon$} For each distinct $i,j\in\{1,\ldots,p\}$, $B(C_i,6d)\cap B(C_j,6d)\subseteq B(X_{\{i,j\}},13d)$, for some $X_{\{i,j\}}$ with $|X_{\{i,j\}}|\le f'(k)$}
+  \only<15>{$(\bigcup_{i=1}^p B(C_i,6d))-(\bigcup_i B(X_i,13d)\cup \bigcup_{i,j}(B(X_{\{i,j\}},13d))$ is a forest}
+  \only<16-17>{Any remaining cycle contains a \textcolor{blue}{segment} with parts in $F_0$, $F_i$, and $F_j$\\
+  Forget cycles and hit every segment}%
+  \only<18>{Each segment $s$ has three parts $s_0$, $s_i$, $s_j$}%
   \only<19>{Extend $s_0$, $s_i$, and $s_j$}%
-  \only<20>{$B_G(s_0,d)\subseteq F_0$, $B_G(s_i,d)\subseteq F_i$, and $B_G(s_j,d)\subseteq F_j$}%
-  \only<21>{Map each segment to a $3$-subtree in a forest}
-
+  \only<20>{$B(s_0,d)\subseteq F_0$, $B(s_i,d)\subseteq F_i$, and $B(s_j,d)\subseteq F_j$}%
+  \only<21>{Map each segment to a $3$-subtree in the forest $F_0\uplus\biguplus_i F_i$}
 \end{frame}
 
 
@@ -202,17 +231,18 @@
     \item $G$ has a vertex subset $\mathcolor{red}{X}$ of size at most $\ell^\star(k',c)$ such that every $c$-subtree in $\mathcal{C}$ contains a vertex in $X$.
   \end{enumerate}
   \vspace{3ex}
-  \uncover<2->{In Case~2, $B_G(X,4d)$ hits every remaining cycle in $G$}
+  \uncover<2->{In Case~2, $B(X,4d)$ hits every remaining cycle in $G$}
   \vspace{2ex}
 \end{frame}
 
 \begin{frame}
-  \frametitle{An Erdős-Pósa-Type Theorem for $c$-Subtrees}
+  \frametitle{Case~1}
 
   In Case 1:\\
-  \only<1>{\includegraphics[page=19]{figs/animation}}%
-  \only<2>{\includegraphics[page=20]{figs/animation}}
-
+  \begin{center}
+    \only<1>{\includegraphics[page=19]{figs/animation}}%
+    \only<2>{\includegraphics[page=20]{figs/animation}}
+  \end{center}
   \uncover<2->{Recall:\\
   \noindent\textbf{Theorem (Simonovits 1967):} Every cubic graph $G$ with at least $C k\log k$ vertices contains $k$ pairwise vertex-disjoint cycles.
   }
