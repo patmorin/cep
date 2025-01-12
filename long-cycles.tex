@@ -6,6 +6,8 @@
 \usepackage{mathtools}
 \usepackage{thmtools}
 \usepackage{thm-restate}
+\usepackage{siunitx}
+
 % \usepackage{dingbat}
 % \usepackage{todonotes}
 % \usepackage{comment}
@@ -122,6 +124,21 @@
 %   For any graph $G$, any $(2r+1)$-tight cycle $C$ in $G$, and any $C$-rooted BFS spanning unicycle $U$ of $G_{C,r}:=G[B_G(V(C),t)]$, ...
 % \end{obs}
 
+For all positive integers $k$, define\footnote{Here and throughout, $\log x$ denotes the base-$2$ logarithm of $x$.}
+\[
+  \mathdefin{s(k)}:=
+    \begin{cases}
+      \lceil 4k(\log k + \log\log k +4)\rceil & \textrm{if $k\geq2$}\\
+      2 & \textrm{if $k=1$.}
+    \end{cases}
+\]
+
+\begin{thm}[\citet{Simonovits67}]\label{simonovits}
+  Let $k$ be a positive integer and let $G$ be a graph with all vertices of degree $2$ or $3$. If $G$ contains at least $s(k)$ vertices of degree $3$, then $G$ contains $k$ vertex-disjoint cycles.
+\end{thm}
+
+
+
 Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanning BFS-unicycle of $G$.  The \defin{$U$-projection} $\proj_U(v)$ of a vertex $v$ of $G$ is the unique vertex $v'$ in $V(C)$ such that $\dist_U(v,V(C))=\dist_U(v,v')$. The \defin{$U$-span} of an edge $vw$ of $G$ is $\mathdefin{\spn_U(vw)}:=\dist_C(\proj_U(v),\proj_U(w))$.  The \defin{$U$-span} of $G$ is $\spn_U(G):=\max\{\spn_U(vw):vw\in E(G)\}$.
 
 \begin{lem}
@@ -186,7 +203,7 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
 \end{proof}
 
 \begin{lem}
-  Let $\ell$, $r$, $d$ and $p$ be positive integers with $r\ge d$, let $G$ be a graph, let $C$ be a cycle in $G$ of length at least $\ell$, let $U_d$ be a $C$-rooted spanning BFS-unicycle $G_d:=G[B_G(V(C),d)]$ with $\spn_{U_d}(G_d)\le\ell$, and let $U_r\supseteq U_d$ be a $C$-rooted spanning BFS-unicycle of $G_r:=G[B_G(V(C),r)]$. Then
+  Let $\ell$, $r$, $d$ and $p$ be positive integers with $r\ge d$, let $G$ be a graph, let $C$ be a cycle in $G$ of length at least $\ell$, let $U_d$ be a $C$-rooted spanning BFS-unicycle of $G_d:=G[B_G(V(C),d)]$ with $\spn_{U_d}(G_d)\le\ell$, and let $U_r\supseteq U_d$ be a $C$-rooted spanning BFS-unicycle of $G_r:=G[B_G(V(C),r)]$. Then
   \begin{enumerate}[nosep,nolistsep,label=\rm(\alph*),ref=(\alph*)]
     \item\label{packing_blowup} $G$ contains a $d$-packing of $k$ cycles each of length at least $\ell$; or
 
@@ -198,46 +215,97 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
 \begin{proof}
   Let $Q:=\{e\in E(G_r):\spn_{U_r}(e)>\ell\}$.  For each edge $vw\in Q$, let $P_{vw}$ be the path formed by concatenating the unique path in $U_r$ from $\proj_{U_r}(v)$ to $v$, the edge $vw$ and the unique path in $U_r$ from $w$ to $\proj_{U_r}(w)$.  That $P_{vw}$ is a path follows from the fact that $\spn_{U_r}(vw)>\ell>0$.
 
-  For each edge $vw\in Q$, define the \defin{buffer} around $vw$, as
-  \[
-    \buffer(vw):= B_G(V(P_{vw}),d)\cup B_G(B_C(\{\proj_{U_r}(v),\proj_{U_r}(w)\},\lfloor\ell/2\rfloor-d),d)
-  \]
+  For each edge $vw\in Q$, define $\Lambda(vw):=P_{vw}\cup B_C(V(P_{ww})\cap V(C),\lfloor\ell/2\rfloor)$.  Define the \defin{buffer} around $vw$, as $B_G(\Lambda(vw),\lceil d/2\rceil)$
+  % \[
+  %   \buffer(vw):= B_G(V(P_{vw}),\lceil d/2\rceil)\cup B_G(B_C(\{\proj_{U_r}(v),\proj_{U_r}(w)\},\lfloor\ell/2\rfloor),\lceil d/2\rceil)
+  % \]
   Consider the auxilliary graph $H$ with $V(H):=Q$ in which distinct $e_1,e_2\in Q$ are adjacent if and only if $\buffer(e_1)\cap\buffer(e_2)\neq\emptyset$. Let $I$ be a maximal independent set in $H$.  Consider the graph
   \[
     D:=C\cup \bigcup_{e\in I} P_e
   \]
-  Every vertex in $D$ has exactly $2|I|$ vertices of degree $3$ and all other vertices are of degree $2$.  Any path in $D$ whose endpoints are degree $3$ vertices and whose interior vertices are of degree $2$ is either $P_e$ for some $e\in I$ or is a path in $C$ between an endpoint of $P_e$ and an endpoint of $P_{e'}$ for some $e,e'\in D$.  If $e=e'$, then $\len(P)=\spn_{U_r}(e)>\ell$.  If $e\neq e'$ then, since $\buffer(e)\cap\buffer(e')=\emptyset$, $\len(P)\ge 2(\lfloor\ell/2\rfloor-d+d)+1\ge\ell$.
-  \begin{clm}
+  The graph $D$ has exactly $2|I|$ vertices of degree $3$ and all other vertices are of degree $2$.  Any path in $D$ whose endpoints are degree $3$ vertices and whose interior vertices are of degree $2$ is called a \defin{segment}.  Any segment is either $P_e$ for some $e\in I$ (called a \defin{$P$-segment}) or is a path in $C$ between an endpoint of $P_e$ and an endpoint of $P_{e'}$ for some $e,e'\in D$ (called a \defin{$C$-segment}).
+
+  \begin{clm}\label{c_segments_are_long}
+    Every $C$ segment has length at least $\ell$.
+  \end{clm}
+
+  \begin{proof}
+    Let $S$ be a $C$-segment whose endpoints $x$ and $y$ correspond with the an endpoint $x$ of $P_e$ and an endpoint $y$ of $P_{e'}$ for some $e,e'\in Q$. If $e=e'$, then $\len(P)=\spn_{U_r}(e)>\ell$.  If $e\neq e'$ then, since $e,e'\in Q$,  $\buffer(e)\cap\buffer(e')=\emptyset$.  Therefore $B_C(x,\lfloor\ell/2\rfloor)\cap B_C(y,\lfloor\ell/2\rfloor)=\emptyset$, so $\len(P)\ge 2\lfloor\ell/2\rfloor+1\ge\ell$.
+  \end{proof}
+
+  \begin{clm}\label{cycles_are_long}
     Every cycle in $D$ has length at least $\ell$.
   \end{clm}
   \begin{proof}
-    Any cycle in $D$ contains a path in $C$ between two degree-$3$ vertices of $D$.  This path has length at least $\ell$, so $C$ has length at least $\ell$.
+    The segments of any cycle in $D$ alternate between $C$-segments and $D$-segments. In particular, any cycle in $D$ contains at least one $C$-segment, which has length at least $\ell$.
   \end{proof}
 
-  \begin{clm}
+  \begin{clm}\label{cycles_are_distance_d}
     For any two vertex disjoint cycles $C_1$ and $C_2$ in $D$, $\dist_G(V(C_1),V(C_2))> d$.
   \end{clm}
 
   \begin{clmproof}
-    Suppose, for the sake of contradiction, that $\dist_G(V(C_1),V(C_2))\le d$. Let $P$ be a path in $G$ from $v_1\in V(C_1)$ to $v_2\in V(C_2)$ of length at most $d$.  There are some cases to consider:
+    Suppose, for the sake of contradiction, that $\dist_G(V(C_1),V(C_2))\le d$. Let $P$ be a shortest path in $G$ from $v_1\in V(C_1)$ to $v_2\in V(C_2)$, so $\len(P)=\dist_G(v_1,v_2)\le d$.  There are some cases to consider:
     \begin{itemize}
 
-      \item $v_1\in V(P_{e_1})$ and $v_2\in V(P_{e_2})\setminus V(C)$ for some $e_1,e_2\in I$:  In this case $P_{e_2}\subseteq C_2$ since $v_2$ is a degree-$2$ vertex of $D$.  Therefore $e_1\neq e_2$ since this would imply that $C_1$ and $C_2$ both contain $v_1$.  Therefore $\dist_G(V(P_{e_1}),V(P_{e_2}))\le d$, which implies that $\buffer(e_1)\cap\buffer(e_2)\neq\emptyset$, which is not possible since $e_1$ and $e_2$ are both in $I$.
+      \item $v_1\in V(P_{e_1})$ and $v_2\in V(P_{e_2})\setminus V(C)$ for some $e_1,e_2\in I$:  In this case $C_2$ contains the $P$-segment $P_{e_2}$, since $v_2$ is a degree-$2$ vertex of $D$.  Therefore $e_1\neq e_2$ since this would imply that $C_1$ and $C_2$ both contain $v_1$.  Since $e_1,e_2\in I$, $\buffer(e_1)\cap\buffer(e_2)=\emptyset$.  Therefore $B_G(V(P_{e_1}),\lfloor d/2\rfloor)\cap B_G(V(P_{e_2}),d)=\emptyset$. Therefore $\dist_G(V(P_{e_1}),V(P_{e_2}))\ge 2d + 1> d$.  But this is a contradiction, since $\dist_G(V(P_{e_1}),V(P_{e_2}))\le \dist_G(v_1,v_2)\le d$.
 
       \item $v_1\in V(C)$ and $v_2\in V(P_{e_2})$ for some $e_2\in I$:
-      % Again, this implies that $P_{e_2}\subseteq C_2$.
-      Since $\len(P)\le d$, $P\subseteq G_d$, so $\proj_{U_d}(v)$ is well-defined for each $v\in V(P)$.  Let $x:=\proj_{U_d}(v_2)$.  Observe that $C_2$ contains $x$ since either $x=v_2$ or $v_2$ is a degree $2$ vertex of $D$, in which case $P_2\subseteq D$ contains $x$.  Let $P_1$ and $P_2$ be the two paths in $C$ from $v_1$ to $x:=\proj_{U_d}(v_2)$.
+      Since $\len(P)\le d$, $P\subseteq G_d$, so $\proj_{U_d}(v)$ is well-defined for each $v\in V(P)$.  Let $x:=\proj_{U_d}(v_2)$.  Observe that $C_2$ contains $x$ since either $x=v_2$ or $v_2$ is a degree $2$ vertex of $D$, in which case $P_2\subseteq C_2$ contains $x$.  Let $P_1$ and $P_2$ be the two paths in $C$ from $v_1$ to $x:=\proj_{U_d}(v_2)$.
       Then, for each $i\in\{1,2\}$, $P_i$ must contain some vertex $y_i$ that is an endpoint of $P_{f_i}$ for some $f_i\in I\setminus e_2$. Indeed, otherwise all vertices of $P_i-x$ have degree $2$ in $D$, so $C_2$ contains $x$, contradicting the assumption that $C_1$ and $C_2$ are vertex-disjoint.
 
-      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$ and observe that $\{x,v_1\}\subseteq P'\subseteq B_G(v_2,d)\subseteq\buffer(e_2)$.
-      Since $\spn_{U_d}(G_d)\le\ell$, At least one of $P_1-P'$ or $P_2-P'$ consists entirely of paths whose length is at most $\ell-2$. Without loss of generality, suppose $P_1-P'$ consists entirely of paths each having length at most $\ell-2$.  Then $\buffer(f_1)\supseteq B_C(y_1,\ell)$ contains a vertex in $P'\subseteq\buffer(e_2)$.  This contradicts the assumption that $f_1$ and $e_2$ are both in $I$.
+      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$.  Observe that, for each $v\in P$,
+      \begin{align*}
+        \dist_G(v_2,\proj_{U_d}(v))
+          & \le \dist_G(v_2,\proj_{U_d}(v)) \\
+          & \le \dist_G(v_2,\proj_{U_d}(v)) \\
+          & \le \dist_G(v_2,v)+\dist_G(v,\proj_{U_d}(v)) \\
+          & = \dist_G(v_2,v)+\dist_G(v,V(C)) \\
+          & \le \dist_G(v_2,v)+\dist_G(v,v_1) \\
+          & = |P| \\
+          & \le d \enspace .
+      \end{align*}
+      % Therefore $P'\subseteq B_G(x,2d)\subseteq \buffer(e_2)$.
+      Since $\spn_{U_d}(G_d)\le\ell$, At least one of $P_1-P'$ or $P_2-P'$ consists entirely of paths whose length is at most $\ell-2$. Without loss of generality, suppose $P_1-P'$ consists entirely of paths each having length at most $\ell-2$.  Then $B_C(y_1,\lfloor\ell/2\rfloor)$ contains a subpath of $P_1$ that contains $x\in P'$, that contains $v_1\in P'$, or that has length at least $2\lfloor\ell/2\rfloor\ge \ell-1$. In each of these cases, $B_C(y_1,\lfloor\ell/2\rfloor)$ contains a vertex $v'\in P'$. Since $\dist_G(v_2,v')\le d$, we have
+      \[
+        \emptyset \subsetneq B_G(v_2,\lceil d/2\rceil)\cap B_G(v_2,\lceil d/2\rceil) \subseteq \buffer(e_2)\cap\buffer(f_1) \enspace ,
+      \]
+      contradicting the assumption that $e_2$ and $f_1$ are both in $I$.
 
-      \item $v_1,v_2\in V(C)\setminus(\bigcup_{e\in I}V(P_e))$. Let $P_1$ and $P_2$ be the two paths, in $C$ between $v_1$ and $v_2$.  Since $v_1$ and $v_2$ each have degree $2$ in $D$, for each $i\in\{1,\ldots,2\}$ there exists distinct $x_{i,1},x_{i,2}\in V(P_i)$ such that $x_{i,j}$ is the endpoint of $P_{e_{i,j}})$ for some $e_{i,j}\in I$, for each $j\in\{1,2\}$.
+      \item $v_1,v_2\in V(C)\setminus(\bigcup_{e\in I}V(P_e))$. Let $P_1$ and $P_2$ be the two paths, in $C$, between $v_1$ and $v_2$.  Since $C_1$ and $C_2$ are vertex disjoint and $v_1$ and $v_2$ each have degree $2$ in $D$, at least two of the internal vertices of $P_i$ must have degree-$3$ in $D$, for each $i\in\{1,2\}$. Moreover, for each $i\in\{1,\ldots,2\}$ there exists \emph{distinct} $f_{i,1},f_{i,2}\in I$ and $y_{i,1},y_{i,2}\in V(P_i)$ such that $y_{i,j}$ is the endpoint of $P_{f_{i,j}}$, for each $j\in\{1,2\}$.
 
-      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$.  As in the previous case, we may assume without loss of generality that $P_1-P'$ consists entirely of paths, each of length at most $\ell-2$.  For each $j\in\{1,2\}$, $B_C(x_{1,j},\ell)$ contains a vertex $y_{1,j}$ in $P'$.  Then $\dist_G(y_{1,1},y_{1,2})\le 3d$. Therefore, $B_G(y_{1,1},\lceil 3d/2\rceil)\subseteq \buffer(e_{1,1})$ intersects $B_G(y_{1,2},\lceil 3d/2\rceil)\subseteq\buffer(e_{1,2})$, which contradicts the assumption that $e_{1,1}$ and $e_{1,2}$ are distinct elements of $I$.
+      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$.  As in the previous case, we may assume without loss of generality that $P_1-P'$ consists entirely of paths, each of length at most $\ell-2$.  Thus, for each $j\in\{1,2\}$, $B_C(y_{1,j},\ell)$ contains a vertex $v'_{1,j}:=\proj_{U_d}(v_{1,j})\in P'\cap P_{1,j}$ for some $v_{1,j}\in V(P)$.  Assume, without loss of generality, that $v_{1,1}=v_{1,2}$ or that $v_{1,1}$ appears before $v_{1,2}$ on the path $P$ from $v_1$ to $v_2$. Therefore,
+      \begin{align*}
+        \dist_G(v'_{1,1},v'_{1,2})
+        & \le \dist_G(v'_{1,1},v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},v'_{1,2}) \\
+        & = \dist_G(V(C),v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},V(C)) \\
+        & \le \dist_G(v_1,v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},v_2) \\
+        & = |P| \\
+        & \le d \enspace .
+      \end{align*}
+      Therefore $\dist_G(v_2,v')\le d$, we have
+      \[
+        \emptyset \subsetneq B_G(v'_{1,1},\lceil d/2\rceil)\cap B_G(v'_{1,2},\lceil d/2\rceil) \subseteq \buffer(f_{1,1})\cap\buffer(f_{1,2}) \enspace ,
+      \]
+      which contradicts the assumption that $f_{1,1}$ and $f_{1,2}$ are distinct elements in $I$. \qedhere
     \end{itemize}
   \end{clmproof}
 
+  If $|I|\ge \tfrac{1}{2}s(k)$ then $D$ has $s(k)$ vertices of degree $3$ and all other vertices of degree $2$. By \cref{simonovits}, $D$ has $k$ pairwise disjoint vertex cycles.  By \cref{cycles_are_long}, each of these cycles has length at least $\ell$. By \cref{cycles_are_distance_d}, these cycles form a $d$-packing.  Thus, if $|I|\ge \tfrac{1}{2}s(k)$ then outcome \cref{packing} holds.
+
+  For each $e\in Q$, let $\Lambda^+(e):=V(P_e)\cup B_C(V(P_e)\cap V(C),\ell)$.
+  )
+  Now suppose that $|I|\le \tfrac{1}{2}s(k)$.  Let $X^+:=\bigcup_{e\in I}\Lambda(e)$.  Let $e$ be an edge of $G_r$ with $\spn_{U_r}(e)>\ell$.
+
+  \begin{clm}
+    For each endpoint $v$ of $e$, $\dist_G(v,X^+)\le ?r+?d$
+  \end{clm}
+
+  \begin{clmproof}
+    If $e\in I$, then $v\in X^+$, so $\dist_G(v,X^+)=0$ and there is nothing to prove.  Otherwise, $e$ is not in $I$ because $\buffer(e)\cap \buffer(e')\neq\emptyset$ for some $e'\in I$.  Since $\buffer(e)=B_G(\Lambda(e),\lceil d/2\rceil)$, this implies that $\dist_G(\Lambda(e),\Lambda(e'))\le 2\lceil d/2\rceil\le d+1$.  Therefore $\dist_G(v,X^+)\le \dist_G(v,\Lambda(e'))\le\dist_G()\)
+  \end{clmproof}
+
+  \si\ohm
 
   Let $Q'$ be a maximal subset of $Q$ subject to the condition that $\dist_G(V(P_e),V(P_{e'}))\ge d$ for each $v,w$
 
