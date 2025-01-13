@@ -160,7 +160,7 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
   \end{itemize}
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{hit_with_no_long_edges}
   Let $\ell$, $r$ and $p$ be positive integers, let $G$ be a graph, let $C$ be a cycle in $G$ of length at least $\ell$, and let $U$ be a $C$-rooted spanning BFS-unicycle $U$ of $G[B_G(V(C),r)]$ with $\spn_U(G[B_G(V(C),r)])\le\ell$. Let $\mathcal{H}$ be any set of non-null connected subgraphs of $G[B_G(V(C),r)]$. Then
   \begin{enumerate}[nosep,nolistsep,label=\rm(\alph*),ref=(\alph*)]
     \item\label{packing} $\mathcal{H}$ contain $k$ pairwise vertex disjoint subgraphs; or
@@ -203,23 +203,34 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
 \end{proof}
 
 \begin{lem}
-  Let $\ell$, $r$, $d$ and $p$ be positive integers with $r\ge d$, let $G$ be a graph, let $C$ be a cycle in $G$ of length at least $\ell$, let $U_d$ be a $C$-rooted spanning BFS-unicycle of $G_d:=G[B_G(V(C),d)]$ with $\spn_{U_d}(G_d)\le\ell$, and let $U_r\supseteq U_d$ be a $C$-rooted spanning BFS-unicycle of $G_r:=G[B_G(V(C),r)]$. Then
+  Let $\ell$, $r$, and $d$ be positive integers with $r\ge d$, let $G$ be a graph, let $C$ be a cycle in $G$, let $U_d$ be a $C$-rooted spanning BFS-unicycle of $G_d:=G[B_G(V(C),d)]$ with $\spn_{U_d}(G_d)\le\ell$, and let $U_r\supseteq U_d$ be a $C$-rooted spanning BFS-unicycle of $G_r:=G[B_G(V(C),r)]$. Then
   \begin{enumerate}[nosep,nolistsep,label=\rm(\alph*),ref=(\alph*)]
     \item\label{packing_blowup} $G$ contains a $d$-packing of $k$ cycles each of length at least $\ell$; or
 
-    \item\label{hitting} there exists $X\subseteq V(G)$ of size at most $f(k,p)$ such that each edge $e$ of $G_r$ with $\spn_{U_r}(e)>\ell$ has both endpoints in $B_G(X,r+(r+\ell)/p)$.
+    \item\label{hitting} there exists $X\subseteq V(G)$ of size at most $(r/d+\ell)\cdot s(k)$ such that each edge $e$ of $G_r$ with $\spn_{U_r}(e)>\ell$ has both endpoints in $B_G(X,r+2d+1)$.
      % every cycle in $G[B_G(V(C),r-d)]-X$ has length less than $\ell$.
   \end{enumerate}
 \end{lem}
 
 \begin{proof}
-  Let $Q:=\{e\in E(G_r):\spn_{U_r}(e)>\ell\}$.  For each edge $vw\in Q$, let $P_{vw}$ be the path formed by concatenating the unique path in $U_r$ from $\proj_{U_r}(v)$ to $v$, the edge $vw$ and the unique path in $U_r$ from $w$ to $\proj_{U_r}(w)$.  That $P_{vw}$ is a path follows from the fact that $\spn_{U_r}(vw)>\ell>0$.
+  Let $Q:=\{e\in E(G_r):\spn_{U_r}(e)>\ell\}$.  For each edge $vw\in Q$, let $P_{vw}$ be the path formed by concatenating the unique path in $U_r$ from $\proj_{U_r}(v)$ to $v$, the edge $vw$ and the unique path in $U_r$ from $w$ to $\proj_{U_r}(w)$.  That $P_{vw}$ is a path follows from the fact that $\spn_{U_r}(vw)>\ell>0$.  For each $vw\in Q$, let $R_{vw}:=B_C(\{\proj_{U_r}(v),\proj_{U_r}(w)\}, \ell)$.
 
-  For each edge $vw\in Q$, define $\Lambda(vw):=P_{vw}\cup B_C(V(P_{ww})\cap V(C),\lfloor\ell/2\rfloor)$.  Define the \defin{buffer} around $vw$, as $B_G(\Lambda(vw),\lceil d/2\rceil)$
+  Define an auxilliary graph $H$ with vertex set $V(H):=Q$ and in which contains the edge between distinct $e_1,e_2\in Q$ if and only if
+  \[
+    \dist_G(V(P_{e_1}),V(P_{e_2}))\le d\quad\text{or}\quad
+    \dist_G(\proj_{U_r}(e_1),\proj_{U_r}(e_2)))\le \ell d \enspace .
+  \]
+  %
+  %   there exists $x\in V(C)$ such that $\dist_G(V(P_{e_1},x)\le d$ and $\dist_C(x,\proj_{U_d}(e_2))\le\ell$; or
   % \[
-  %   \buffer(vw):= B_G(V(P_{vw}),\lceil d/2\rceil)\cup B_G(B_C(\{\proj_{U_r}(v),\proj_{U_r}(w)\},\lfloor\ell/2\rfloor),\lceil d/2\rceil)
+  %   \dist_G(V(P_{e_1}),V(P_{e_2}))\le d\quad\text{ or }\quad  \dist_G(V(P_{e_1}),x)+\dist_C(x,\proj_{U_d}(e_2))
+  %
+  %
+  %
+  %   \dist_C(\proj_{U_d}(e_1),\proj_{U_d}(e_2))\le\ell \enspace .
   % \]
-  Consider the auxilliary graph $H$ with $V(H):=Q$ in which distinct $e_1,e_2\in Q$ are adjacent if and only if $\buffer(e_1)\cap\buffer(e_2)\neq\emptyset$. Let $I$ be a maximal independent set in $H$.  Consider the graph
+  % \end{enumerate}
+  Let $I$ be a maximal independent set in $Q$ and consider the graph
   \[
     D:=C\cup \bigcup_{e\in I} P_e
   \]
@@ -230,14 +241,14 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
   \end{clm}
 
   \begin{proof}
-    Let $S$ be a $C$-segment whose endpoints $x$ and $y$ correspond with the an endpoint $x$ of $P_e$ and an endpoint $y$ of $P_{e'}$ for some $e,e'\in Q$. If $e=e'$, then $\len(P)=\spn_{U_r}(e)>\ell$.  If $e\neq e'$ then, since $e,e'\in Q$,  $\buffer(e)\cap\buffer(e')=\emptyset$.  Therefore $B_C(x,\lfloor\ell/2\rfloor)\cap B_C(y,\lfloor\ell/2\rfloor)=\emptyset$, so $\len(P)\ge 2\lfloor\ell/2\rfloor+1\ge\ell$.
+    Let $S$ be a $C$-segment whose endpoints $x$ and $y$ correspond with an endpoint $x$ of $P_e$ and an endpoint $y$ of $P_{e'}$ for some $e,e'\in I$. If $e=e'$, then $\len(S)=\spn_{U_r}(e)>\ell$, since $e\in Q$.  If $e\neq e'$ then, since $e,e'\in I$, $\len(S)\ge\dist_C(x,y)\ge \dist_C(\proj_{U_r}(e),\proj_{U_r}(e'))>\ell d>\ell$.
   \end{proof}
 
   \begin{clm}\label{cycles_are_long}
     Every cycle in $D$ has length at least $\ell$.
   \end{clm}
   \begin{proof}
-    The segments of any cycle in $D$ alternate between $C$-segments and $D$-segments. In particular, any cycle in $D$ contains at least one $C$-segment, which has length at least $\ell$.
+    The segments of any cycle in $D$ alternate between $C$-segments and $D$-segments. In particular, any cycle in $D$ contains at least one $C$-segment, which has length at least $\ell$, by \cref{c_segments_are_long}.
   \end{proof}
 
   \begin{clm}\label{cycles_are_distance_d}
@@ -245,72 +256,65 @@ Let $G$ be a graph, let $C$ be a cycle in $G$ and let $U$ by a $C$-rooted spanni
   \end{clm}
 
   \begin{clmproof}
-    Suppose, for the sake of contradiction, that $\dist_G(V(C_1),V(C_2))\le d$. Let $P$ be a shortest path in $G$ from $v_1\in V(C_1)$ to $v_2\in V(C_2)$, so $\len(P)=\dist_G(v_1,v_2)\le d$.  There are some cases to consider:
+    Suppose, for the sake of contradiction, that $\dist_G(V(C_1),V(C_2))\le d$. Let $P:=v_0,\ldots,v_s$ be a shortest path in $G$ from $v_0\in V(C_1)$ to $v_s\in V(C_2)$, so $\len(P)=s=\dist_G(v_1,v_2)\le d$.  There are two cases to consider:
     \begin{itemize}
+      \item $v_0\in V(P_{e_1})\setminus V(C)$ and $v_2\in V(P_{e_2})\setminus V(C)$, for some $e_1,e_2\in I$. Then, since $v_0$ and $v_s$ have degree $2$ in $D$, $P_{e_1}\subseteq C_1$ and $P_{e_2}\subseteq C_2$.  Since $C_1$ and $C_2$ are vertex disjoint, $e_1\neq e_2$. Since $e_1,e_2\in I$, $\dist_G(v_0,v_s)\ge \dist_G(V(P_{e_1}),V(P_{e_2}))>d$, a contradiction.
 
-      \item $v_1\in V(P_{e_1})$ and $v_2\in V(P_{e_2})\setminus V(C)$ for some $e_1,e_2\in I$:  In this case $C_2$ contains the $P$-segment $P_{e_2}$, since $v_2$ is a degree-$2$ vertex of $D$.  Therefore $e_1\neq e_2$ since this would imply that $C_1$ and $C_2$ both contain $v_1$.  Since $e_1,e_2\in I$, $\buffer(e_1)\cap\buffer(e_2)=\emptyset$.  Therefore $B_G(V(P_{e_1}),\lfloor d/2\rfloor)\cap B_G(V(P_{e_2}),d)=\emptyset$. Therefore $\dist_G(V(P_{e_1}),V(P_{e_2}))\ge 2d + 1> d$.  But this is a contradiction, since $\dist_G(V(P_{e_1}),V(P_{e_2}))\le \dist_G(v_1,v_2)\le d$.
-
-      \item $v_1\in V(C)$ and $v_2\in V(P_{e_2})$ for some $e_2\in I$:
-      Since $\len(P)\le d$, $P\subseteq G_d$, so $\proj_{U_d}(v)$ is well-defined for each $v\in V(P)$.  Let $x:=\proj_{U_d}(v_2)$.  Observe that $C_2$ contains $x$ since either $x=v_2$ or $v_2$ is a degree $2$ vertex of $D$, in which case $P_2\subseteq C_2$ contains $x$.  Let $P_1$ and $P_2$ be the two paths in $C$ from $v_1$ to $x:=\proj_{U_d}(v_2)$.
-      Then, for each $i\in\{1,2\}$, $P_i$ must contain some vertex $y_i$ that is an endpoint of $P_{f_i}$ for some $f_i\in I\setminus e_2$. Indeed, otherwise all vertices of $P_i-x$ have degree $2$ in $D$, so $C_2$ contains $x$, contradicting the assumption that $C_1$ and $C_2$ are vertex-disjoint.
-
-      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$.  Observe that, for each $v\in P$,
-      \begin{align*}
-        \dist_G(v_2,\proj_{U_d}(v))
-          & \le \dist_G(v_2,\proj_{U_d}(v)) \\
-          & \le \dist_G(v_2,\proj_{U_d}(v)) \\
-          & \le \dist_G(v_2,v)+\dist_G(v,\proj_{U_d}(v)) \\
-          & = \dist_G(v_2,v)+\dist_G(v,V(C)) \\
-          & \le \dist_G(v_2,v)+\dist_G(v,v_1) \\
-          & = |P| \\
-          & \le d \enspace .
-      \end{align*}
-      % Therefore $P'\subseteq B_G(x,2d)\subseteq \buffer(e_2)$.
-      Since $\spn_{U_d}(G_d)\le\ell$, At least one of $P_1-P'$ or $P_2-P'$ consists entirely of paths whose length is at most $\ell-2$. Without loss of generality, suppose $P_1-P'$ consists entirely of paths each having length at most $\ell-2$.  Then $B_C(y_1,\lfloor\ell/2\rfloor)$ contains a subpath of $P_1$ that contains $x\in P'$, that contains $v_1\in P'$, or that has length at least $2\lfloor\ell/2\rfloor\ge \ell-1$. In each of these cases, $B_C(y_1,\lfloor\ell/2\rfloor)$ contains a vertex $v'\in P'$. Since $\dist_G(v_2,v')\le d$, we have
+      \item $v_0,v_s\in V(C)$. Since $\len(P)\le d$, $P\subseteq G_d$.  Since $\span_{U_d}(G_d)\le\ell$,
       \[
-        \emptyset \subsetneq B_G(v_2,\lceil d/2\rceil)\cap B_G(v_2,\lceil d/2\rceil) \subseteq \buffer(e_2)\cap\buffer(f_1) \enspace ,
+        \dist_C(v_0,v_s)\le \sum_{i=1}^s\dist_C(\proj_{U_d}(v_{i-1}),\proj_{U_d}(v_i))=\sum_{i=1}^s\spn_{U_d}(v_{i-1}v_i)\le s\ell\le d\ell \enspace .
       \]
-      contradicting the assumption that $e_2$ and $f_1$ are both in $I$.
-
-      \item $v_1,v_2\in V(C)\setminus(\bigcup_{e\in I}V(P_e))$. Let $P_1$ and $P_2$ be the two paths, in $C$, between $v_1$ and $v_2$.  Since $C_1$ and $C_2$ are vertex disjoint and $v_1$ and $v_2$ each have degree $2$ in $D$, at least two of the internal vertices of $P_i$ must have degree-$3$ in $D$, for each $i\in\{1,2\}$. Moreover, for each $i\in\{1,\ldots,2\}$ there exists \emph{distinct} $f_{i,1},f_{i,2}\in I$ and $y_{i,1},y_{i,2}\in V(P_i)$ such that $y_{i,j}$ is the endpoint of $P_{f_{i,j}}$, for each $j\in\{1,2\}$.
-
-      Let $P':=\{\proj_{U_d}(v):v\in V(P)\}$.  As in the previous case, we may assume without loss of generality that $P_1-P'$ consists entirely of paths, each of length at most $\ell-2$.  Thus, for each $j\in\{1,2\}$, $B_C(y_{1,j},\ell)$ contains a vertex $v'_{1,j}:=\proj_{U_d}(v_{1,j})\in P'\cap P_{1,j}$ for some $v_{1,j}\in V(P)$.  Assume, without loss of generality, that $v_{1,1}=v_{1,2}$ or that $v_{1,1}$ appears before $v_{1,2}$ on the path $P$ from $v_1$ to $v_2$. Therefore,
-      \begin{align*}
-        \dist_G(v'_{1,1},v'_{1,2})
-        & \le \dist_G(v'_{1,1},v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},v'_{1,2}) \\
-        & = \dist_G(V(C),v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},V(C)) \\
-        & \le \dist_G(v_1,v_{1,1})+\dist_G(v_{1,1},v_{1,2})+\dist_G(v_{1,2},v_2) \\
-        & = |P| \\
-        & \le d \enspace .
-      \end{align*}
-      Therefore $\dist_G(v_2,v')\le d$, we have
+      Let $C'\subseteq C$ be a path from $v_0$ to $v_s$ of length $\dist_C(v_0,v_s)$.  There are distinct $e_1,e_2\in I$ such that $P_{e_1}\subseteq C_1$ and $P_{e_2}\subseteq C_2$ each have an endpoint in $V(C')$.  Therefore
       \[
-        \emptyset \subsetneq B_G(v'_{1,1},\lceil d/2\rceil)\cap B_G(v'_{1,2},\lceil d/2\rceil) \subseteq \buffer(f_{1,1})\cap\buffer(f_{1,2}) \enspace ,
+        \dist_C(\proj_{U_r}(e_1),\proj_{U_r}(e_2))\le \len(C')\le d\ell \enspace .
       \]
-      which contradicts the assumption that $f_{1,1}$ and $f_{1,2}$ are distinct elements in $I$. \qedhere
-    \end{itemize}
+      This contradicts the assumption that $e_1,e_2\in I$.
   \end{clmproof}
 
-  If $|I|\ge \tfrac{1}{2}s(k)$ then $D$ has $s(k)$ vertices of degree $3$ and all other vertices of degree $2$. By \cref{simonovits}, $D$ has $k$ pairwise disjoint vertex cycles.  By \cref{cycles_are_long}, each of these cycles has length at least $\ell$. By \cref{cycles_are_distance_d}, these cycles form a $d$-packing.  Thus, if $|I|\ge \tfrac{1}{2}s(k)$ then outcome \cref{packing} holds.
+  If $|I|\ge \tfrac{1}{2}s(k)$ then $D$ has $s(k)$ vertices of degree $3$ and all other vertices of degree $2$. By \cref{simonovits}, $D$ has $k$ pairwise disjoint vertex cycles.  By \cref{cycles_are_long}, each of these cycles has length at least $\ell$. By \cref{cycles_are_distance_d}, these cycles form a $d$-packing.  Thus, if $|I|\ge \tfrac{1}{2}s(k)$ then outcome \ref{packing} holds.
 
-  For each $e\in Q$, let $\Lambda^+(e):=V(P_e)\cup B_C(V(P_e)\cap V(C),\ell)$.
-  )
-  Now suppose that $|I|\le \tfrac{1}{2}s(k)$.  Let $X^+:=\bigcup_{e\in I}\Lambda(e)$.  Let $e$ be an edge of $G_r$ with $\spn_{U_r}(e)>\ell$.
+  Now suppose that $|I|\le \tfrac{1}{2}s(k)$.
+  For each $e\in Q$, let $\Lambda(e):=V(P_e)\cup B_C(\proj_{U_d}(e),d\ell)$.
+  Let $X^+:=\bigcup_{e\in I}\Lambda(e)$.  Let $e$ be an edge of $G_r$ with $\spn_{U_r}(e)>\ell$.
 
-  \begin{clm}
-    For each endpoint $v$ of $e$, $\dist_G(v,X^+)\le ?r+?d$
+  \begin{clm}\label{hitting_set}
+    For each endpoint $v$ of $e$, $\dist_G(v,X^+)\le d+r+1$
   \end{clm}
 
   \begin{clmproof}
-    If $e\in I$, then $v\in X^+$, so $\dist_G(v,X^+)=0$ and there is nothing to prove.  Otherwise, $e$ is not in $I$ because $\buffer(e)\cap \buffer(e')\neq\emptyset$ for some $e'\in I$.  Since $\buffer(e)=B_G(\Lambda(e),\lceil d/2\rceil)$, this implies that $\dist_G(\Lambda(e),\Lambda(e'))\le 2\lceil d/2\rceil\le d+1$.  Therefore $\dist_G(v,X^+)\le \dist_G(v,\Lambda(e'))\le\dist_G()\)
+    If $e\in I$, then $v\in X^+$, so $\dist_G(v,X^+)=0\le r$ and we are done.  Otherwise, $e$ is not in $I$ because there exist $e'\in I$ such that $ee'\in E(H)$.  Therefore are two possible reasons for this:
+    \begin{enumerate}[nosep,nolistsep]
+      \item $\dist_G(V(P_e'),V(P_{e}))\le d$. In this case,
+      \[  \dist_G(X^+,e) \le \dist_G(V(P_{e'}),e) \le \dist_G(V(P_{e'}),P_e)+r \le d+r
+      \]
+      \item $\dist_C(\proj_{U_d}(e'),\proj_{U_d}(e)) \le d\ell$.  In this case,
+      $B_C(\proj_{U_d}(e'))$ contains an endpoint $x$ of $P_e$. Then
+      \[  \dist_G(X^+,e) \le \dist_G(B_C(\proj_{U_d}(e'),e) \le \dist_G(x,e) \le d+r \enspace .
+      \]
+      In either case $\dist_G(X^+,v)\le \dist_G(X^+,e)+1\le d+r+1$.
   \end{clmproof}
-
-  \si\ohm
-
-  Let $Q'$ be a maximal subset of $Q$ subject to the condition that $\dist_G(V(P_e),V(P_{e'}))\ge d$ for each $v,w$
-
+  Finally, we define $X$ by taking for each $vw\in I$, one out of every $d$ vertices in $P_e$, one out of every $d$ vertices in $B_C(\proj_{U_r}(v),d\ell)$ and one out of every $d$ vertices in $B_C(\proj_{U_r}(w),d\ell)$. Then $|X|\le (2r/d + 2d\ell/d)\cdot |I| \le 2(r/d+\ell)\cdot s(k)$ Then, for each endpoint $v$ of an edge $e\in Q$, $\dist_G(X,v)\le\dist_G(X^+,v)+d\le 2d+r+1$.
 \end{proof}
 
+
+\begin{lem}
+  Let $\ell$, $r$ and $d$ be positive integers, let $G$ be a graph, let $C$ be a cycle in $G$, and let $U$ be a $C$-rooted spanning BFS-unicycle $U$ of $G_r:=G[B_G(V(C),r)]$ and let $X_0\subseteq V(G)$ be such that $e\subset B_G(X,r+2d+1)$ for each edge $e$ of $G_r$ with $\spn_{U}(e)>\ell$.
+  Then
+  \begin{enumerate}[nosep,nolistsep,label=\rm(\alph*),ref=(\alph*)]
+    \item\label{packing} $G$ contains a $d$-packing of $k$ pairwise disjoint cycles each of length at least $\ell$; or
+
+    \item there exists $X\subseteq V(G)$ of size at most $k\ell +(r/d+\ell)\cdot s(k)$ such that every cycle in $G[B_G(V(C),r-d)]-B_G(X,r+2d+\lceil d/2\rceil)$ has length less than $\ell$.
+  \end{enumerate}
+\end{lem}
+
+\begin{proof}
+  Let $\mathcal{C}$ be the set of cycles $C'$ in $G^-_{r}:=G[B_G(V(C),r-\lceil d/2\rceil)]$ of length at least $\ell$ and such that $\dist_G(V(C'),X_0)\ge r+2d+\lceil d/2\rceil$.  Let $\mathcal{H}:=\bigcup_{C'\in\mathcal{C}} G[B_G(V(C'),\lceil d/2\rceil)]$.  Observe that all of the graphs in $\mathcal{H}$ are connected and none of the graphs in $\mathcal{H}$ contain an edge $e$ with $\spn_{U}(e)>\ell$.  Apply \cref{hit_with_no_long_edges} to obtain
+  \begin{enumerate*}[nosep,nolistsep,label=(\alph*)]
+    \item $k$ pairwise vertex-disjoint members of $\mathcal{H}$; or
+    \item a set $X_1\subseteq V(C)$ of size $k\ell$ such that each graph in $\mathcal{H}$ contains a vertex in $B_G(X_1,r)$.
+  \end{enumerate*}
+  For outcome \ref{packing}, we obtain a $2\lceil d/2\rceil$-packing of $k$ cycles in $G$, each of length at least $\ell$. For outcome \ref{hitting}, $B_G(X_1,r+\lceil d/2\rceil)$ hits every cycle in $G^-_r$ that has length at least $\ell$ and whose distance to $X_0$ is at least $r+2d+\lceil d/2\rceil$. Then $B_G(X_0,r+2d+\lceil d/2\rceil)$ hits all cycles in $G^-_r$ that have length at least $\ell$ and whose distance to $X_0$ is at less than $r+2d+\lceil d/2\rceil$. Taking $X:=X_0\cup X_1$ satisfies \ref{hitting}.
+\end{proof}
 
 
 \end{document}
